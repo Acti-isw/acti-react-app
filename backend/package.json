@@ -6,6 +6,7 @@
     "scripts": {
         "start": "node app.js",
         "dev": "nodemon app.js",
+        "dev:mongo": "SET NODE_ENV=mongo&& nodemon app.js",
         "format": "npx prettier --write .",
         "test": "standard && node app.js"
     },
