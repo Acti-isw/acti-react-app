@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 
-const userSchema = new mongoose.Schema({
+const { Schema } = mongoose;
+
+const userSchema = new Schema({
     id: {
         type: Number,
         required: true,
@@ -13,6 +15,11 @@ const userSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true
+    },
+    role: {
+        type: Schema.Types.ObjectId,
+        default: 0,
+        ref: 'roles'
     }
 });
 

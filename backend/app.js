@@ -1,24 +1,13 @@
-const express = require('express');
-const app = express();
+const colors = require('utils/colors.util');
+const { port } = require('config/general.config');
+const { startMongoDB, startMongoAtlas } = require('services/dbService');
+const app = require('./src/server');
 
-const { port } = require('./src/config/general.config');
-const { startMongoDB, startMongoAtlas } = require('./src/services/dbService');
-const logger = require('./src/middleware/logs');
+if (process.env.NODE_ENV === 'mongo') startMongoDB();
+startMongoAtlas();
 
-const userRoute = require('./src/routes/userRoute');
-
-app.use(express.json());
-app.use(express.static('public'));
-
-app.use(logger());
-if (process.env.NODE_ENV === 'mongo') {
-    startMongoDB();
-} else {
-    startMongoAtlas();
-}
-
-app.use('/api', userRoute);
-
-app.listen(port, () => {
-    console.log(`API running on port: ${port}!`);
+app.listen(port, process.env.HOST, () => {
+    console.log(
+        colors.debug(`API running on http://${process.env.HOST}:${port} !`)
+    );
 });
