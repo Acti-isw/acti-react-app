@@ -1,3 +1,7 @@
+.Home{
+  max-width: 1200px;
+  margin: 0 auto;
+}
 header{
   display: flex;
   flex-direction: column;
@@ -5,4 +9,15 @@ header{
   align-items: center;
   margin: 10px;
   gap: 17px;
+}
+.mainText{
+  text-align: center;
+}
+/* footer{
+  margin: 0 auto;
+} */
+.footerImg{
+  margin: 20px 10px 0px 10px;
+  width: 90%;
+  max-width: 800px;
 }

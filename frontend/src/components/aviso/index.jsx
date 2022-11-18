@@ -11,6 +11,9 @@ function Aviso(props){
     <p>
       {props.text}
     </p>
+    <p>
+      {props.tema}
+    </p>
   </div>
   )
 }

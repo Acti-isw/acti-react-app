@@ -9,3 +9,21 @@ nav{
   width: 175px;
   height: 48px;
 }
+.options{
+  background-color: var(--white);
+  position: absolute;
+  right: 0;
+}
+.options__ul{
+  list-style-type: none;
+}
+.options__ul__li{
+  padding: 5px;
+  cursor: pointer;
+}
+.options__ul__li:hover{
+  background: linear-gradient(0deg, rgba(51, 177, 255, 0.5), rgba(51, 177, 255, 0.5)), var(--white);
+}
+.none{
+  display: none;
+}

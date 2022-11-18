@@ -28,12 +28,23 @@ function Curso(props){
     "background":`url(${JS})`
   }
   return(
-  <div className='curso' >
-    <div className=''>
-      <p className='textMd'>Curso</p>
-      <p className='title'>{props.nameCurso}</p>
+  <div className='curso'>
+    <div className='head_curso' >
+      <div className=''>
+        <p className='textMd'>Curso</p>
+        <p className='title'>{props.nameCurso}</p>
+      </div>
+      <img src={Icon_JS} alt="ThemeIcon" />
     </div>
-    <img src={Icon_JS} alt="ThemeIcon" />
+    <div className='themes'>
+      <ul>
+        <li>Variables</li>
+        <li>Ciclos</li>
+        <li>Switch</li>
+        <li>Logica</li>
+        <li>Casteo</li>
+      </ul>
+    </div>
   </div>
   )
 }
