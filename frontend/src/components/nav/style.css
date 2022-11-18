@@ -1,0 +1,11 @@
+nav{
+  background-color: var(--primary);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+.logotipo{
+  width: 175px;
+  height: 48px;
+}
