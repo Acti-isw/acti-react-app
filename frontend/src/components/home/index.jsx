@@ -4,10 +4,9 @@ import Aviso from '../aviso'
 import DesplegableCurso from '../desplegableCurso';
 import RamImg from '../../assets/Ramses_Parker.png';
 
-
 function Home(){
   return(
-    <div className='Home'>
+    <div className='Home' id='home'>
       <header>
         <h1>ACTI</h1>
         <p className='text mainText'>
