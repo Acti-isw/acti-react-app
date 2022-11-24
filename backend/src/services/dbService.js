@@ -7,7 +7,7 @@ const startMongoDB = () => {
         .connect(`mongodb://${db.host}:${db.port}/${db.name}`)
         .then(() => console.log(colors.silly('Connected to MongoDB')))
         .catch((err) =>
-            console.log(color.error('Could not connect to MongoDB', err))
+            console.log(colors.error('Could not connect to MongoDB', err))
         );
 };
 

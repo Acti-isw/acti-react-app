@@ -5,7 +5,19 @@ const userSchema = require('../models/user');
  * @returns {Array} users
  */
 const getUsers = async () => {
-    return await userSchema.find().populate('role');
+    return await userSchema.aggregate([
+        {
+            $lookup: {
+                from: 'roles',
+                localField: 'rol',
+                foreignField: 'id',
+                as: 'rol'
+            }
+        },
+        {
+            $unwind: '$rol'
+        }
+    ]);
 };
 
 /**
@@ -19,22 +31,12 @@ const getUser = async ({ id }) => {
 
 /**
  *
- * @param {Integer} id - user ID
- * @param {String} name, email - user name and email
+ * @param {Integer} id
+ * @param {User} user
  */
-const updateUser = async ({ id }, { name, email, role }) => {
-    await userSchema.updateOne(
-        {
-            id: id
-        },
-        {
-            $set: {
-                name: name,
-                email: email,
-                role: role
-            }
-        }
-    );
+
+const updateUser = async ({ id }, user) => {
+    await userSchema.findOneAndUpdate({ id: id }, user);
 };
 
 /**

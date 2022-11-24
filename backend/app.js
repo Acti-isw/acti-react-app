@@ -4,7 +4,7 @@ const { startMongoDB, startMongoAtlas } = require('services/dbService');
 const app = require('./src/server');
 
 if (process.env.NODE_ENV === 'mongo') startMongoDB();
-startMongoAtlas();
+else startMongoAtlas();
 
 app.listen(port, process.env.HOST, () => {
     console.log(
