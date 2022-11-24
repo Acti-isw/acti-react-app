@@ -7,6 +7,14 @@ import {
 
 function Admin (){
 
+  async function getUsers(){
+    try{
+
+    }catch(e){
+
+    }
+  }
+
   return(
     <div className='admin'>
       <h1>ACTI Admin</h1>
