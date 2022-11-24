@@ -1,0 +1,12 @@
+.UserModificar{
+  padding: 20px 20px 60px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  gap:15px;
+  height: 90vh;
+}
+.rol{
+  width: 170px;
+}

@@ -1,9 +1,12 @@
 import React from "react";
 import './style.css'
 import actiLogo from '../../assets/acti.png'
+import {Route, Routes, Link} from "react-router-dom"
+import Home from "../home";
 
 function Login(){
   return(
+    <React.Fragment>
     <div className="login">
     <img
     className="actilogo"
@@ -16,10 +19,19 @@ function Login(){
       <label htmlFor="input_password">Contraseña:
       <input className="input_type1" id="input_password" type="password" />
       </label>
-      <input className="primary_button" type="submit" value="Iniciar sesión"/>
+      <Link to='/home'>
+        <input className="primary_button" type="submit" value="Iniciar sesión"/>
+      </Link>
+     
     {/* </form> */}
     
     </div>
+    <Routes>
+      <Route path="/home" element={<Home/>}/>
+      {/* <Route path="/" element={<Login/>}/> */}
+    </Routes>
+
+    </React.Fragment>
   )
 }
 

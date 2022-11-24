@@ -21,6 +21,10 @@ nav{
   padding: 5px;
   cursor: pointer;
 }
+.options__ul__li a{
+  text-decoration: none;
+  color: var(--black);
+}
 .options__ul__li:hover{
   background: linear-gradient(0deg, rgba(51, 177, 255, 0.5), rgba(51, 177, 255, 0.5)), var(--white);
 }

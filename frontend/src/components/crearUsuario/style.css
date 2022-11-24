@@ -1,0 +1,32 @@
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+input[type=number] { -moz-appearance:textfield; }
+
+label{
+  display: flex;
+  flex-direction: column;
+}
+
+.input_addUser{
+  width: 250px;
+}
+
+.crearUsuario{
+  /* min-width: 500px; */
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  gap: 10px;
+  padding: 20px 20px 60px 20px;
+}
+
+.buttonsBox .primary_button, .buttonsBox .secondary_button{
+  width: 120px;
+  margin: 5px;
+}
+
