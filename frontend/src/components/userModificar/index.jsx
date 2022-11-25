@@ -1,6 +1,7 @@
 import React from 'react';
 import './style.css'
 
+
 function UserModificar(){
 
   return(
@@ -25,7 +26,7 @@ function UserModificar(){
         <option value="rata">Rata</option>
       </select>
     </label>
-    <button className="danger_button">Inhabilitar usuario</button>
+    <button className="danger_button">Desactivar usuario</button>
     <div className="buttonsBox">
       <button className="primary_button">Guardar</button>
       <button className="secondary_button">Cancelar</button>

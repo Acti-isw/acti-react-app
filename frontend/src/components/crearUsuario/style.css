@@ -6,6 +6,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 input[type=number] { -moz-appearance:textfield; }
 
+
 label{
   display: flex;
   flex-direction: column;
@@ -19,10 +20,17 @@ label{
   /* min-width: 500px; */
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
+  justify-content: center;
   align-items: center;
   gap: 10px;
-  padding: 20px 20px 60px 20px;
+  padding: 60px 20px;
+  /* height: 90vh; */
+}
+
+.formCreateUser{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .buttonsBox .primary_button, .buttonsBox .secondary_button{

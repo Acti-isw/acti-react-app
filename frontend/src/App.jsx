@@ -24,7 +24,7 @@ function App() {
       <NavigationBar/>
       <Routes>
             <Route path='/admin' element={<Admin/>}/>
-            <Route path='/userdetails' element={<UserDetails/>}/>
+            <Route path='/userdetails/:id' element={<UserDetails/>}/>
             <Route path='/usermodify'element={ <UserModificar/> }/>
             <Route path='/adduser' element={<CrearUsuario/>}/>
             <Route path='/' element={<Home/>}/>

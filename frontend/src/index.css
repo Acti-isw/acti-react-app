@@ -143,6 +143,7 @@ body, #root{
 .input_type2:focus{
   border-bottom: 3px solid var(--secondary);
 }
+
 /*Tablas*/
 .admin__table{
   font-size: 16px;
