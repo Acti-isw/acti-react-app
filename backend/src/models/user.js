@@ -10,8 +10,7 @@ const userSchema = new Schema({
     },
     contraseña: {
         type: String,
-        required: true,
-        default: '123456'
+        required: true
     },
     nombre: {
         type: String,
@@ -23,23 +22,20 @@ const userSchema = new Schema({
         required: true
     },
     telefono: {
-        type: String,
-        required: true
+        type: String
     },
     activo: {
         type: Boolean,
-        required: true
+        default: true
     },
     rol: {
         // type: Schema.Types.ObjectId,
         type: Number,
-        default: 1,
         ref: 'role'
         // autopopulate: true
     },
     correo: {
-        type: String,
-        required: true
+        type: String
     },
     infoActi: {
         IP: String,
@@ -59,10 +55,6 @@ const userSchema = new Schema({
         type: Number,
         default: 2
     },
-    activo: {
-        type: Boolean,
-        default: true
-    },
     examenes: [
         {
             examen: {
@@ -70,29 +62,28 @@ const userSchema = new Schema({
                 ref: 'exam'
             },
             aplicador: {
-                type: String,
-                required: true
+                type: String
             },
             fecha: {
                 type: Date,
                 required: true
             },
             puntajeMinimo: {
-                type: Number,
-                required: true
+                type: Number
             },
             puntajeObtenido: {
-                type: Number,
-                required: true
+                type: Number
             },
             resultado: {
-                type: Number,
-                required: true
+                type: Number
             },
             puntajeExtra: Number,
             nota: String
         }
     ],
+    fechaNacimiento: {
+        type: Date
+    },
     fechaRetorno: {
         type: Date
     }
