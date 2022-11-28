@@ -2,10 +2,20 @@
   padding: 60px 20px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   gap:15px;
   height: 90vh;
+}
+.formModify{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content:center;
+  align-items: center;
+}
+.formModify .input_type2{
+min-width: 230px;
 }
 .rol{
   width: 170px;

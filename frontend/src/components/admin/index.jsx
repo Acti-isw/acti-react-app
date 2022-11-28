@@ -10,6 +10,7 @@ function Admin() {
         fetch('http://localhost:3000/user')
             .then((response) => response.json())
             .then((data) => setUsers(data));
+            // .then(console.log(`Los usuarios son ${users}`));
     }, []);
 
     return (
