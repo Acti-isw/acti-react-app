@@ -1,25 +1,24 @@
 import React from "react";
 import './style.css'
+import {Link, useNavigate} from "react-router-dom";
 
 function CrearUsuario (){
-
+ 
+  const navigate = useNavigate();
   let newUser = {
-    nombre:"",
-    id:216578,
-    contraseña:"12389",
+    nombre:"nombre",
+    id:0,
+    contraseña:"12345",
     alias:"",
     semestre:0,
-    telefono:"6421102545",
+    // telefono:"6400000000",
     activo:true,
-    correo:"correo@potros.itson.edu.mx",
-    intentos:2,
+    // correo:"correo@potros.itson.edu.mx",
+    intentos:0,
     examenes:[],
-    rol:{
-      id:1,
-      nombre:"Estudiante"
-    },
+    rol:2,
     infoActi:{
-      IP:"10.21.44.53",
+      // IP:"10.21.44.00",
       Nivel:0,
       Especialidad:"Ninguna"
     }
@@ -32,29 +31,32 @@ function CrearUsuario (){
     newUser.alias = document.getElementById('alias').value;
     newUser.contraseña = document.getElementById('contraseña').value;
     newUser.email = document.getElementById('email').value;
+    newUser.semestre = document.getElementById('semestre').value;
     newUser.infoActi.IP = document.getElementById('ip').value;
-    newUser.infoActi.rol = document.getElementById('rol').value;
+    newUser.infoActi.rol = document.getElementById('rol').value=='Estudiante'?1:2;
     addUser()
+    
     // console.log(newUser);
   }
+  document.addEventListener('submit', submit);
 
   async function addUser(){
     try{
       let res = await fetch('http://localhost:3000/user',
       {
         method:'POST',
-        body: JSON.stringify(newUser),
-        // headers:{
-        //   'Content-type':'application/json'
-        // }
+        body:JSON.stringify(newUser),
+        headers:{
+          'Content-type':'application/json'
+        }
       })
 
       if(!res.ok){
         throw (res)
       }
-
+       navigate('/admin')
     }catch(e){
-      console.log(e)
+      // console.log(e)
     }
 
   }
@@ -62,7 +64,9 @@ function CrearUsuario (){
   return(
     <div className="crearUsuario">
     <p className="title">Crear nuevo usuario</p>
-    <form 
+    <form
+      // action="/users"
+      // method="POST" 
       autoComplete="off"
       className="formCreateUser"
       // onSubmit={return false}
@@ -91,8 +95,8 @@ function CrearUsuario (){
       </label>
       <label htmlFor="rol">Rol:
         <select required id="rol" className="input_type1 input_addUser">
-          <option value="estudiante">Estudiante</option>
-          <option value="rata">Rata</option>
+          <option value="Miembro">Miembro</option>
+          <option value="Admin">Admin</option>
         </select>
       </label>
       <div className="buttonsBox">
@@ -100,11 +104,18 @@ function CrearUsuario (){
           id="submit"
           type="submit"
           className="primary_button"
-          onSubmit={submit}
+          // onClick={submit}
           value={'Guardar'}
         />
+        <Link to='/admin'>
+          <button 
+          className="secondary_button"
+          >
+            Cancelar</button>
+        </Link>
           
-        <button className="secondary_button">Cancelar</button>
+        {/* <button className="primary_button">Guardar</button> */}
+       
       </div>
     </form>
     </div>

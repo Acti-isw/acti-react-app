@@ -13,8 +13,6 @@ function UserDetails(){
       .then((data) => setUser(data[0]))
   }, []);
 
-  console.log(user)
-
   return(
     <div className='UserDetails'>
      <p className='title'>Detalles usuario</p>
@@ -30,7 +28,7 @@ function UserDetails(){
         </div>
       </div>
       <button className='btn_examenes'>Gestionar examenes</button>
-      <Link to='/usermodify'>
+      <Link to={`/usermodify/${user.id}`}>
           <button className='primary_button'>Modificar información</button>
       </Link>
       <h3>Informacion general</h3>
@@ -50,7 +48,7 @@ function UserDetails(){
         <p className="text">Nivel:{user.infoActi?.Nivel}</p>
         <p className="text">IP:{user.infoActi?.IP}</p>
         <p className="text especialidad">Especialidad: {user.infoActi?.Especialidad}</p>
-        <p className="text rol">Rol: {user.rol?.nombre}</p>
+        <p className="text rol">Rol: {user.rol?.name}</p>
       </div>
       <p className="textMd">Horario:</p>
       {/* <table>
