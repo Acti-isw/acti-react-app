@@ -48,7 +48,7 @@ function UserDetails(){
         <p className="text">Nivel:{user.infoActi?.Nivel}</p>
         <p className="text">IP:{user.infoActi?.IP}</p>
         <p className="text especialidad">Especialidad: {user.infoActi?.Especialidad}</p>
-        <p className="text rol">Rol: {user.rol?.name}</p>
+        {/* <p className="text rol">Rol: {user.rol==1?'Admin':'Miembro'}</p> */}
       </div>
       <p className="textMd">Horario:</p>
       {/* <table>
