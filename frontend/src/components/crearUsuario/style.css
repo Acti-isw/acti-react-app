@@ -1,40 +1,41 @@
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
-  margin: 0; 
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
-input[type=number] { -moz-appearance:textfield; }
-
-
-label{
-  display: flex;
-  flex-direction: column;
+input[type='number'] {
+    -moz-appearance: textfield;
 }
 
-.input_addUser{
-  width: 250px;
+label {
+    display: flex;
+    flex-direction: column;
 }
 
-.crearUsuario{
-  /* min-width: 500px; */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  padding: 60px 20px;
-  /* height: 90vh; */
+.input_addUser {
+    width: 250px;
 }
 
-.formCreateUser{
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.crearUsuario {
+    /* min-width: 500px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 60px 20px;
+    /* height: 90vh; */
 }
 
-.buttonsBox .primary_button, .buttonsBox .secondary_button{
-  width: 120px;
-  margin: 5px;
+.formCreateUser {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
+.buttonsBox .primary_button,
+.buttonsBox .secondary_button {
+    width: 120px;
+    margin: 5px;
+}

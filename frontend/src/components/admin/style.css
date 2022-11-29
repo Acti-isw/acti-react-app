@@ -1,14 +1,14 @@
-.admin{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  padding: 60px 20px;
+.admin {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 60px 20px;
 }
 
-.banner_activos{
-  text-align: center;
-  background-color: var(--white);
-  padding: 10px;
+.banner_activos {
+    text-align: center;
+    background-color: var(--white);
+    padding: 10px;
 }

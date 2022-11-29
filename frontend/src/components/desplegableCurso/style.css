@@ -1,34 +1,33 @@
+.title_course {
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    justify-content: space-between;
+    padding: 10px 10px;
+    border-top: 1px solid #000000;
+    cursor: pointer;
+    margin: 0 15px;
+}
+.closeArrow {
+    /* transform: rotate(-90deg); */
+    transition: 0.2s ease-in;
+}
+.openArrow {
+    transform: rotate(90deg);
+    transition: 0.2s ease-in;
+}
 
-.title_course{
-  display: flex;
-  align-items: center;
-  /* justify-content: center; */
-  justify-content: space-between;
-  padding: 10px 10px;
-  border-top: 1px solid #000000;
-  cursor: pointer;
-  margin: 0 15px;
+.courses_list {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 0px 10px;
+    gap: 20px;
+    transition: 0.5s ease-in;
+    isolation: isolate;
+    margin-bottom: 50px;
 }
-.closeArrow{
-  /* transform: rotate(-90deg); */
-  transition: 0.2s ease-in;
-}
-.openArrow{
-  transform: rotate(90deg);
-  transition: 0.2s ease-in;
-}
-
-.courses_list{
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  padding: 0px 10px;
-  gap: 20px;
-  transition: .5s ease-in;
-  isolation: isolate;
-  margin-bottom: 50px;
-}
-.none{
-  display: none;
-  transition: .5s ease-out;
+.none {
+    display: none;
+    transition: 0.5s ease-out;
 }

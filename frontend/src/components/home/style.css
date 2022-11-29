@@ -1,24 +1,24 @@
-.Home{
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 60px 20px;
+.Home {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px;
 }
-header{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 10px;
-  gap: 17px;
+header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    gap: 17px;
 }
-.mainText{
-  text-align: center;
+.mainText {
+    text-align: center;
 }
 /* footer{
   margin: 0 auto;
 } */
-.footerImg{
-  margin: 20px 10px 0px 10px;
-  width: 90%;
-  max-width: 800px;
+.footerImg {
+    margin: 20px 10px 0px 10px;
+    width: 90%;
+    max-width: 800px;
 }

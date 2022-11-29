@@ -1,38 +1,43 @@
-nav{
-  background-color: var(--primary);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 10px;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 10;
+nav {
+    background-color: var(--primary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 10;
 }
-.logotipo{
-  width: 175px;
-  height: 48px;
+.logotipo {
+    width: 175px;
+    height: 48px;
 }
-.options{
-  background-color: var(--white);
-  position: fixed;
-  right: 0;
-  top:52px
+.options {
+    background-color: var(--white);
+    position: fixed;
+    right: 0;
+    top: 52px;
 }
-.options__ul{
-  list-style-type: none;
+.options__ul {
+    list-style-type: none;
 }
-.options__ul__li{
-  padding: 5px;
-  cursor: pointer;
+.options__ul__li {
+    padding: 5px;
+    cursor: pointer;
 }
-.options__ul__li a{
-  text-decoration: none;
-  color: var(--black);
+.options__ul__li a {
+    text-decoration: none;
+    color: var(--black);
 }
-.options__ul__li:hover{
-  background: linear-gradient(0deg, rgba(51, 177, 255, 0.5), rgba(51, 177, 255, 0.5)), var(--white);
+.options__ul__li:hover {
+    background: linear-gradient(
+            0deg,
+            rgba(51, 177, 255, 0.5),
+            rgba(51, 177, 255, 0.5)
+        ),
+        var(--white);
 }
-.none{
-  display: none;
+.none {
+    display: none;
 }

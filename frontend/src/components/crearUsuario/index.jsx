@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.css';
 import { Link, useNavigate } from 'react-router-dom';
- 
+
 function CrearUsuario() {
     const navigate = useNavigate();
     // let newUser = {
@@ -22,7 +22,7 @@ function CrearUsuario() {
     //         Especialidad: 'Ninguna'
     //     }
     // };
- 
+
     // function submit(e) {
     //     e.preventDefault();
     //     newUser.id = document.getElementById('id').value;
@@ -35,11 +35,11 @@ function CrearUsuario() {
     //     newUser.infoActi.rol =
     //         document.getElementById('rol').value == 'Estudiante' ? 1 : 2;
     //     addUser();
- 
+
     //     // console.log(newUser);
     // }
     // document.addEventListener('submit', submit);
- 
+
     // async function addUser() {
     //     try {
     //         console.log(newUser);
@@ -50,7 +50,7 @@ function CrearUsuario() {
     //                 'Content-type': 'application/json'
     //             }
     //         });
- 
+
     //         if (!res.ok) {
     //             throw res;
     //         }
@@ -59,10 +59,10 @@ function CrearUsuario() {
     //         // console.log(e)
     //     }
     // }
- 
+
     const handleSubmit = async (e) => {
         e.preventDefault();
- 
+
         const response = await fetch('http://localhost:3000/user', {
             method: 'POST',
             body: JSON.stringify({
@@ -91,7 +91,7 @@ function CrearUsuario() {
         console.log(result);
         navigate('/admin');
     };
- 
+
     return (
         <div className="crearUsuario">
             <p className="title">Crear nuevo usuario</p>
@@ -192,12 +192,12 @@ function CrearUsuario() {
                     <Link to="/admin">
                         <button className="secondary_button">Cancelar</button>
                     </Link>
- 
+
                     {/* <button className="primary_button">Guardar</button> */}
                 </div>
             </form>
         </div>
     );
 }
- 
+
 export default CrearUsuario;

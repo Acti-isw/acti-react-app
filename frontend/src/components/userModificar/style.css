@@ -1,28 +1,28 @@
-.UserModificar{
-  padding: 60px 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap:15px;
-  /* height: 90vh; */
+.UserModificar {
+    padding: 60px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    /* height: 90vh; */
 }
-.formModify{
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  justify-content:center;
-  align-items: center;
+.formModify {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
 }
-.formModify .input_type2{
-min-width: 230px;
+.formModify .input_type2 {
+    min-width: 230px;
 }
-.rol{
-  width: 170px;
+.rol {
+    width: 170px;
 }
-.cargando{
-  margin:200px;
+.cargando {
+    margin: 200px;
 }
-.delete{
-  margin-top: 70px;
+.delete {
+    margin-top: 70px;
 }
