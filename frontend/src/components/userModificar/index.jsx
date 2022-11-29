@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import './style.css'
 import {Link, useParams, useNavigate} from 'react-router-dom'
-// import Select from 'react-select'
-// import MySelect from './Select'
+import Select from 'react-select'
+import Check from './check'
 // import del from '../Delete'
 
 function UserModificar(){
@@ -10,11 +10,8 @@ function UserModificar(){
   const navigate = useNavigate();
   const {id}= useParams();
   const [user, setUser] = useState([]);
-  let options=[
-    {value:1, label:'Admin'},
-    {value:2, label:'Miembro'}
-  ]
-  // const [rol, setRol]= useState([])
+  // const [rol, setRol] = useState([])
+
   async function del(){
     await fetch(`http://localhost:3000/user/${id}`, {
     method: 'DELETE'}
@@ -25,16 +22,15 @@ function UserModificar(){
   useEffect(() => {
     // async function fetchData(){
     //   await
-       fetch(`http://localhost:3000/user/${id}`)
-      .then((response) => response.json())
-      .then((data) => setUser(data[0]))
-      // .then(()=>{
-      //   options = [
-      //     {value:user.rol==1?1:2,label:user.rol==1?'Admin':'Miembro'},
-      //     {value:user.rol==1?2:1,label:user.rol==1?'Miembro':'Admin'}
-      //   ]
-      // })
+    // setTimeout(()=>{
+      fetch(`http://localhost:3000/user/${id}`)
+      .then((response) =>{ return response.json()})
+      .then((data) => {setUser(data[0])})
+      // .then(()=>{console.log(user)})
+      // .then(()=>{setRol(user?.rol)})
       .then(setLoading(false))
+    // },2000)
+
     // }
     //  fetchData()
     //  console.log(user)
@@ -45,6 +41,7 @@ function UserModificar(){
   const handleSubmit = async (e)=>{
     e.preventDefault();
 
+    console.log(e.target)
     try {
       const response = await fetch(`http://localhost:3000/user/${id}`, {
         method: 'PATCH',
@@ -54,7 +51,7 @@ function UserModificar(){
          body: JSON.stringify({
           alias: e.target.alias.value,
           semestre: e.target.semestre.value,
-          // rol: e.target.rol.value,
+          rol: e.target.rol.value,
           infoActi: {
               IP: e.target.ip.value,
           }
@@ -68,6 +65,9 @@ function UserModificar(){
   
     navigate('/admin');
   }
+
+
+
   if(Loading==false){
     return(
       <div className='UserModificar'>
@@ -98,32 +98,10 @@ function UserModificar(){
         IP: 
         <input id="ip" type="text" className='input_type2' defaultValue={user.infoActi?.IP || ''}/>
       </label>
-      {/* <select 
-          value={user.rol?.id}
-          id="rol" name="rol"
-          className="input_type2 rol"
-          // options={[{value:1, label:"Admin"},{value:2, label:"Miembro"}]}
-          >
-          <option value="2" >Miembro</option>
-          <option value="1" >Admin</option>
-        </select> */}
-      {/* <label htmlFor="rol">Rol: */}
-      {/* <>{ console.log(user.rol)}</> */}
 
-        {/* <MySelect defaultValues={{ value: user.rol, label: user.rol==1?'Admin':'Miembro' }}/> */}
-        {/* <Select 
-          id="rol" name="rol"
-          className="input_type2 rol"
-          options={options}
-          defaultValue={
-            options[0]
-          }
-          /> */}
-          {/* <option value="2" >Miembro</option>
-          <option value="1" >Admin</option> 
-        </select> */}
-      {/* </label> */}
-      <input type="button" className="danger_button" value="Desactivar usuario" 
+      <Check id="rol" user={user} />
+
+      <input type="button" className="danger_button delete" value="Desactivar usuario" 
       onClick={del}/>
       <div className="buttonsBox">
       <input 
@@ -145,7 +123,7 @@ function UserModificar(){
     )
 
   }else{
-    return (<><p>Cargando</p></>)
+    return (<><p className="cargando">Cargando</p></>)
   }
 
 }
