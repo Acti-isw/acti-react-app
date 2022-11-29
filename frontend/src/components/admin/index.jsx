@@ -3,15 +3,25 @@ import plus from '../../assets/icons/plus.svg';
 import './style.css';
 import { Link } from 'react-router-dom';
 
+import UserService from '../../service/UserService';
+
 function Admin() {
     const [users, setUsers] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch('http://localhost:3000/user')
-            .then((response) => response.json())
-            .then((data) => setUsers(data));
-            // .then(console.log(`Los usuarios son ${users}`));
+        UserService.getUsers()
+            .then((res) => {
+                setUsers(res);
+                setLoading(false);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     }, []);
+
+    // insert a better loading component
+    if (loading) return <h1>Cargando...</h1>;
 
     return (
         <div className="admin">
@@ -36,7 +46,9 @@ function Admin() {
                             <td>{user.nombre}</td>
                             <td>10/25/20</td>
                             <td>
-                              <Link to={`/userdetails/${user.id}`}>Detalles</Link>
+                                <Link to={`/userdetails/${user.id}`}>
+                                    Detalles
+                                </Link>
                             </td>
                         </tr>
                     ))}
