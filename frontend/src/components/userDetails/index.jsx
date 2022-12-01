@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import profilePhoto from '../../assets/icons/big_icon _profile.svg';
 import './style.css';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import UserService from '../../service/UserService';
 
 function UserDetails() {
     const { id } = useParams();
     const [loading, setLoading] = useState(true);
     const [user, setUser] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         UserService.getUser(id)
@@ -19,6 +20,10 @@ function UserDetails() {
                 console.log(err);
             });
     }, []);
+    const handleDelete = async () => {
+      await UserService.deleteUser(id);
+      navigate('/admin');
+  };
 
     // insert a better loading component
     if (loading) return <h1>Cargando...</h1>;
@@ -103,7 +108,7 @@ function UserDetails() {
                 <div className="data">Retos realizados: 260</div>
                 <div className="data">Examenes aprobados: 18/20</div>
             </div>
-            <button className="danger_button">Desactivar usuario</button>
+            <button className="danger_button" onClick={handleDelete}>Desactivar usuario</button>
         </div>
     );
 }

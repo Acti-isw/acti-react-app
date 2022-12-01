@@ -32,8 +32,11 @@ function UserModificar() {
         e.preventDefault();
 
         const data = {
+            nombre: e.target.nombre.value,
             alias: e.target.alias.value,
             semestre: e.target.semestre.value,
+            telefono: e.target.telefono.value,
+            correo: e.target.correo.value,
             rol: e.target.rol.value,
             infoActi: {
                 IP: e.target.ip.value
@@ -45,7 +48,7 @@ function UserModificar() {
     };
 
     // insert a better loading component
-    if (Loading) return <HashLoader color={'#123abc'} size={350} />;
+    if (Loading) return <div className='loading'><HashLoader color={'#123abc'} size={200} /></div>;
 
     return (
         <div className="UserModificar">
@@ -55,6 +58,15 @@ function UserModificar() {
                 autoComplete="off"
                 onSubmit={handleSubmit}
             >
+                <label htmlFor="nombre">
+                    Nombre:
+                    <input
+                        id="nombre"
+                        type="text"
+                        className="input_type2"
+                        defaultValue={user.nombre || ''}
+                    />
+                </label>
                 <label htmlFor="alias">
                     Alias:
                     <input
@@ -71,6 +83,24 @@ function UserModificar() {
                         type="number"
                         className="input_type2"
                         defaultValue={user.semestre}
+                    />
+                </label>
+                <label htmlFor="telefono">
+                    Telefono:
+                    <input
+                        id="telefono"
+                        type="number"
+                        className="input_type2"
+                        defaultValue={user.telefono}
+                    />
+                </label>
+                <label htmlFor="correo">
+                    Correo:
+                    <input
+                        id="correo"
+                        type="email"
+                        className="input_type2"
+                        defaultValue={user.correo}
                     />
                 </label>
                 <h3>Informacion ACTI</h3>

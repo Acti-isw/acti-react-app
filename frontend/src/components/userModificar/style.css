@@ -20,8 +20,13 @@
 .rol {
     width: 170px;
 }
-.cargando {
+/* .cargando {
     margin: 200px;
+} */
+.loading{
+    width: 100vw;
+    height: 100vh;
+    display: contents;
 }
 .delete {
     margin-top: 70px;

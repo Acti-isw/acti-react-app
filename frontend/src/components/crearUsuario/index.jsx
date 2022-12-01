@@ -71,7 +71,7 @@ function CrearUsuario() {
                 contraseña: e.target.contraseña.value,
                 alias: e.target.alias.value,
                 semestre: e.target.semestre.value,
-                telefono: '6400000000',
+                telefono: e.target.telefono.value,
                 activo: true,
                 correo: e.target.correo.value,
                 intentos: 0,
@@ -147,6 +147,15 @@ function CrearUsuario() {
                         required
                         name="contraseña"
                         type="password"
+                        className="input_type1 input_addUser"
+                        placeholder=""
+                    />
+                </label>
+                <label htmlFor="contraseña">
+                    Telefono:
+                    <input
+                        name="telefono"
+                        type="number"
                         className="input_type1 input_addUser"
                         placeholder=""
                     />

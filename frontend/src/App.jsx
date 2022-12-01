@@ -18,6 +18,7 @@ function App() {
                 <NavigationBar />
                 <Routes>
                     <Route path="/admin" element={<Admin />} />
+                    <Route path="/login" element={<Login />} />
                     <Route path="/userdetails/:id" element={<UserDetails />} />
                     <Route path="/usermodify/:id" element={<UserModificar />} />
                     <Route path="/adduser" element={<CrearUsuario />} />
