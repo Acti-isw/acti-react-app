@@ -48,7 +48,7 @@ function UserModificar() {
     };
 
     // insert a better loading component
-    if (Loading) return <div className='loading'><HashLoader color={'#123abc'} size={200} /></div>;
+    if (Loading) return <div className='loading'><HashLoader color={'#292d38'} size={200} /></div>;
 
     return (
         <div className="UserModificar">

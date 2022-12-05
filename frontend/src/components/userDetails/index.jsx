@@ -9,6 +9,34 @@ function UserDetails() {
     const [loading, setLoading] = useState(true);
     const [user, setUser] = useState([]);
     const navigate = useNavigate();
+    const horasFormato = ['09:00AM','10:00AM','11:00AM','12:00PM','01:00PM','02:00PM','03:00PM','04:00PM','05:00PM']
+    const horario = [
+        [[false, "l-9"], [false, "m-9"], [false, "mi-9"], [true, "j-9"], [true, "vi-9"]],
+        [[false, "l-10"], [true, "m-10"], [false, "mi-10"], [true, "j-10"], [false, "vi-10"]],
+        [[true, "l-11"], [false, "m-11"], [true, "mi-11"], [true, "j-11"], [true, "vi-11"]],
+        [[false, "l-12"], [false, "m-12"], [true, "mi-12"], [true, "j-12"], [false, "vi-12"]],
+        [[true, "l-1"], [false, "m-1"], [false, "mi-1"], [true, "j-1"], [true, "vi-1"]],
+        [[false, "l-2"], [true, "m-2"], [false, "mi-2"], [false, "j-2"], [true, "vi-2"]],
+        [[false, "l-3"], [true, "m-3"], [false, "mi-3"], [false, "j-3"], [false, "vi-3"]],
+        [[true, "l-4"], [true, "m-4"], [true, "mi-4"], [true, "j-4"], [true, "vi-4"]],
+        [[false, "l-5"], [false, "m-5"], [true, "mi-5"], [true, "j-5"], [true, "vi-5"]]
+    ]
+    let conteo = 0;
+    function contador (){
+        conteo++;
+        return conteo-1;
+    }
+        function horassum(){
+        let conteo = 0;
+        horario.map((hora)=>{
+            hora.map((modulo)=>{
+                if(modulo[0]){conteo++;}
+            })
+
+        })
+        return conteo;
+    }
+    let horasSemana = horassum();
 
     useEffect(() => {
         UserService.getUser(id)
@@ -20,6 +48,7 @@ function UserDetails() {
                 console.log(err);
             });
     }, []);
+
     const handleDelete = async () => {
       await UserService.deleteUser(id);
       navigate('/admin');
@@ -83,27 +112,32 @@ function UserDetails() {
                 </p>
             </div>
             <p className="textMd">Horario:</p>
-            {/* <table>
+            <table className="horario">
         <thead>
-          <th>Horas</th>
-          <th>Lun</th>
-          <th>Mar</th>
-          <th>Mie</th>
-          <th>Ju</th>
-          <th>Vi</th>
+            <tr>
+                <th>Horas</th>
+                <th>Lun</th>
+                <th>Mar</th>
+                <th>Mie</th>
+                <th>Ju</th>
+                <th>Vi</th>
+            </tr>
         </thead>
         <tbody>
-          <tr>
-            <th>9:00AM</th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
+            {horario.map((hora) => (
+                <tr>
+                    <th>{horasFormato[contador()]}</th>
+                    {hora.map((modulo) => (
+                            <td  className={modulo[0]?"open":"close"} key={modulo[1]}></td>
+                            
+                    ))}
+                </tr>
+                            
+            ))}
+
         </tbody>
-      </table> */}
-            <p className="text">Horas semanales: 10</p>
+      </table>
+            <p className="text">Horas semanales: {horasSemana}</p>
             <div className="datas">
                 <div className="data">Retos realizados: 260</div>
                 <div className="data">Examenes aprobados: 18/20</div>
