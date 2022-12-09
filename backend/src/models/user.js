@@ -46,10 +46,10 @@ const userSchema = new Schema({
         Especialidad: {
             type: String,
             default: 'Ninguna'
+        },
+        Horario: {
+            type: String,
         }
-        // Horario: {
-        //     type:
-        // }
     },
     intentos: {
         type: Number,

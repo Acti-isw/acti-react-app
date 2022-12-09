@@ -3,40 +3,26 @@ import profilePhoto from '../../assets/icons/big_icon _profile.svg';
 import './style.css';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import UserService from '../../service/UserService';
+import Horario from '../horario';
 
 function UserDetails() {
     const { id } = useParams();
     const [loading, setLoading] = useState(true);
     const [user, setUser] = useState([]);
     const navigate = useNavigate();
-    const horasFormato = ['09:00AM','10:00AM','11:00AM','12:00PM','01:00PM','02:00PM','03:00PM','04:00PM','05:00PM']
-    const horario = [
-        [[false, "l-9"], [false, "m-9"], [false, "mi-9"], [true, "j-9"], [true, "vi-9"]],
-        [[false, "l-10"], [true, "m-10"], [false, "mi-10"], [true, "j-10"], [false, "vi-10"]],
-        [[true, "l-11"], [false, "m-11"], [true, "mi-11"], [true, "j-11"], [true, "vi-11"]],
-        [[false, "l-12"], [false, "m-12"], [true, "mi-12"], [true, "j-12"], [false, "vi-12"]],
-        [[true, "l-1"], [false, "m-1"], [false, "mi-1"], [true, "j-1"], [true, "vi-1"]],
-        [[false, "l-2"], [true, "m-2"], [false, "mi-2"], [false, "j-2"], [true, "vi-2"]],
-        [[false, "l-3"], [true, "m-3"], [false, "mi-3"], [false, "j-3"], [false, "vi-3"]],
-        [[true, "l-4"], [true, "m-4"], [true, "mi-4"], [true, "j-4"], [true, "vi-4"]],
-        [[false, "l-5"], [false, "m-5"], [true, "mi-5"], [true, "j-5"], [true, "vi-5"]]
-    ]
-    let conteo = 0;
-    function contador (){
-        conteo++;
-        return conteo-1;
-    }
-        function horassum(){
-        let conteo = 0;
-        horario.map((hora)=>{
-            hora.map((modulo)=>{
-                if(modulo[0]){conteo++;}
-            })
+  
+    // const Datahorario=[
+    //     [[false, "lu-09"], [false, "ma-09"], [false, "mi-09"], [true, "ju-09"], [true, "vi-09"]],
+    //     [[false, "lu-10"], [true, "ma-10"], [false, "mi-10"], [true, "ju-10"], [false, "vi-10"]],
+    //     [[true, "lu-11"], [false, "ma-11"], [true, "mi-11"], [true, "ju-11"], [true, "vi-11"]],
+    //     [[false, "lu-12"], [false, "ma-12"], [true, "mi-12"], [true, "ju-12"], [false, "vi-12"]],
+    //     [[true, "lu-01"], [false, "ma-01"], [false, "mi-01"], [true, "ju-01"], [true, "vi-01"]],
+    //     [[false, "lu-02"], [true, "ma-02"], [false, "mi-02"], [false, "ju-02"], [true, "vi-02"]],
+    //     [[false, "lu-03"], [true, "ma-03"], [false, "mi-03"], [false, "ju-03"], [false, "vi-03"]],
+    //     [[true, "lu-04"], [true, "ma-04"], [true, "mi-04"], [true, "ju-04"], [true, "vi-04"]],
+    //     [[false, "lu-05"], [false, "ma-05"], [true, "mi-05"], [true, "ju-05"], [true, "vi-05"]]
+    // ]
 
-        })
-        return conteo;
-    }
-    let horasSemana = horassum();
 
     useEffect(() => {
         UserService.getUser(id)
@@ -112,32 +98,7 @@ function UserDetails() {
                 </p>
             </div>
             <p className="textMd">Horario:</p>
-            <table className="horario">
-        <thead>
-            <tr>
-                <th>Horas</th>
-                <th>Lun</th>
-                <th>Mar</th>
-                <th>Mie</th>
-                <th>Ju</th>
-                <th>Vi</th>
-            </tr>
-        </thead>
-        <tbody>
-            {horario.map((hora) => (
-                <tr>
-                    <th>{horasFormato[contador()]}</th>
-                    {hora.map((modulo) => (
-                            <td  className={modulo[0]?"open":"close"} key={modulo[1]}></td>
-                            
-                    ))}
-                </tr>
-                            
-            ))}
-
-        </tbody>
-      </table>
-            <p className="text">Horas semanales: {horasSemana}</p>
+            <Horario Datahorario={JSON.parse(user.infoActi?.Horario)} setDatahorario = {null} mode={0}/>
             <div className="datas">
                 <div className="data">Retos realizados: 260</div>
                 <div className="data">Examenes aprobados: 18/20</div>

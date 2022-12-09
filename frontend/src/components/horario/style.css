@@ -1,0 +1,15 @@
+.horario td {
+    border: solid 1px black;
+    width: 38px;
+}
+
+.open {
+    background: var(--success);
+}
+.close {
+    background: var(--terciary);
+}
+
+.modificable{
+    cursor: pointer;
+}

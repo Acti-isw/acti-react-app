@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import './style.css';
 import { Link, useParams, useNavigate } from 'react-router-dom';
-import Select from 'react-select';
 import Check from './check';
 import UserService from '../../service/UserService';
 import HashLoader from 'react-spinners/HashLoader';
+import Horario from '../horario';
 
 function UserModificar() {
     const [Loading, setLoading] = useState(true);
     const navigate = useNavigate();
     const { id } = useParams();
     const [user, setUser] = useState([]);
+    const [Datahorario, setDatahorario] = useState('')
 
     useEffect(() => {
         UserService.getUser(id)
@@ -39,7 +40,8 @@ function UserModificar() {
             correo: e.target.correo.value,
             rol: e.target.rol.value,
             infoActi: {
-                IP: e.target.ip.value
+                IP: e.target.ip.value,
+                Horario: JSON.stringify(Datahorario)
             }
         };
 
@@ -48,7 +50,12 @@ function UserModificar() {
     };
 
     // insert a better loading component
-    if (Loading) return <div className='loading'><HashLoader color={'#292d38'} size={200} /></div>;
+    if (Loading)
+        return (
+            <div className="loading">
+                <HashLoader color={'#292d38'} size={200} />
+            </div>
+        );
 
     return (
         <div className="UserModificar">
@@ -112,6 +119,24 @@ function UserModificar() {
                         className="input_type2"
                         defaultValue={user.infoActi?.IP || ''}
                     />
+                </label>
+
+                <label htmlFor="">
+                    Horario
+                    <Horario Data={JSON.parse(user?.infoActi?.Horario)} Datahorario={JSON.parse(user?.infoActi?.Horario)} setDatahorario={setDatahorario} mode={1}/>
+                    {/* <table className="horario">
+                        <thead>
+                            <tr>
+                                <th>Horas</th>
+                                <th>Lun</th>
+                                <th>Mar</th>
+                                <th>Mie</th>
+                                <th>Ju</th>
+                                <th>Vi</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table> */}
                 </label>
 
                 <Check id="rol" user={user} />

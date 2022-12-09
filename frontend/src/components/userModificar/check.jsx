@@ -8,9 +8,9 @@ function Check(user) {
     // },[])
 
     function handleChange(event) {
-        console.log('cambio', rol, event.target.value);
+        // console.log('cambio', rol, event.target.value);
         setRol(event.target.value);
-        console.log(rol);
+        // console.log(rol);
     }
 
     if (rol != undefined) {
@@ -32,7 +32,7 @@ function Check(user) {
         );
     } else {
         setTimeout(() => {
-            console.log('a');
+            // console.log('a');
             setRol(user?.user.rol);
         }, 100);
         return (

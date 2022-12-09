@@ -54,7 +54,8 @@ const getUser = async ({ id }) => {
  */
 
 const updateUser = async ({ id }, user) => {
-    await userSchema.findOneAndUpdate({ id: id }, user);
+    await userSchema.findOneAndUpdate({ id: id }, user)
+    
 };
 
 /**
