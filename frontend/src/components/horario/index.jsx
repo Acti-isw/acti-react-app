@@ -1,15 +1,9 @@
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import './style.css'
 
-function Horario({Data, Datahorario, setDatahorario, mode}) {
+function Horario( {Datahorario, setDatahorario, mode}) {
 
-    useEffect(()=>{
-        if(Datahorario==''){
-            console.log(Data)
-            setDatahorario(Data)
-        }
-    },[])
-
+    console.log(Datahorario)
     const horasFormato = [
         '09:00AM',
         '10:00AM',
@@ -41,10 +35,11 @@ function Horario({Data, Datahorario, setDatahorario, mode}) {
   let horasSemana = horassum();
   const onClick = (event)=>{
     if(mode==1){
-        let modulo = Data[getRow(event.target.id)].find(module => module[1]==event.target.id)
+        let horario = JSON.parse(JSON.stringify(Datahorario))
+        let modulo = horario[getRow(event.target.id)].find(module => module[1]==event.target.id)
         modulo[0] = !modulo[0];
-        setDatahorario(Data)
-        console.log(JSON.stringify(Data))
+        setDatahorario(horario)
+        // console.log(JSON.stringify(Data))
     }
     // event.target.className = event.target.className==="open"?"close":"open"
   }

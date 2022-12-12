@@ -14,15 +14,20 @@ function UserModificar() {
     const [Datahorario, setDatahorario] = useState('')
 
     useEffect(() => {
-        UserService.getUser(id)
-            .then((res) => {
-                setUser(res[0]);
-                setLoading(false);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+        getusers()
     }, []);
+
+    async function getusers(){
+        await UserService.getUser(id)
+        .then((res) => {
+            setUser(res[0]);
+            setLoading(false);
+            setDatahorario(JSON.parse(res[0].infoActi.Horario))
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+    }
 
     const handleDelete = async () => {
         await UserService.deleteUser(id);
@@ -123,7 +128,7 @@ function UserModificar() {
 
                 <label htmlFor="">
                     Horario
-                    <Horario Data={JSON.parse(user?.infoActi?.Horario)} Datahorario={JSON.parse(user?.infoActi?.Horario)} setDatahorario={setDatahorario} mode={1}/>
+                    <Horario Datahorario={Datahorario} setDatahorario={setDatahorario} mode={1}/>
                     {/* <table className="horario">
                         <thead>
                             <tr>
