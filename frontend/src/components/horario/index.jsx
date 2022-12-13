@@ -3,7 +3,7 @@ import './style.css'
 
 function Horario( {Datahorario, setDatahorario, mode}) {
 
-    console.log(Datahorario)
+    // console.log(Datahorario)
     const horasFormato = [
         '09:00AM',
         '10:00AM',
@@ -83,7 +83,7 @@ function Horario( {Datahorario, setDatahorario, mode}) {
   }
     return (
         <>
-        <>{console.log("Render")}</>
+        {/* <>{console.log("Render")}</> */}
             <table className="horario">
                 <thead>
                     <tr key="horasRow">

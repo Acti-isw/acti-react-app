@@ -80,7 +80,8 @@ function CrearUsuario() {
                 infoActi: {
                     IP: e.target.ip.value,
                     Nivel: 0,
-                    Especialidad: 'Ninguna'
+                    Especialidad: 'Ninguna',
+                    // Horario: '[]'
                 }
             }),
             headers: {
@@ -88,7 +89,7 @@ function CrearUsuario() {
             }
         });
         const result = await response.json();
-        console.log(result);
+        // console.log(result);
         navigate('/admin');
     };
 
