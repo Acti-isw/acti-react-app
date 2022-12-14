@@ -79,6 +79,9 @@ body,
     background-color: var(--background);
     min-height: 93.8vh;
 }
+.content{
+    padding: 60px 20px;
+}
 
 .primary_button {
     border: none;

@@ -63,7 +63,7 @@ function UserModificar() {
         );
 
     return (
-        <div className="UserModificar">
+        <div className="UserModificar content">
             <p className="title">Modificar usuario</p>
             <form
                 className="formModify"

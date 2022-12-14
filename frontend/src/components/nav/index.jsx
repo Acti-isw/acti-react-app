@@ -1,6 +1,6 @@
 import React from 'react';
 import logotipo from '../../assets/Logotipo.svg';
-import profilePhoto from '../../assets/icon _profile.svg';
+import profilePhoto from '../../assets/iconprofile.svg';
 import './style.css';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -36,7 +36,7 @@ function Nav() {
                         className="options__ul__li textMd"
                         onClick={toggleOptions}
                     >
-                        Perfil
+                        <Link to='/perfil'>Perfil</Link>
                     </li>
                     <hr />
                     <li

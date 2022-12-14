@@ -94,7 +94,7 @@ function CrearUsuario() {
     };
 
     return (
-        <div className="crearUsuario">
+        <div className="crearUsuario content">
             <p className="title">Crear nuevo usuario</p>
             <form
                 onSubmit={handleSubmit}

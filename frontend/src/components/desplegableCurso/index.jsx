@@ -2,6 +2,7 @@ import React from 'react';
 import arrow from '../../assets/icons/arrow_icon.svg';
 import { useState } from 'react';
 import Curso from '../curso';
+import {Link} from 'react-router-dom'
 import './style.css';
 
 function DesplegableCurso() {
@@ -23,9 +24,17 @@ function DesplegableCurso() {
                 />
             </div>
             <div className={state ? 'courses_list' : 'none'}>
-                <Curso nameCurso="JS Básico" />
-                <Curso nameCurso="JS Básico" />
-                <Curso nameCurso="JS Básico" />
+                {/* <Link to='/curso'> */}
+                    <Curso nameCurso="JS Básico" />
+                {/* </Link> */}
+                <Link to='/curso'>
+                    <Curso nameCurso="JS Básico" />
+                </Link>
+                <Link to='/curso'>
+                    <Curso nameCurso="JS Básico" />
+                </Link>
+                {/* <Curso nameCurso="JS Básico" />
+                <Curso nameCurso="JS Básico" /> */}
             </div>
         </div>
     );

@@ -44,7 +44,7 @@ function UserDetails() {
     if (loading) return <h1>Cargando...</h1>;
 
     return (
-        <div className="UserDetails">
+        <div className="UserDetails content">
             <p className="title">Detalles usuario</p>
             <div className="userdetails__header">
                 <div className="profile_photo">

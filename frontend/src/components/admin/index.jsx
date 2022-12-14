@@ -24,7 +24,7 @@ function Admin() {
     if (loading) return <h1>Cargando...</h1>;
 
     return (
-        <div className="admin">
+        <div className="admin content">
             <h1>ACTI Admin</h1>
             <div className="banner_activos">
                 <p className="textMd">
