@@ -1,46 +1,52 @@
-import React from 'react';
+import React, {useContext, useState} from 'react';
 import './style.css';
 import actiLogo from '../../assets/acti.png';
-import { Route, Routes, Link } from 'react-router-dom';
-import Home from '../home';
+import LoginError from './LoginError'
+import { loggedUser } from '../../UserContext';
 
 function Login() {
+    const {login} = useContext(loggedUser)
+    const [onError, setError] = useState(false)
+    const LogIn= (e)=>{
+        e.preventDefault();
+        login(e.target.id.value, e.target.password.value, setError)
+ 
+    }
     return (
         <React.Fragment>
             <div className="login">
                 <img className="actilogo" alt="logo" src={actiLogo} />
-                {/* <form action=""> */}
-                <label htmlFor="Input_id">
+                <form className="loginForm" action="" onSubmit={LogIn}>
+                <label htmlFor="id">
                     ID:
                     <input
-                        className="input_type1"
-                        type="text"
-                        id="Input_id"
+                        className='input_type1'
+                        type="number"
+                        id="id"
                         name="input_id"
                     />
+                   
                 </label>
-                <label htmlFor="input_password">
+                <label htmlFor="password">
                     Contraseña:
                     <input
                         className="input_type1"
-                        id="input_password"
+                        id="password"
                         type="password"
                     />
                 </label>
-                <Link to="/home">
+                
+                {onError &&  <LoginError/>}
+                {/* <Link to="/home"> */}
                     <input
                         className="primary_button"
                         type="submit"
                         value="Iniciar sesión"
                     />
-                </Link>
+                {/* </Link> */}
 
-                {/* </form> */}
+                </form>
             </div>
-            <Routes>
-                <Route path="/home" element={<Home />} />
-                {/* <Route path="/" element={<Login/>}/> */}
-            </Routes>
         </React.Fragment>
     );
 }

@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './style.css';
 import Horario from '../horario';
 import Perfilfoto from '../components_icons/PerfilFoto';
 import ModalContraseña from '../modalContraseña';
 import { useState } from 'react';
+import { loggedUser } from '../../UserContext';
 
 function Perfil() {
     const [OpenModal, setOpenModal] = useState(false);
+    const { currentUser } = useContext(loggedUser);
 
     function handleOpenModal() {
         setOpenModal(true);
@@ -17,20 +19,21 @@ function Perfil() {
                 {/* <img src={perfilfoto} alt="" className="perfil-foto" /> */}
                 <Perfilfoto color={'black'} size={100} />
                 <div className="perfil-nombre-correo">
-                    <p className="textMd perfil-nombre">
-                        Leyen Antonio Mejia Dominguez
-                    </p>
-                    <p className="textMd perfil-correo">potro@leyen.com</p>
+                    <p className="textMd perfil-nombre">{currentUser.nombre}</p>
+                    <p className="perfil-correo">{currentUser.correo}</p>
                 </div>
             </div>
             <div className="perfil-info perfil-info-general">
                 <h3 className="info-title">Informacion general</h3>
-                <p className="text general-info-id">ID: 216578</p>
-                <p className="text general-info-semestre">Semestre: 7</p>
+                <p className="text general-info-id">ID: {currentUser.id}</p>
+                <p className="text general-info-semestre">
+                    Semestre: {currentUser.semestre}
+                </p>
                 <p className="text general-info-tel">
-                    Telefono: <br /> 6421101010
+                    Telefono: <br /> {currentUser.telefono}
                 </p>
                 <div className="perfil-contraseña">
+                    /**Make dynamic this field in function of password lenght */
                     <p className="text general-info-contraseña">
                         Contraseña: <br />
                         ******
@@ -42,14 +45,24 @@ function Perfil() {
             </div>
             <div className="perfil-info perfil-info-acti">
                 <h3 className="info-title">Informacion ACTI</h3>
-                <p className="text info-acti-nivel">Nivel: 0</p>
-                <p className="text info-acti-ip">IP:10.21.44.0</p>
-                <p className="text info-acti-especialidad">
-                    Especialidad: Full-Stack
+                <p className="text info-acti-nivel">
+                    Nivel: {currentUser.infoActi.Nivel}
                 </p>
-                <p className="text info-acti-rol">Rol: Administrador</p>
-                <p className="text info-acti-horario">Horario:</p>
-                {/* <Horario/> */}
+                <p className="text info-acti-ip">
+                    IP:{currentUser.infoActi.IP}
+                </p>
+                <p className="text info-acti-especialidad">
+                    Especialidad: {currentUser.infoActi.Especialidad}
+                </p>
+                <p className="text info-acti-rol">
+                    Rol: {currentUser.rol == 1 ? 'Administrador' : 'Miembro'}
+                </p>
+                    <p className="text info-acti-horario">Horario:</p>
+                    <Horario className="horario"
+                        Datahorario={JSON.parse(currentUser.infoActi.Horario)}
+                        setDatahorario={null}
+                        mode={0}
+                    />
             </div>
             <div className="datas">
                 <div className="data">Retos realizados: 260</div>

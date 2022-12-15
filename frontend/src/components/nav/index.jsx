@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import logotipo from '../../assets/Logotipo.svg';
 import profilePhoto from '../../assets/iconprofile.svg';
 import './style.css';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { loggedUser } from '../../UserContext';
 
 function Nav() {
     const [Options, setOptions] = useState(false);
+    const { logout } = useContext(loggedUser);
     function toggleOptions() {
         setOptions(!Options);
+    }
+    function CerrarSesion() {
+        logout();
     }
     return (
         // <Router>
@@ -36,7 +41,7 @@ function Nav() {
                         className="options__ul__li textMd"
                         onClick={toggleOptions}
                     >
-                        <Link to='/perfil'>Perfil</Link>
+                        <Link to="/perfil">Perfil</Link>
                     </li>
                     <hr />
                     <li
@@ -48,7 +53,7 @@ function Nav() {
                     <hr />
                     <li
                         className="options__ul__li textMd"
-                        onClick={toggleOptions}
+                        onClick={CerrarSesion}
                     >
                         Cerrar sesión
                     </li>

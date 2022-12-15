@@ -1,15 +1,14 @@
-import {useState} from 'react';
-import {redirect} from 'react-router-dom'
+import React, { useContext } from 'react';
+// import {useNavigate} from 'react-router-dom'
 import './style.css';
 import Aviso from '../aviso';
 import DesplegableCurso from '../desplegableCurso';
 import RamImg from '../../assets/Ramses_Parker.png';
+// import { loggedUser } from '../../UserContext';
 
 function Home() {
-    // const [logUser, setLogUser]= useState('')
-    // if(logUser=='') {
-    //     redirect("/login")
-    // }
+    // const context = useContext(loggedUser);
+
     return (
         <div className="Home content" id="home">
             <header>

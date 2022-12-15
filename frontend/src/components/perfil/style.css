@@ -11,12 +11,15 @@
     align-items: center;
     gap: 20px;
     padding: 10px 10px 0 10px;
+    overflow-wrap: anywhere;
 }
 .perfil-nombre-correo {
     text-align: center;
 }
 .perfil-correo {
-    opacity: 0.7;
+    font-size: 16px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.700);
 }
 .perfil-info {
     display: grid;
@@ -30,7 +33,8 @@
 .general-info-contraseña,
 .general-info-tel,
 .info-acti-especialidad,
-.info-acti-rol {
+.info-acti-rol,
+.horario {
     grid-column: 1/3;
     text-align: center;
 }
