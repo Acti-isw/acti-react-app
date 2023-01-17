@@ -26,25 +26,24 @@ const getUsers = async () => {
  * @returns {Object} user
  */
 const getUser = async ({ id }) => {
-    return await userSchema.find({id:id})
-    // return await userSchema.aggregate([
-    //     {
-    //         $match: {
-    //             id: parseInt(id)
-    //         }
-    //     },
-    //     {
-    //         $lookup: {
-    //             from: 'roles',
-    //             localField: 'rol',
-    //             foreignField: 'id',
-    //             as: 'rol'
-    //         }
-    //     },
-    //     {
-    //         $unwind: '$rol'
-    //     }
-    // ]);
+    return await userSchema.aggregate([
+        {
+            $match: {
+                id: parseInt(id)
+            }
+        },
+        {
+            $lookup: {
+                from: 'roles',
+                localField: 'rol',
+                foreignField: 'id',
+                as: 'rol'
+            }
+        },
+        {
+            $unwind: '$rol'
+        }
+    ]);
 };
 
 /**
@@ -54,8 +53,7 @@ const getUser = async ({ id }) => {
  */
 
 const updateUser = async ({ id }, user) => {
-    await userSchema.findOneAndUpdate({ id: id }, user)
-    
+    await userSchema.findOneAndUpdate({ id: id }, user);
 };
 
 /**
