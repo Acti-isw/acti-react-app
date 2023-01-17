@@ -13,6 +13,7 @@ function Perfil() {
     function handleOpenModal() {
         setOpenModal(true);
     }
+
     return (
         <div className="perfil-content content">
             <div className="perfil-main-info">
@@ -55,14 +56,15 @@ function Perfil() {
                     Especialidad: {currentUser.infoActi.Especialidad}
                 </p>
                 <p className="text info-acti-rol">
-                    Rol: {currentUser.rol == 1 ? 'Administrador' : 'Miembro'}
+                    Rol: {currentUser.rol.nombre}
                 </p>
-                    <p className="text info-acti-horario">Horario:</p>
-                    <Horario className="horario"
-                        Datahorario={JSON.parse(currentUser.infoActi.Horario)}
-                        setDatahorario={null}
-                        mode={0}
-                    />
+                <p className="text info-acti-horario">Horario:</p>
+                <Horario
+                    className="horario"
+                    Datahorario={JSON.parse(currentUser.infoActi.Horario)}
+                    setDatahorario={null}
+                    mode={0}
+                />
             </div>
             <div className="datas">
                 <div className="data">Retos realizados: 260</div>

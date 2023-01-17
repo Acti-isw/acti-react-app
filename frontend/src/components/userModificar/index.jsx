@@ -3,7 +3,8 @@ import './style.css';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import Check from './check';
 import UserService from '../../service/UserService';
-import HashLoader from 'react-spinners/HashLoader';
+// import HashLoader from 'react-spinners/HashLoader';
+import Loader from '../loader';
 import Horario from '../horario';
 
 function UserModificar() {
@@ -11,22 +12,22 @@ function UserModificar() {
     const navigate = useNavigate();
     const { id } = useParams();
     const [user, setUser] = useState([]);
-    const [Datahorario, setDatahorario] = useState('')
+    const [Datahorario, setDatahorario] = useState('');
 
     useEffect(() => {
-        getusers()
+        getusers();
     }, []);
 
-    async function getusers(){
+    async function getusers() {
         await UserService.getUser(id)
-        .then((res) => {
-            setUser(res[0]);
-            setLoading(false);
-            setDatahorario(JSON.parse(res[0].infoActi.Horario))
-        })
-        .catch((err) => {
-            console.log(err);
-        });
+            .then((res) => {
+                setUser(res[0]);
+                setLoading(false);
+                setDatahorario(JSON.parse(res[0].infoActi.Horario));
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     }
 
     const handleDelete = async () => {
@@ -54,13 +55,7 @@ function UserModificar() {
         navigate('/admin');
     };
 
-    // insert a better loading component
-    if (Loading)
-        return (
-            <div className="loading">
-                <HashLoader color={'#292d38'} size={200} />
-            </div>
-        );
+    if (Loading) return <Loader />;
 
     return (
         <div className="UserModificar content">
@@ -128,7 +123,11 @@ function UserModificar() {
 
                 <label htmlFor="">
                     Horario
-                    <Horario Datahorario={Datahorario} setDatahorario={setDatahorario} mode={1}/>
+                    <Horario
+                        Datahorario={Datahorario}
+                        setDatahorario={setDatahorario}
+                        mode={1}
+                    />
                     {/* <table className="horario">
                         <thead>
                             <tr>

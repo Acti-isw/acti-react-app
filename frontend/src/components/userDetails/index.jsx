@@ -3,6 +3,7 @@ import profilePhoto from '../../assets/icons/big_icon _profile.svg';
 import './style.css';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import UserService from '../../service/UserService';
+import Loader from '../loader';
 import Horario from '../horario';
 
 function UserDetails() {
@@ -10,7 +11,7 @@ function UserDetails() {
     const [loading, setLoading] = useState(true);
     const [user, setUser] = useState([]);
     const navigate = useNavigate();
-  
+
     // const Datahorario=
     // [
     //     [[false, "lu-09"], [false, "ma-09"], [false, "mi-09"], [false, "ju-09"], [false, "vi-09"]],
@@ -37,19 +38,19 @@ function UserDetails() {
 
     /**Pa borrar en serio */
     const handleDelete = async () => {
-      await UserService.deleteUser(id);
-      navigate('/admin');
-  };
-  /** Pa desactivar */
-  const handleTurnOff = async () => {
-    const data = {
-        activo:false
-    }
-    await UserService.updateUser(id,data);
-    navigate('/admin');
-};
-    // insert a better loading component
-    if (loading) return <h1>Cargando...</h1>;
+        await UserService.deleteUser(id);
+        navigate('/admin');
+    };
+    /** Pa desactivar */
+    const handleTurnOff = async () => {
+        const data = {
+            activo: false
+        };
+        await UserService.updateUser(id, data);
+        navigate('/admin');
+    };
+
+    if (loading) return <Loader />;
 
     return (
         <div className="UserDetails content">
@@ -96,22 +97,26 @@ function UserDetails() {
             </div>
             <h3>Informacion ACTI</h3>
             <div className="info_acti">
-                <p className="text">Nivel:{user.infoActi?.Nivel}</p>
-                <p className="text">IP:{user.infoActi?.IP}</p>
+                <p className="text">Nivel:{user.infoActi.Nivel}</p>
+                <p className="text">IP:{user.infoActi.IP}</p>
                 <p className="text especialidad">
-                    Especialidad: {user.infoActi?.Especialidad}
+                    Especialidad: {user.infoActi.Especialidad}
                 </p>
-                <p className="text rol">
-                    Rol: {user.rol == 1 ? 'Admin' : 'Miembro'}
-                </p>
+                <p className="text rol">Rol: {user.rol.nombre}</p>
             </div>
             <p className="textMd">Horario:</p>
-            <Horario Datahorario={JSON.parse(user.infoActi?.Horario)} setDatahorario = {null} mode={0}/>
+            <Horario
+                Datahorario={JSON.parse(user.infoActi.Horario)}
+                setDatahorario={null}
+                mode={0}
+            />
             <div className="datas">
                 <div className="data">Retos realizados: 260</div>
                 <div className="data">Examenes aprobados: 18/20</div>
             </div>
-            <button className="danger_button" onClick={handleTurnOff}>Desactivar usuario</button>
+            <button className="danger_button" onClick={handleTurnOff}>
+                Desactivar usuario
+            </button>
         </div>
     );
 }
