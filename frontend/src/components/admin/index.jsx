@@ -67,7 +67,9 @@ function Admin() {
                     Agregar usuario <img src={plus} alt="" />
                 </button>
             </Link>
+            <Link to="/reactivarusers">
             <button className="secondary_button">Reactivar usuario</button>
+            </Link>
             <button className="secondary_button">Gestionar avisos</button>
         </div>
     );

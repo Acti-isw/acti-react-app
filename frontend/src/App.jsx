@@ -5,6 +5,7 @@ import Nav from './components/nav';
 import Admin from './components/admin';
 import Home from './components/home';
 import CrearUsuario from './components/crearUsuario';
+import ReactivarUsuario from './components/reactivarUsuario';
 import NavigationBar from './components/navigationBar';
 import UserDetails from './components/userDetails';
 import UserModificar from './components/userModificar';
@@ -35,6 +36,7 @@ function App() {
                                 element={<UserModificar />}
                             />
                             <Route path="/adduser" element={<CrearUsuario />} />
+                            <Route path="/reactivarusers" element={<ReactivarUsuario />} />
                             <Route path="/perfil" element={<Perfil />} />
                             <Route path="/curso" element={<CursoPage />} />
                             <Route path="/" element={<Home />} />

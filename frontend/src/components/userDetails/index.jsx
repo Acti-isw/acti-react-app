@@ -35,11 +35,19 @@ function UserDetails() {
             });
     }, []);
 
+    /**Pa borrar en serio */
     const handleDelete = async () => {
       await UserService.deleteUser(id);
       navigate('/admin');
   };
-
+  /** Pa desactivar */
+  const handleTurnOff = async () => {
+    const data = {
+        activo:false
+    }
+    await UserService.updateUser(id,data);
+    navigate('/admin');
+};
     // insert a better loading component
     if (loading) return <h1>Cargando...</h1>;
 
@@ -103,7 +111,7 @@ function UserDetails() {
                 <div className="data">Retos realizados: 260</div>
                 <div className="data">Examenes aprobados: 18/20</div>
             </div>
-            <button className="danger_button" onClick={handleDelete}>Desactivar usuario</button>
+            <button className="danger_button" onClick={handleTurnOff}>Desactivar usuario</button>
         </div>
     );
 }
