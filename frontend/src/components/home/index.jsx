@@ -2,8 +2,9 @@ import React, { useContext } from 'react';
 // import {useNavigate} from 'react-router-dom'
 import './style.css';
 import Aviso from '../aviso';
-import DesplegableCurso from '../desplegableCurso';
+import Desplegable from '../desplegable';
 import RamImg from '../../assets/Ramses_Parker.png';
+import Curso from '../curso'
 // import { loggedUser } from '../../UserContext';
 
 function Home() {
@@ -30,8 +31,17 @@ function Home() {
                 />
             </header>
             <main>
-                <DesplegableCurso />
-                <DesplegableCurso />
+                <Desplegable titulo={'Cursos básicos'}>
+                    <Curso nameCurso="JS Básico" />
+                    {/* </Link> */}
+                    {/* <Link to="/curso"> */}
+                        <Curso nameCurso="JS Básico" />
+                    {/* </Link> */}
+                    {/* <Link to="/curso"> */}
+                        <Curso nameCurso="JS Básico" />
+                    {/* </Link> */}
+                </Desplegable>
+                {/* <DesplegableCurso /> */}
             </main>
             <footer>
                 <img

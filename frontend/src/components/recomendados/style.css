@@ -1,0 +1,26 @@
+.desplegable{
+  margin:20px;
+}
+.recomendacion{
+  background-color: var(--white);
+  border-radius: 10px;
+  display:flex;
+  flex-direction: column;
+  padding:20px 10px;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+}
+.recomendacion__enlace{
+  background-color: var(--background);
+  border-radius: 10px;
+  padding:10px;
+  cursor: pointer;
+}
+.recomendacion__temas{
+  width: 90%;
+  text-align: left;
+}
+.recomendacion ul{
+  width: 70%;
+}

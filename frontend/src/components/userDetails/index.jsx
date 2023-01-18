@@ -114,7 +114,8 @@ function UserDetails() {
                 <div className="data">Retos realizados: 260</div>
                 <div className="data">Examenes aprobados: 18/20</div>
             </div>
-            <button className="danger_button" onClick={handleTurnOff}>Desactivar usuario</button>
+            {user.activo && <button className="danger_button" onClick={handleTurnOff}>Mandar usuario al anexo</button>}
+            
         </div>
     );
 }

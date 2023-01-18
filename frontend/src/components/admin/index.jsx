@@ -69,7 +69,9 @@ function Admin() {
             <Link to="/reactivarusers">
                 <button className="secondary_button">Reactivar usuario</button>
             </Link>
+            <Link to="/adminavisos">
             <button className="secondary_button">Gestionar avisos</button>
+            </Link>
         </div>
     );
 }

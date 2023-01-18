@@ -13,6 +13,7 @@ import Perfil from './components/perfil';
 import CursoPage from './components/cursoPage';
 import Recursos from './components/recursos';
 import AdminAvisos from './components/adminAvisos';
+import Recomendados from './components/recomendados';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { loggedUser } from './UserContext';
 
@@ -43,6 +44,7 @@ function App() {
                             <Route path="/curso" element={<CursoPage />} />
                             <Route path="/adminavisos" element={<AdminAvisos />} />
                             <Route path="/recursos" element={<Recursos />} />
+                            <Route path="/recomendados" element={<Recomendados />} />
                             <Route path="/" element={<Home />} />
                         </Routes>
                     </Router>
