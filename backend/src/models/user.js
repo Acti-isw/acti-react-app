@@ -29,10 +29,8 @@ const userSchema = new Schema({
         default: true
     },
     rol: {
-        // type: Schema.Types.ObjectId,
         type: Number,
         ref: 'role'
-        // autopopulate: true
     },
     correo: {
         type: String
@@ -49,7 +47,7 @@ const userSchema = new Schema({
         },
         Horario: {
             type: String,
-            default:`[
+            default: `[
                 [[false, "lu-09"], [false, "ma-09"], [false, "mi-09"], [false, "ju-09"], [false, "vi-09"]],
                 [[false, "lu-10"], [false, "ma-10"], [false, "mi-10"], [false, "ju-10"], [false, "vi-10"]],
                 [[false, "lu-11"], [false, "ma-11"], [false, "mi-11"], [false, "ju-11"], [false, "vi-11"]],
