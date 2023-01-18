@@ -7,29 +7,17 @@ function Aviso(props) {
     const backgroundColor = {
         backgroundColor: color
     };
-    if(props.admin){
-        return(
+    return (
+        <>
             <div className="aviso" style={backgroundColor}>
-                <div className='infoAviso'>
-                <p>{props.text}</p>
-                <p>{props.tema}</p>
+                <div className="infoAviso">
+                    <p>{props.text}</p>
+                    <p>{props.tema}</p>
                 </div>
-                <CloseIcon className='icon'/>
+                {props.editable && <CloseIcon className="icon" />}
             </div>
-        )
-    }
-    else{
-        return (
-            <>
-            <div className="aviso" style={backgroundColor}>
-            <div className='infoAviso'>
-                <p>{props.text}</p>
-                <p>{props.tema}</p>
-                </div>
-            </div>
-            </>
-        );
-    }
+        </>
+    );
 }
 
 export default Aviso;

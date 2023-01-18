@@ -72,6 +72,12 @@ function Admin() {
             <Link to="/adminavisos">
             <button className="secondary_button">Gestionar avisos</button>
             </Link>
+            <Link to="/adminrecursos">
+            <button className="secondary_button">Gestionar recursos</button>
+            </Link>
+            <Link to="/adminrecomendados">
+            <button className="secondary_button">Gestionar recomendados</button>
+            </Link>
         </div>
     );
 }

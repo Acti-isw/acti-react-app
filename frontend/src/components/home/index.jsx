@@ -22,6 +22,7 @@ function Home() {
                     <Aviso
                         text="Aviso que avisa muy avisador"
                         color="var(--alert)"
+                        editable = {true}
                     />
                 </div>
                 <Aviso
