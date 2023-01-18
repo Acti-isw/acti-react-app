@@ -20,17 +20,17 @@ const getRole = async ({ id }) => {
 /**
  *
  * @param {Integer} id - role ID
- * @param {String} name, description - role name and description
+ * @param {String} nombre, descripcion - role name and description
  */
-const updateRole = async ({ id }, { name, description }) => {
+const updateRole = async ({ id }, { nombre, descripcion }) => {
     await roleSchema.updateOne(
         {
             id: id
         },
         {
             $set: {
-                name: name,
-                description: description
+                nombre: nombre,
+                descripcion: descripcion
             }
         }
     );

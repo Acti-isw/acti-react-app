@@ -8,11 +8,11 @@ const roleSchema = new Schema({
         required: true,
         unique: true
     },
-    name: {
+    nombre: {
         type: String,
         required: true
     },
-    description: {
+    descripcion: {
         type: String,
         required: false
     }

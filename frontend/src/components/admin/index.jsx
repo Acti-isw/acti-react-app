@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import plus from '../../assets/icons/plus.svg';
 import './style.css';
 import { Link } from 'react-router-dom';
-
+import Loader from '../loader';
 import UserService from '../../service/UserService';
 
 function Admin() {
@@ -20,8 +20,7 @@ function Admin() {
             });
     }, []);
 
-    // insert a better loading component
-    if (loading) return <h1>Cargando...</h1>;
+    if (loading) return <Loader />;
 
     return (
         <div className="admin content">
@@ -68,7 +67,7 @@ function Admin() {
                 </button>
             </Link>
             <Link to="/reactivarusers">
-            <button className="secondary_button">Reactivar usuario</button>
+                <button className="secondary_button">Reactivar usuario</button>
             </Link>
             <button className="secondary_button">Gestionar avisos</button>
         </div>
