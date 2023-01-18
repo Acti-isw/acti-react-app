@@ -12,7 +12,7 @@ function Admin() {
     useEffect(() => {
         UserService.getUsers()
             .then((res) => {
-                setUsers(res);
+                setUsers(res.filter(user=>user.activo));
                 setLoading(false);
             })
             .catch((err) => {
@@ -47,7 +47,7 @@ function Admin() {
                             <td>10/25/20</td>
                             <td>
                                 <Link to={`/userdetails/${user.id}`}>
-                                    Detalles
+                                    Expediente
                                 </Link>
                             </td>
                         </tr>

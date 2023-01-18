@@ -72,7 +72,9 @@ a {
     font-weight: 600;
     color: var(--secondary);
 }
-
+.icon{
+    cursor: pointer;
+}
 body,
 #root {
     margin: 0 auto;

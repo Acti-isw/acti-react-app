@@ -1,0 +1,15 @@
+.recursosList{
+  display: flex;
+  margin: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.recursosList button{
+  width: 80%;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  color: var(--white);
+  cursor: pointer;
+}

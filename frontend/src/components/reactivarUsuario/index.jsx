@@ -8,7 +8,7 @@ import './style.css'
 function ReactivarUsuario(){
 
   const [users, setUsers] = useState([]);
-  const [Confirmacion, setConfirmacion] = useState([216566,'activar', 'yorch' ]);
+  const [Confirmacion, setConfirmacion] = useState('');
 
   useEffect(()=>{
      UserService.getUsers()
@@ -17,7 +17,7 @@ function ReactivarUsuario(){
       // console.log(users)
     })
     .then(()=>{
-      console.log(users);
+      // console.log(users);
     }
   )
   .catch((err) => {
@@ -25,15 +25,19 @@ function ReactivarUsuario(){
   });
   },[])
 
-  function selectUser(user){
-    // e.preventDefault();
-    console.log(user);
-    setConfirmacion()
+  function selectUser(user, e){
+    // console.log(e.target.checked);
+    setConfirmacion([user.id, e.target.checked, user.alias])
+  }
+
+  function cancelActivacion(key){
+    const check = document.getElementById(key)
+    check.checked= !check.checked;
   }
 
   return(
-    <div className="content">
-    <p className="title">Reactivar usuario</p>
+    <div className="content anexo">
+    <p className="title">El anexo</p>
     <table className="admin__table">
       <thead>
         <tr>
@@ -44,6 +48,7 @@ function ReactivarUsuario(){
         </tr>
       </thead>
       <tbody>
+        
         {
           users.map((user)=>(
             <tr key={user.id}>
@@ -54,18 +59,24 @@ function ReactivarUsuario(){
                 Detalles
                 </Link>
               </td>
-              <td onClick={()=>{selectUser(user)}}>
-                <div className="turner">
-                  <div className="turn"></div>
-                  <p className="turn-text">Activar</p>
-                </div>
+              <td>
+                <label htmlFor={user.id} className="switch">
+                  <input type="checkbox" id={user.id} name="activo" onClick={(e)=>{selectUser(user, e)}}/>
+                  <span className="slider"></span>
+                </label>
+                {/* onChange={(e)=>{selectUser(user, e)}} */}
               </td>
             </tr>
           ))
         }
       </tbody>
     </table>
-    {Confirmacion && <ModalConfirmacion info={Confirmacion} actualizador={setConfirmacion}/>}
+    <Link to='/admin'>
+    <button className="primary_button">
+        Volver
+    </button>
+    </Link>
+    {Confirmacion && <ModalConfirmacion info={Confirmacion} actualizador={setConfirmacion} checkbox ={cancelActivacion}/>}
     </div>
   )
 }

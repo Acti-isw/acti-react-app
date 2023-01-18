@@ -11,6 +11,8 @@ import UserDetails from './components/userDetails';
 import UserModificar from './components/userModificar';
 import Perfil from './components/perfil';
 import CursoPage from './components/cursoPage';
+import Recursos from './components/recursos';
+import AdminAvisos from './components/adminAvisos';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { loggedUser } from './UserContext';
 
@@ -39,6 +41,8 @@ function App() {
                             <Route path="/reactivarusers" element={<ReactivarUsuario />} />
                             <Route path="/perfil" element={<Perfil />} />
                             <Route path="/curso" element={<CursoPage />} />
+                            <Route path="/adminavisos" element={<AdminAvisos />} />
+                            <Route path="/recursos" element={<Recursos />} />
                             <Route path="/" element={<Home />} />
                         </Routes>
                     </Router>

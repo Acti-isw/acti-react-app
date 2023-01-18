@@ -9,3 +9,7 @@
     width: 100%;
     z-index: 10;
 }
+.NavigationBar a{
+    display: flex;
+    align-items: center;
+}

@@ -58,7 +58,7 @@ function UserDetails() {
                 <div className="profile_photo">
                     <img src={profilePhoto} alt="" />
                     <p className={user.activo ? 'active' : 'inactive'}>
-                        {user.activo ? 'Activo' : 'Inactivo'}
+                        {user.activo ? 'Activo' : 'Anexado'}
                     </p>
                 </div>
                 <div className="profile_data">
@@ -111,7 +111,8 @@ function UserDetails() {
                 <div className="data">Retos realizados: 260</div>
                 <div className="data">Examenes aprobados: 18/20</div>
             </div>
-            <button className="danger_button" onClick={handleTurnOff}>Desactivar usuario</button>
+            {user.activo && <button className="danger_button" onClick={handleTurnOff}>Mandar usuario al anexo</button>}
+            
         </div>
     );
 }
