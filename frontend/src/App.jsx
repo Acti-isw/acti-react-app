@@ -42,7 +42,7 @@ function App() {
                             <Route path="/adduser" element={<CrearUsuario />} />
                             <Route path="/reactivarusers" element={<ReactivarUsuario />} />
                             <Route path="/perfil" element={<Perfil />} />
-                            <Route path="/curso" element={<CursoPage />} />
+                            <Route path="/curso/:id" element={<CursoPage />} />
                             <Route path="/adminavisos" element={<AdminAvisos />} />
                             <Route path="/adminrecomendados" element={<AdminRecomendados />} />
                             <Route path="/recursos" element={<Recursos />} />

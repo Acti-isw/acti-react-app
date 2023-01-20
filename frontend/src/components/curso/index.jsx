@@ -1,5 +1,6 @@
 import React from 'react';
 import './style.css';
+import {useNavigate} from 'react-router-dom'
 
 import HTML from '../../assets/coursesBackground/HTML.webp';
 import CSS from '../../assets/coursesBackground/CSS.webp';
@@ -27,22 +28,29 @@ function Curso(props) {
     const background = {
         background: `url(${JS})`
     };
+    const navigate = useNavigate();
+    function goToCursoPage() {
+        navigate(`/curso/${props.curso.id}`)
+    }
     return (
-        <div className="curso">
+        <div className="curso" onClick={goToCursoPage}>
             <div className="head_curso">
                 <div className="">
-                    <p className="textMd">Curso</p>
-                    <p className="title">{props.nameCurso}</p>
+                    <p className="text">Curso</p>
+                    <p className="textMd">{props.curso.nombre}</p>
                 </div>
                 <img src={Icon_JS} alt="ThemeIcon" />
             </div>
             <div className="themes">
                 <ul>
-                    <li>Variables</li>
+                    {props.curso.listadoConocimiento.map((conocimiento)=>(
+                        <li key={conocimiento}>{conocimiento}</li>
+                    ))}
+                    {/* <li>Variables</li>
                     <li>Ciclos</li>
                     <li>Switch</li>
                     <li>Logica</li>
-                    <li>Casteo</li>
+                    <li>Casteo</li> */}
                 </ul>
             </div>
         </div>

@@ -14,7 +14,7 @@ export default {
   },
   CreateAnnonucement: async(Annonucement)=>{
     try {
-      const response  = await(`${BASE_URL}/announcement`,{
+      const response  = await fetch(`${BASE_URL}/announcement`,{
         method: 'POST',
         headers:{'Content-Type': 'application/json'},
         body: JSON.stringify(Annonucement)
@@ -34,7 +34,7 @@ export default {
       return data;
       
     } catch (error) {
-      throw error;
+      // throw error;
     }
   },
 

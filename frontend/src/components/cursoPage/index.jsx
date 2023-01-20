@@ -1,15 +1,29 @@
 import './style.css';
 import Reto from '../reto'
+import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import TemaService from '../../service/TemaService';
 
 function CursoPage() {
+    const {id} = useParams();
+    const [curso, setCurso] = useState([])
+    useEffect(()=>{
+        TemaService.getTopic(id)
+        .then((res)=>{
+            setCurso(res[0]);
+        })
+        .catch((err)=>{
+            throw err;
+        })
+    },[])
+
     return (
         <div className="cursoPage content">
-            <p className="title">CSS avanzado</p>
+            <p className="title">{curso.nombre}</p>
             <div className="curso_themes">
-                <p className="textMd">Temas</p>
-                <p className="text">temas</p>
-                <p className="text">mas temas</p>
-                <p className="text">y mas temas</p>
+                {/* {curso.listadoConocimiento.map((tema)=>(
+                    <p className='text'>{tema}</p>
+                ))} */}
             </div>
             <h3>Instrucciones</h3>
             <p className="text">
