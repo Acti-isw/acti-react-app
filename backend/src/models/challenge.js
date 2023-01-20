@@ -19,7 +19,7 @@ const challengeSchema = new Schema({
         ref: 'topic'
     },
     complejidad: {
-        type: Number
+        type: Boolean
     },
     imagenes: {
         type: Array

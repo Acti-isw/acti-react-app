@@ -1,0 +1,14 @@
+.cursoPage{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.curso_themes{
+  background-color: var(--white);
+  border-radius: 10px;
+  padding: 10px;
+}
+.temas{
+  width: 100%;
+  text-align: center;
+}
