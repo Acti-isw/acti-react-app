@@ -21,3 +21,12 @@
   align-items: center;
   gap: 10px;
 }
+.guiasBox{
+  background-color: var(--white);
+  width: 90%;
+  border-radius: 10px;
+  padding: 10px;
+}
+.guia__title{
+  text-align: center;
+}

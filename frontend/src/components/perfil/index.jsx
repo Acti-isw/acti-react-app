@@ -34,7 +34,7 @@ function Perfil() {
                     Telefono: <br /> {currentUser.telefono}
                 </p>
                 <div className="perfil-contraseña">
-                    /**Make dynamic this field in function of password lenght */
+                    {/* Make dynamic this field in function of password lenght */}
                     <p className="text general-info-contraseña">
                         Contraseña: <br />
                         ******
