@@ -37,19 +37,23 @@ function Nav() {
             </nav>
             <div className={Options ? 'options' : 'none'}>
                 <ul className="options__ul">
-                    <li
-                        className="options__ul__li textMd"
-                        onClick={toggleOptions}
-                    >
-                        <Link to="/perfil">Perfil</Link>
-                    </li>
+                    <Link to="/perfil">
+                        <li
+                            className="options__ul__li textMd"
+                            onClick={toggleOptions}
+                        >
+                            Perfil
+                        </li>
+                    </Link>
                     <hr />
-                    <li
-                        className="options__ul__li textMd"
-                        onClick={toggleOptions}
-                    >
-                        <Link to="/admin">Administrar</Link>
-                    </li>
+                    <Link to="/admin">
+                        <li
+                            className="options__ul__li textMd"
+                            onClick={toggleOptions}
+                        >
+                            Administrar
+                        </li>
+                    </Link>
                     <hr />
                     <li
                         className="options__ul__li textMd"

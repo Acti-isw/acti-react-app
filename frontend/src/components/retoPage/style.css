@@ -1,0 +1,23 @@
+.retopage{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.recursos_button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+.complete__box input{
+  width: 24px;
+  height: 24px;
+}
+
+.complete__box{
+  display:flex;
+  align-items: center;
+  gap: 10px;
+}

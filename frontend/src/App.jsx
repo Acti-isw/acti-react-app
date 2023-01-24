@@ -15,6 +15,7 @@ import Recursos from './components/recursos';
 import AdminAvisos from './components/adminAvisos';
 import Recomendados from './components/recomendados';
 import AdminRecomendados from './components/adminRecomendados';
+import RetoPage from './components/retoPage';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { loggedUser } from './UserContext';
 
@@ -38,6 +39,10 @@ function App() {
                             <Route
                                 path="/usermodify/:id"
                                 element={<UserModificar />}
+                            />
+                            <Route
+                                path="/retopage/:id"
+                                element={<RetoPage/>}
                             />
                             <Route path="/adduser" element={<CrearUsuario />} />
                             <Route path="/reactivarusers" element={<ReactivarUsuario />} />

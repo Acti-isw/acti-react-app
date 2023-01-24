@@ -18,6 +18,7 @@ nav {
     position: fixed;
     right: 0;
     top: 52px;
+    z-index: 10;
 }
 .options__ul {
     list-style-type: none;
@@ -26,7 +27,7 @@ nav {
     padding: 5px;
     cursor: pointer;
 }
-.options__ul__li a {
+.options__ul a {
     text-decoration: none;
     color: var(--black);
 }

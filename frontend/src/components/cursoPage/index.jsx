@@ -3,10 +3,12 @@ import Reto from '../reto';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import TemaService from '../../service/TemaService';
+import RetoService from '../../service/RetoService';
 
 function CursoPage() {
     const { id } = useParams();
     const [curso, setCurso] = useState([]);
+    const [retos, setRetos] = useState([]);
     useEffect(() => {
         TemaService.getTopic(id)
             .then((res) => {
@@ -15,6 +17,11 @@ function CursoPage() {
             .catch((err) => {
                 throw err;
             });
+        RetoService.getRetosByTopic(id)
+        .then((res)=>{
+            console.log(res)
+            setRetos(res);
+        })
     }, []);
 
     return (
@@ -38,7 +45,11 @@ function CursoPage() {
                 consideración, tratando de hacer que se vea similar a la imagen.
             </p>
             <h3>Retos</h3>
-            <Reto />
+            <div className='retos__conteiner'>
+                {retos.map((reto)=>(
+                    <Reto reto = {reto} key={reto.id}/>
+                ))}
+            </div>
             <div className="resources">
                 <div className="resources_head"></div>
             </div>
