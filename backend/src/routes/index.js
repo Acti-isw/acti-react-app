@@ -14,7 +14,7 @@ router.use('/role', roleRoute);
 router.use('/announcement', announcementRoute);
 router.use('/topic', topicRoute);
 router.use('/challenge', challengeRoute);
-router.use('/recommended', resourceRoute);
-router.use('/resource', recommendedRoute);
+router.use('/resource', resourceRoute);
+router.use('/recommended', recommendedRoute);
 
 module.exports = router;
