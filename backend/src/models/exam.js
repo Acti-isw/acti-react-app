@@ -7,7 +7,20 @@ const examSchema = new Schema({
         type: Number,
         required: true
     },
-    tema: [{}]
+    content: {
+        topic: {
+            type: Number,
+            ref: 'topics'
+        },
+        exercises: [
+            {
+                description: String,
+                value: Number,
+                State: Boolean
+            }
+        ],
+        minScore: Number
+    }
 });
 
 module.exports = mongoose.model('exams', examSchema);
