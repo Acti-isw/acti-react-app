@@ -1,0 +1,19 @@
+
+.addRecurso{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+   margin: 10px;
+}
+.formAddRecurso{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+.formAddRecurso input{
+  width: 90vw;
+}
+.recusosActuales{
+  margin: 20px 0px;
+}

@@ -52,7 +52,7 @@ function AdminAvisos() {
                 <textarea
                     required
                     type="text"
-                    className="mensaje"
+                    className="input_type1 mensaje"
                     placeholder="Mensaje"
                     name="mensaje"
                     id="mensaje"
@@ -62,7 +62,7 @@ function AdminAvisos() {
                     <input
                         required
                         type="color"
-                        className="color"
+                        className="input_type1 color"
                         name="color"
                         id="color"
                     />
@@ -73,6 +73,7 @@ function AdminAvisos() {
                         type="Date"
                         name="expirationDate"
                         id="expirationDate"
+                        className="input_type1"
                     />
                 </label>
                 <button className="primary_button">Postear</button>
