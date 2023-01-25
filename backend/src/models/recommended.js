@@ -4,8 +4,12 @@ const { Schema } = mongoose;
 
 const recommendedSchema = new Schema({
     titulo: String,
-    enlace: String,
-    color: String
+    tipo: Boolean,
+    tema: {
+        type: Number,
+        ref: 'topic'
+    },
+    enlace: String
 });
 
 module.exports = mongoose.model('recommended', recommendedSchema);
