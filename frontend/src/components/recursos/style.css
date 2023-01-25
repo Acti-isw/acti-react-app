@@ -1,15 +1,20 @@
 .recursosList{
   display: flex;
   margin: 10px;
-  align-items: center;
   justify-content: center;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .recursosList button{
-  width: 80%;
+  width: 100%;
   padding: 10px;
   border-radius: 10px;
   border: none;
   color: var(--white);
   cursor: pointer;
+}
+
+.recursoBtn:hover{
+  opacity: 0.8;
 }

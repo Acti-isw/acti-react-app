@@ -1,18 +1,18 @@
 const express = require('express');
 const router = express.Router();
 
-const challengeController = require('../controller/challengeController');
+const recommendedController = require('../controller/recommendedController');
 
 router
     .route('/')
-    .get(challengeController.getAll)
-    .post(challengeController.post)
-    .delete(challengeController.delAll);
+    .get(recommendedController.getAll)
+    .post(recommendedController.post)
+    .delete(recommendedController.delAll);
 
 router
     .route('/:id')
-    .get(challengeController.get)
-    .put(challengeController.put)
-    .delete(challengeController.del);
+    .get(recommendedController.get)
+    .put(recommendedController.put)
+    .delete(recommendedController.del);
 
 module.exports = router;

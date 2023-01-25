@@ -7,7 +7,7 @@ const {
     deleteAllRecommended
 } = require('../services/recommendedService');
 
-const getAll = async (__, res) => {
+const getAll = async (__, res, next) => {
     try {
         const recommended = await getRecommended();
         res.status(200).json(recommended);
@@ -16,7 +16,7 @@ const getAll = async (__, res) => {
     }
 };
 
-const get = async (req, res) => {
+const get = async (req, res, next) => {
     try {
         const recommended = await getRecommendedById(req.params);
         res.status(200).json(recommended);
@@ -25,7 +25,7 @@ const get = async (req, res) => {
     }
 };
 
-const put = async (req, res) => {
+const put = async (req, res, next) => {
     try {
         const recommended = await updateRecommended(req.params, req.body);
         res.status(200).json(recommended);
@@ -34,7 +34,7 @@ const put = async (req, res) => {
     }
 };
 
-const post = async (req, res) => {
+const post = async (req, res, next) => {
     try {
         const newRecommended = req.body;
         await insertRecommended(newRecommended);
@@ -44,7 +44,7 @@ const post = async (req, res) => {
     }
 };
 
-const del = async (req, res) => {
+const del = async (req, res, next) => {
     try {
         await deleteRecommended(req.params);
         res.status(204).end();
@@ -53,7 +53,7 @@ const del = async (req, res) => {
     }
 };
 
-const delAll = async (__, res) => {
+const delAll = async (__, res, next) => {
     try {
         await deleteAllRecommended();
         res.status(204).end();

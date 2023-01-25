@@ -5,31 +5,31 @@ import UserService from './service/UserService';
 const loggedUser = React.createContext();
 
 function UserContext(props) {
-  const localSesion = localStorage.getItem('localSesion');
-  if(!localSesion){
-    localStorage.setItem('localSesion', JSON.stringify(''))
-  }
-  useEffect(()=>{
-    if(localSesion){
-      setCurrentUser(JSON.parse(localSesion))
+    const localSesion = localStorage.getItem('localSesion');
+    if (!localSesion) {
+        localStorage.setItem('localSesion', JSON.stringify(''));
     }
-  },[])
-    const [currentUser, setCurrentUser] = useState();
-    const login = (id, contraseña, setError)=> {
-      UserService.getUser(id).then((res)=>{
-        if(!res[0] || res[0].contraseña != contraseña){
-          setError(true);
-        }else{
-          setError(false);
-          localStorage.setItem('localSesion', JSON.stringify(res[0]))
-          setCurrentUser(res[0]);
+    useEffect(() => {
+        if (localSesion) {
+            setCurrentUser(JSON.parse(localSesion));
         }
-      })
-    }
-    const logout=()=>{
-      localStorage.setItem('localSesion', JSON.stringify(''))
-      setCurrentUser(null);
-    }
+    }, []);
+    const [currentUser, setCurrentUser] = useState();
+    const login = (id, contraseña, setError) => {
+        UserService.getUser(id).then((res) => {
+            if (!res[0] || res[0].contraseña != contraseña) {
+                setError(true);
+            } else {
+                setError(false);
+                localStorage.setItem('localSesion', JSON.stringify(res[0]));
+                setCurrentUser(res[0]);
+            }
+        });
+    };
+    const logout = () => {
+        localStorage.setItem('localSesion', JSON.stringify(''));
+        setCurrentUser(null);
+    };
 
     const value = useMemo(() => {
         return {
