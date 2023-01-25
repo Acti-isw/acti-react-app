@@ -5,7 +5,7 @@ const getExams = async () => {
         {
             $lookup: {
                 from: 'topics',
-                localField: 'content.topic',
+                localField: 'topic',
                 foreignField: 'id',
                 as: 'topic'
             }
@@ -26,7 +26,7 @@ const getExamById = async ({ id }) => {
         {
             $lookup: {
                 from: 'topics',
-                localField: 'content.topic',
+                localField: 'topic',
                 foreignField: 'id',
                 as: 'topic'
             }

@@ -4,7 +4,7 @@ export default {
     getResources: async () => {
         try {
             const response = await fetch(BASE_URL + '/resource');
-            const data = response.json();
+            const data = await response.json();
             return data;
         } catch (error) {
             throw error;
@@ -13,7 +13,7 @@ export default {
     getResourceById: async (id) => {
         try {
             const response = await fetch(BASE_URL + `/resource/${id}`);
-            const data = response.json();
+            const data = await response.json();
             return data;
         } catch (error) {
             throw error;
@@ -26,7 +26,7 @@ export default {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(resource)
             });
-            const data = response.json();
+            const data = await response.json();
             return data;
         } catch (error) {
             throw error;
@@ -41,7 +41,7 @@ export default {
                 },
                 body: JSON.stringify(resource)
             });
-            const data = response.json();
+            const data = await response.json();
             return data;
         } catch (error) {
             throw error;
@@ -52,7 +52,7 @@ export default {
             const response = await fetch(BASE_URL + `/resource/${id}`, {
                 method: 'DELETE'
             });
-            const data = response.json();
+            const data = await response.json();
             return data;
         } catch (error) {
             throw error;

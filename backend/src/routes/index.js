@@ -8,6 +8,7 @@ const topicRoute = require('./topicRoute');
 const challengeRoute = require('./challengeRoute');
 const resourceRoute = require('./resourceRoute');
 const recommendedRoute = require('./recommendedRoute');
+const examRoute = require('./examRoute');
 
 router.use('/user', userRoute);
 router.use('/role', roleRoute);
@@ -16,5 +17,6 @@ router.use('/topic', topicRoute);
 router.use('/challenge', challengeRoute);
 router.use('/recommended', resourceRoute);
 router.use('/resource', recommendedRoute);
+router.use('/exam', examRoute);
 
 module.exports = router;

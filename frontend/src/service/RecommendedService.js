@@ -5,7 +5,7 @@ export default{
   getRecommended: async ()=>{
     try {
       const response = await fetch(BASE_URL+'/recommended')
-      const data = response.json();
+      const data = await response.json();
       return data;
       
     } catch (error) {
@@ -15,7 +15,7 @@ export default{
   getRecommendedById: async (id)=>{
     try {
       const response = await fetch(BASE_URL+`/recommended/${id}`)
-      const data = response.json();
+      const data = await response.json();
       return data;
     } catch (error) {
       throw error;
@@ -28,7 +28,7 @@ export default{
         headers:{'Content-Type': 'application/json'},
         body: JSON.stringify(recommended)
       })
-      const data = response.json();
+      const data = await response.json();
       return data;
     } catch (error) {
       throw error;
@@ -41,7 +41,7 @@ export default{
         headers:{'Content-Type': 'application/json'},
         body:JSON.stringify(recommended)
       })
-      const data = response.json();
+      const data = await response.json();
       return data;
     } catch (error) {
       throw error;
@@ -52,7 +52,7 @@ export default{
       const response = await fetch(BASE_URL+`/recommended/${id}`,{
         method:'DELETE'
       })
-      const data = response.json();
+      const data = await response.json();
       return data;
     } catch (error) {
       throw error;
