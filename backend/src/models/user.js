@@ -77,12 +77,11 @@ const userSchema = new Schema({
                 type: Date,
                 required: true
             },
-            puntajeMinimo: {
-                type: Number
-            },
+            reactivos: [ {state: Boolean} ],
             puntajeObtenido: {
                 type: Number
             },
+            resultadoPreliminar: Number,
             resultado: {
                 type: Number
             },

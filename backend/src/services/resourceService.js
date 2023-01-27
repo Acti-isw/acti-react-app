@@ -1,43 +1,13 @@
 const resourceSchema = require('../models/resource');
 
 const getResources = async () => {
-    return await resourceSchema.aggregate([
-        {
-            $lookup: {
-                from: 'topics',
-                localField: 'topic',
-                foreignField: 'id',
-                as: 'topic'
-            }
-        },
-        {
-            $unwind: '$topic'
-        }
-    ]);
+    return await resourceSchema.find();
 };
 
 const getResourceById = async ({ id }) => {
-    return await resourceSchema.aggregate([
-        {
-            $match: {
-                id: id
-            }
-        },
-        {
-            $lookup: {
-                from: 'topics',
-                localField: 'topic',
-                foreignField: 'id',
-                as: 'topic'
-            }
-        },
-        {
-            $unwind: '$topic'
-        }
-    ]);
+    return await resourceSchema.find({ id: id });
 };
-
-const updateResource = async ({ id }, { titulo, tipo, tema, enlace }) => {
+const updateResource = async ({ id }, { titulo, enlace, color }) => {
     await resourceSchema.updateOne(
         {
             id: id
@@ -45,14 +15,12 @@ const updateResource = async ({ id }, { titulo, tipo, tema, enlace }) => {
         {
             $set: {
                 titulo: titulo,
-                tipo: tipo,
-                tema: tema,
-                enlace: enlace
+                enlace: enlace,
+                color: color
             }
         }
     );
 };
-
 const deleteResource = async ({ id }) => {
     await resourceSchema.deleteOne({ id: id });
 };

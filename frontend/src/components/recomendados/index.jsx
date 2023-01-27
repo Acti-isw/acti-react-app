@@ -31,13 +31,14 @@ return(
   <div className="content">
     <p className="title">Recomendados</p>
       {temas.map((tema)=>(
-        <Desplegable className="desplegable" titulo={tema.nombre}>
-          {/* {recomendados.filter(recomendacion)=>recomendacion.} */}
+        <Desplegable className="desplegable" titulo={tema.nombre} key={tema.id}>
+          {recomendados.filter((recomendacion) => recomendacion.tema == tema.id).map(
+            (recomend)=>(
+              <Recomendacion recomendacion={recomend} key={recomend.id}/>
+            ) 
+          )}
         </Desplegable>
       ))}
-    <Desplegable className="desplegable" titulo={'JS básico'}>
-     <Recomendacion/>
-    </Desplegable>
   </div>
 )
 

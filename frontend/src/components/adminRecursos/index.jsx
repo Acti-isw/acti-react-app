@@ -1,7 +1,22 @@
 import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
+import ResourceService from "../../service/ResourceService";
+import Recurso from "../recursos/recurso";
 import './style.css'
 
 function AdminRecursos(){
+
+  const [resources, getResources] = useState([]);
+  useEffect(()=>{
+    ResourceService.getResources()
+    .then((res)=>{
+      getResources(res)
+    })
+    .catch((err)=>{
+      throw err;
+    })
+  },[])
 
   return(
     <div className="adminRecursos content">
@@ -28,6 +43,9 @@ function AdminRecursos(){
       </div>
       <div className="recusosActuales">
         <h2>Recusos actuales</h2>
+          {resources.map((recurso)=>(
+            <Recurso recurso={recurso} key= {recurso._id} editable={true}/>
+          ))}
       </div>
     </div>
   )

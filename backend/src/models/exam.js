@@ -12,11 +12,11 @@ const examSchema = new Schema({
         type: Number,
         ref: 'topics'
     },
+    rules: String,
     exercises: [
         {
             description: String,
             value: Number,
-            State: Boolean
         }
     ],
     minScore: Number

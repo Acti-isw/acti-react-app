@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import ResourceService from "../../service/ResourceService";
+import Recurso from "./recurso";
 import './style.css'
 
 function Recursos(){
@@ -21,15 +22,8 @@ return(
     <p className="title">Recursos</p>
     <div className="recursosList">
       {recursos.map((recurso)=>(
-        <a className="recursoBtn" href={recurso.enlace} key={recurso._id} target={'_blank'}>
-        <button style={{backgroundColor:recurso.color}}>
-          {recurso.titulo}
-        </button>
-        </a>
+        <Recurso recurso={recurso} key={recurso._id} editable={false}/>
       ))}
-      {/* <button style={{backgroundColor:'#000'}}>
-          RecursosNombre
-      </button> */}
     </div>
   </div>
 )

@@ -5,16 +5,28 @@
   flex-direction: column;
   gap: 15px;
 }
-
-.recursosList button{
+.recurso{
+  text-decoration: none;
+}
+.recursoButton{
+  position: relative;
   width: 100%;
   padding: 10px;
   border-radius: 10px;
   border: none;
   color: var(--white);
   cursor: pointer;
+  text-align: center;
+  font-weight: 400;
 }
 
-.recursoBtn:hover{
+.recursoButton:hover{
   opacity: 0.8;
+}
+.icon-delete-resource{
+  position: absolute;
+  top: 0;
+  right: 3px;
+  bottom: 0;
+  margin: auto;
 }
