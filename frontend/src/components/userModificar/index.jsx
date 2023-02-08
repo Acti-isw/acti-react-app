@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import './style.css';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import Check from './check';
@@ -6,6 +6,7 @@ import UserService from '../../service/UserService';
 // import HashLoader from 'react-spinners/HashLoader';
 import Loader from '../loader';
 import Horario from '../horario';
+import { loggedUser } from '../../UserContext';
 
 function UserModificar() {
     const [Loading, setLoading] = useState(true);
@@ -13,6 +14,7 @@ function UserModificar() {
     const { id } = useParams();
     const [user, setUser] = useState([]);
     const [Datahorario, setDatahorario] = useState('');
+    const { currentUser } = useContext(loggedUser);
 
     useEffect(() => {
         getusers();
@@ -20,6 +22,7 @@ function UserModificar() {
 
     async function getusers() {
         await UserService.getUser(id)
+        // console.log(id)
             .then((res) => {
                 setUser(res[0]);
                 setLoading(false);
@@ -52,7 +55,7 @@ function UserModificar() {
         };
 
         await UserService.updateUser(id, data);
-        navigate('/admin');
+        navigate(-1);
     };
 
     if (Loading) return <Loader />;
@@ -144,13 +147,14 @@ function UserModificar() {
                 </label>
 
                 <Check id="rol" user={user} />
-
+                {currentUser.id != id &&
                 <input
-                    type="button"
-                    className="danger_button delete"
-                    value="Desactivar usuario"
-                    onClick={handleDelete}
+                type="button"
+                className="danger_button delete"
+                value="Desactivar usuario"
+                onClick={handleDelete}
                 />
+            }
                 <div className="buttonsBox">
                     <input
                         id="submit"

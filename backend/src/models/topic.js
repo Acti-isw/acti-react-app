@@ -19,6 +19,10 @@ const topicSchema = new Schema({
     listadoConocimiento: {
         type: Array,
         default: []
+    },
+    tecnologia:{
+        type: String,
+        default: ''
     }
 });
 

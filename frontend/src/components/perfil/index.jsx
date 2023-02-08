@@ -1,9 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
 import './style.css';
 import Horario from '../horario';
 import Perfilfoto from '../components_icons/PerfilFoto';
 import ModalContraseña from '../modalContraseña';
-import { useState } from 'react';
+// import { useState } from 'react';
 import { loggedUser } from '../../UserContext';
 
 function Perfil() {
@@ -71,7 +72,9 @@ function Perfil() {
                 <div className="data">Examenes aprobados: 18/20</div>
             </div>
             <button className="primary_button">Historial de examenes</button>
-            <button className="secondary_button">Modificar datos</button>
+            <Link to={`/usermodify/${currentUser.id}`}>
+            <button className="secondary_button" >Modificar datos</button>
+            </Link>
             {OpenModal && <ModalContraseña setOpenModal={setOpenModal} />}
         </div>
     );

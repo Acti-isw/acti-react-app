@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './style.css';
 import {useNavigate} from 'react-router-dom'
 
@@ -32,14 +32,16 @@ function Curso(props) {
     function goToCursoPage() {
         navigate(`/curso/${props.curso.id}`)
     }
+    
+    const [tech, setTech] = useState(props?.curso?.tecnologia)
     return (
         <div className="curso" onClick={goToCursoPage}>
-            <div className="head_curso">
+            <div className="head_curso" style={{ background: `url(${ImgTemas[tech]?.img})`, color:ImgTemas[tech]?.color}}>
                 <div className="">
-                    <p className="text">Curso</p>
+                    <p className="cursoTxt">Curso</p>
                     <p className="textMd">{props.curso.nombre}</p>
                 </div>
-                <img src={Icon_JS} alt="ThemeIcon" />
+                <img src={ImgTemas[tech]?.icon} alt="ThemeIcon" />
             </div>
             <div className="themes">
                 <ul>
@@ -57,4 +59,28 @@ function Curso(props) {
     );
 }
 
+const ImgTemas=[]
+    ImgTemas["JS"]={img:JS, icon:Icon_JS, color:'#ffaf2d'};
+    ImgTemas["CSS"]={img:CSS, icon:Icon_CSS, color:'#0159FD'}
+    ImgTemas["HTML"]={img:HTML, icon:Icon_HTML, color:'#f06426'}
+    ImgTemas["MONGO"]={img:MONGO, icon:Icon_MONGO, color:'#57b26f'}
+    ImgTemas["GIT"]={img:GIT, icon:Icon_GIT, color:'#ef3e05'}
+    ImgTemas["GITHUB"]={img:GITHUB, icon: Icon_GITHUB, color:'#9513f7'}
+    ImgTemas["FIGMA"]={img:FIGMA, icon:Icon_FIGMA, color:'#e5a4d7'}
+    ImgTemas["SQLSERVER"]={img:SQLSERVER, icon:Icon_SQLSERVER, color:'#c30f10'}
+    ImgTemas["NODE"]={img:NODE, icon:Icon_NODE, color:'#6cc010'}
+    ImgTemas["REACT"]={img:REACT, icon:Icon_REACT, color:'#3c82ff'}
+    // "JS":
+    //     "CSS"={img:CSS, icon:Icon_CSS},
+    //     "fHTML"={img:HTML, icon:Icon_HTML},
+    //     "MONGO"={img:MONGO, icon:Icon_MONGO},
+    //     "GIT"={img:GIT, icon:Icon_GIT},
+    //     "GITHUB"={img:GITHUB, icon: Icon_GITHUB},
+    //     "FIGMA"={img:FIGMA, icon:Icon_FIGMA},
+    //     "SQLServer"={img:SQLSERVER, icon:Icon_SQLSERVER},
+    //     "NODE"={img:NODE, icon:Icon_NODE},
+    //     "REACT"={img:REACT, icon:Icon_REACT}
+// ]
+
 export default Curso;
+
