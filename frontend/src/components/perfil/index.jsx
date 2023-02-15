@@ -1,20 +1,32 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './style.css';
 import Horario from '../horario';
 import Perfilfoto from '../components_icons/PerfilFoto';
 import ModalContraseña from '../modalContraseña';
-// import { useState } from 'react';
 import { loggedUser } from '../../UserContext';
 
 function Perfil() {
     const [OpenModal, setOpenModal] = useState(false);
-    const { currentUser } = useContext(loggedUser);
-
+    const { currentUser, setCurrentUserNewData } = useContext(loggedUser);
+    // const [passcode, setPasscode] = useState(currentUser.contraseña);
+    
     function handleOpenModal() {
         setOpenModal(true);
     }
-
+    
+    useEffect(()=>{
+        setCurrentUserNewData();
+        // setPasscode(currentUser.contraseña)
+    },[OpenModal])
+     
+    const password = (password)=>{
+        let passcode = '';
+        for(let i = 0; i < password.length; i++) {
+            passcode+='*';
+        }
+        return passcode;
+    }
     return (
         <div className="perfil-content content">
             <div className="perfil-main-info">
@@ -38,7 +50,7 @@ function Perfil() {
                     {/* Make dynamic this field in function of password lenght */}
                     <p className="text general-info-contraseña">
                         Contraseña: <br />
-                        ******
+                        {password(currentUser.contraseña)}
                     </p>
                     <button className="btnContraseña" onClick={handleOpenModal}>
                         Cambiar contraseña
@@ -75,7 +87,7 @@ function Perfil() {
             <Link to={`/usermodify/${currentUser.id}`}>
             <button className="secondary_button" >Modificar datos</button>
             </Link>
-            {OpenModal && <ModalContraseña setOpenModal={setOpenModal} />}
+            {OpenModal && <ModalContraseña setOpenModal={setOpenModal} id={currentUser.id} password={currentUser.contraseña}/>}
         </div>
     );
 }

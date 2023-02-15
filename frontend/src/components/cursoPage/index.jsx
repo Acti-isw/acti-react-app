@@ -47,7 +47,7 @@ function CursoPage() {
             <h3>Retos</h3>
             <div className='retos__conteiner'>
                 {retos.map((reto)=>(
-                    <Reto reto = {reto} key={reto.id}/>
+                    <Reto reto = {reto} key={reto._id}/>
                 ))}
             </div>
             <div className="resources">

@@ -19,3 +19,8 @@
   flex-direction: column;
   gap: 10px;
 }
+.span__error{
+  color: var(--danger);
+  font-size: 11px;
+  height: 12px;
+}

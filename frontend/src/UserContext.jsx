@@ -31,11 +31,19 @@ function UserContext(props) {
         setCurrentUser(null);
     };
 
+    const setCurrentUserNewData = async ()=>{
+        await UserService.getUser(currentUser.id).then((res) => {
+                localStorage.setItem('localSesion', JSON.stringify(res[0]));
+                setCurrentUser(res[0]);
+        });
+    }
+
     const value = useMemo(() => {
         return {
             currentUser,
             login,
-            logout
+            logout,
+            setCurrentUserNewData
         };
     }, [currentUser]);
 

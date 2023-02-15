@@ -16,7 +16,7 @@ function Aviso(props) {
 
     return (
         <>
-            <div className="aviso" style={backgroundColor}>
+            <div className={`aviso ${props.className}`} style={backgroundColor}>
                 <div className="infoAviso">
                     <p>{props.text}</p>
                     <p>{props.tema}</p>

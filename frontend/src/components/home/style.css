@@ -31,3 +31,9 @@ header {
 /* .curso-conteiner{
     z-index: 10;
 } */
+
+.examenAdvice{
+    font-weight: bold !important;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.363);
+    cursor: pointer;
+}

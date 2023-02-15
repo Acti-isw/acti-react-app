@@ -38,7 +38,6 @@ export default {
     },
 
     updateUser: async (id, user) => {
-        // console.log(JSON.stringify(user));
         try {
             const response = await fetch(`${BASE_URL}/user/${id}`, {
                 method: 'PATCH',
@@ -50,7 +49,7 @@ export default {
             const data = await response.json();
             return data;
         } catch (error) {
-            //throw error;
+            // throw error;
         }
     },
 

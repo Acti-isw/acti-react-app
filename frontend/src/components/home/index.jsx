@@ -56,6 +56,7 @@ function Home() {
                         text="Siguiente examen: 10 días"
                         color="var(--danger)"
                         tema="JS Arreglos avanzados"
+                        className='examenAdvice'
                     />
                 </div>
             </header>

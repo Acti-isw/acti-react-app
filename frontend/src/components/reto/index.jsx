@@ -7,7 +7,7 @@ function Reto(props) {
 
   const navigate = useNavigate()
   function goToRetoPage(){
-    navigate(`/retopage/${props.reto.id}`)
+    navigate(`/retopage/${props.reto._id}`)
   }
 
   if(props.reto?.complejidad){

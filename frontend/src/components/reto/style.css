@@ -16,9 +16,22 @@
   grid-template-columns: auto auto;
   grid-template-rows: auto auto;
   gap: 5px;
+  width: 100%;
+  justify-content: space-between;
+  padding: 10px;
+  border-width: 1px 0px 0px 0px;
+  border-style: solid;
+  border-color: #000000;
+  /* align-items: center; */
 }
 .reto__simple input{
   width: 20px;
+  grid-row: 1/4;
+  grid-column: 3/4;
+  margin: 10px;
+}
+.reto__simple .text{
+  grid-row: 2/3;
 }
 .tituloReto{
   grid-column: 1/3;
