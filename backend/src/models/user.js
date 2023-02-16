@@ -66,27 +66,25 @@ const userSchema = new Schema({
     },
     examenes: [
         {
-            examen: {
-                type: Schema.Types.ObjectId,
-                ref: 'exam'
+            idTopic: {
+                type: Number,
+                ref: 'topic'
             },
-            aplicador: {
-                type: String
-            },
-            fecha: {
-                type: Date,
-                required: true
-            },
-            reactivos: [ {state: Boolean} ],
-            puntajeObtenido: {
-                type: Number
-            },
-            resultadoPreliminar: Number,
-            resultado: {
-                type: Number
-            },
+            aplicador: String,
+            fecha: Date,
+            reactivos: [
+                {
+                    idReactivo: {
+                        type: Number,
+                        ref: 'reactive'
+                    },
+                    realizado: Boolean,
+                    resultado: Boolean
+                }
+            ],
+            nota: String,
             puntajeExtra: Number,
-            nota: String
+            puntajeFinal: Number
         }
     ],
     fechaNacimiento: {

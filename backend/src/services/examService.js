@@ -1,3 +1,4 @@
+const { default: mongoose } = require('mongoose');
 const examSchema = require('../models/exam');
 
 const getExams = async () => {
@@ -17,10 +18,10 @@ const getExams = async () => {
 };
 
 const getExamById = async ({ id }) => {
-    return await examSchema.aggregate([
+    let result = await examSchema.aggregate([
         {
             $match: {
-                id: id
+                _id: mongoose.Types.ObjectId(id)
             }
         },
         {
@@ -35,6 +36,7 @@ const getExamById = async ({ id }) => {
             $unwind: '$topic'
         }
     ]);
+    return { ...result[0] };
 };
 
 const updateExam = async ({ id }, { content }) => {
