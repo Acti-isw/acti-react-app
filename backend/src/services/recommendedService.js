@@ -5,13 +5,13 @@ const getRecommended = async () => {
 };
 
 const getRecommendedById = async ({ id }) => {
-    return await recommendedSchema.find({ id: id });
+    return await recommendedSchema.find({ _id: id });
 };
 
 const updateRecommended = async ({ id }, { titulo, enlace, color }) => {
     await recommendedSchema.updateOne(
         {
-            id: id
+            _id: id
         },
         {
             $set: {
@@ -24,7 +24,7 @@ const updateRecommended = async ({ id }, { titulo, enlace, color }) => {
 };
 
 const deleteRecommended = async ({ id }) => {
-    await recommendedSchema.deleteOne({ id: id });
+    await recommendedSchema.deleteOne({ _id: id });
 };
 
 const insertRecommended = async (recommended) => {

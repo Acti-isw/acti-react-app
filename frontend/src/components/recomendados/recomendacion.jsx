@@ -3,7 +3,6 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 function Recomendacion(props){
-
   return(
     <div className="recomendacion-conteiner">
       {props.editable && 

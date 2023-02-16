@@ -5,12 +5,12 @@ const getResources = async () => {
 };
 
 const getResourceById = async ({ id }) => {
-    return await resourceSchema.find({ id: id });
+    return await resourceSchema.find({ _id: id });
 };
 const updateResource = async ({ id }, { titulo, enlace, color }) => {
     await resourceSchema.updateOne(
         {
-            id: id
+            _id: id
         },
         {
             $set: {
@@ -22,7 +22,7 @@ const updateResource = async ({ id }, { titulo, enlace, color }) => {
     );
 };
 const deleteResource = async ({ id }) => {
-    await resourceSchema.deleteOne({ id: id });
+    await resourceSchema.deleteOne({ _id: id });
 };
 
 const insertResource = async (resource) => {

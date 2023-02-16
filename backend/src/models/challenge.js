@@ -3,11 +3,11 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const challengeSchema = new Schema({
-    id: {
-        type: Number,
-        required: true,
-        unique: true
-    },
+    // id: {
+    //     type: Number,
+    //     required: true,
+    //     unique: true
+    // },
     nombre: {
         type: String
     },

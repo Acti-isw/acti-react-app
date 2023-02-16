@@ -45,6 +45,12 @@ function Home() {
                     informacion
                 </p>
                 <div className="avisosBox">
+                    <Aviso
+                        text="Siguiente examen: 10 días"
+                        color="var(--danger)"
+                        tema="JS Arreglos avanzados"
+                        className='examenAdvice'
+                    />
                     {Avisos.map((aviso) => (
                         <Aviso
                             key={aviso.id}
@@ -52,12 +58,6 @@ function Home() {
                             color={aviso.color}
                         />
                     ))}
-                    <Aviso
-                        text="Siguiente examen: 10 días"
-                        color="var(--danger)"
-                        tema="JS Arreglos avanzados"
-                        className='examenAdvice'
-                    />
                 </div>
             </header>
             <main>

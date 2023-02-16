@@ -15,3 +15,49 @@
 .addrecomendacion input{
   min-width: 200px;
 }
+.addrecomendacion__form{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.addrecomendacion__form__tipo{
+  border: none;
+}
+.addrecomendacion__form__tipo__label__radioConteiner{
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  
+}
+.addrecomendacion__form__tipo__label{
+  font-weight: 400;
+}
+.addrecomendacion__form__tipo__radio{
+  display: flex;
+}
+
+.addrecomendacion__form__color input{
+  width: 100%;
+}
+.modal__editRecommended_conteiner{
+  background: rgba(32,35,41,.8);
+  position: fixed;
+  top: -10px;
+  left: 0px;
+  right: -10px;
+  bottom: -10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.modal__editRecommended{
+  background-color: var(--background);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.modal__editRecommended h3{
+  margin: 10px;
+}

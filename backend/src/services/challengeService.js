@@ -5,7 +5,7 @@ const getChallenges = async () => {
 };
 
 const getChallenge = async ({ id }) => {
-    return await challengeSchema.find({ id: id });
+    return await challengeSchema.find({ _id: id });
 };
 
 const insertChallenge = async (challenge) => {
@@ -18,7 +18,7 @@ const updateChallenge = async (
     { nombre, descripcion, listadoConocimiento }
 ) => {
     await challengeSchema.updateOne(
-        { id: id },
+        { _id: id },
         {
             $set: {
                 nombre: nombre,
@@ -30,7 +30,7 @@ const updateChallenge = async (
 };
 
 const deleteChallenge = async ({ id }) => {
-    await challengeSchema.deleteOne({ id: id });
+    await challengeSchema.deleteOne({ _id: id });
 };
 
 const deleteAllChallenges = async () => {
