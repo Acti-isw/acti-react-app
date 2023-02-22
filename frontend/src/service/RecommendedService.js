@@ -34,17 +34,17 @@ export default{
       throw error;
     }
   },
-  updateRecommended: async (id,recommended)=>{
+  updateRecommended: async (id, recommended)=>{
     try {
       const response = await fetch(BASE_URL+`/recommended/${id}`,{
-        method:'PATCH',
+        method:'PUT',
         headers:{'Content-Type': 'application/json'},
         body:JSON.stringify(recommended)
       })
       const data = await response.json();
       return data;
     } catch (error) {
-      throw error;
+      // throw error;
     }
   },
   deleteRecommended: async (id) =>{
