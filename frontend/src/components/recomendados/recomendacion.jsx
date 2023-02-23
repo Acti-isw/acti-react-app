@@ -2,6 +2,7 @@ import React from 'react';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import RecommendedService from '../../service/RecommendedService';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 
 function Recomendacion(props) {
     const { recomendacion } = props;
@@ -13,10 +14,10 @@ function Recomendacion(props) {
         RecommendedService.deleteRecommended(recomendacion._id);
         props.load(true);
     }
-    function onClickRecomendacion(){
-      if(!props.editable){
-        window.open(recomendacion.enlace, '_blank');
-      }
+    function onClickRecomendacion() {
+        if (!props.editable) {
+            window.open(recomendacion.enlace, '_blank');
+        }
     }
 
     return (
@@ -36,21 +37,26 @@ function Recomendacion(props) {
                     </div>
                 </div>
             )}
-                <div
-                    className={
-                        props.editable
-                            ? 'recomendacion editable'
-                            : 'recomendacion'
-                    }
-                    onClick={onClickRecomendacion}
-                >
+            <div
+                className={
+                    props.editable ? 'recomendacion editable' : 'recomendacion'
+                }
+                onClick={onClickRecomendacion}
+            >
+                {recomendacion.tipo && (
+                    <div className="recomendacion__video">
+                        <PlayArrowIcon fontSize='large' />
+                    </div>
+                )}
+                {!recomendacion.tipo && (
                     <div className="recomendacion__enlace">
                         <h4>{props.recomendacion.enlace}</h4>
                     </div>
-                    <h3 className="recomendacion__temas">
-                        {props.recomendacion.titulo}
-                    </h3>
-                </div>
+                )}
+                <h3 className="recomendacion__temas">
+                    {props.recomendacion.titulo}
+                </h3>
+            </div>
         </div>
     );
 }

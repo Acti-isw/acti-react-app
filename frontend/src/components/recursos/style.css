@@ -23,10 +23,21 @@
 .recursoButton:hover{
   opacity: 0.8;
 }
+.editable:hover{
+  opacity: 1;
+  cursor: unset;
+}
 .icon-delete-resource{
   position: absolute;
   top: 0;
   right: 3px;
+  bottom: 0;
+  margin: auto;
+}
+.icon-edit-resource{
+  position: absolute;
+  top: 0;
+  right: 25px;
   bottom: 0;
   margin: auto;
 }

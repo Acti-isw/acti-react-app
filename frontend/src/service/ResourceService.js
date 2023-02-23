@@ -7,7 +7,7 @@ export default {
             const data = await response.json();
             return data;
         } catch (error) {
-            throw error;
+            // throw error;
         }
     },
     getResourceById: async (id) => {
@@ -16,7 +16,7 @@ export default {
             const data = await response.json();
             return data;
         } catch (error) {
-            throw error;
+            // throw error;
         }
     },
     createResource: async (resource) => {
@@ -29,13 +29,13 @@ export default {
             const data = await response.json();
             return data;
         } catch (error) {
-            throw error;
+            // throw error;
         }
     },
     updateResource: async (id, resource) => {
         try {
             const response = await fetch(BASE_URL + `/resource/${id}`, {
-                method: 'PATCH',
+                method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -44,7 +44,7 @@ export default {
             const data = await response.json();
             return data;
         } catch (error) {
-            throw error;
+            // throw error;
         }
     },
     deleteResource: async (id) => {
@@ -55,7 +55,7 @@ export default {
             const data = await response.json();
             return data;
         } catch (error) {
-            throw error;
+            // throw error;
         }
     }
 };

@@ -1,54 +1,60 @@
-import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
-import ResourceService from "../../service/ResourceService";
-import Recurso from "../recursos/recurso";
-import './style.css'
+import React from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import ResourceService from '../../service/ResourceService';
+import Recurso from '../recursos/recurso';
+import FormResource from './formResource';
+import Loader from '../loader';
+import './style.css';
 
-function AdminRecursos(){
+function AdminRecursos() {
+    const [editResourceModal, setEditResourceModal] = useState(false);
+    const [resources, getResources] = useState([]);
+    const [load, getLoad] = useState(true);
 
-  const [resources, getResources] = useState([]);
-  useEffect(()=>{
-    ResourceService.getResources()
-    .then((res)=>{
-      getResources(res)
-    })
-    .catch((err)=>{
-      throw err;
-    })
-  },[])
+    useEffect(() => {
+        ResourceService.getResources()
+            .then((res) => {
+                getResources(res);
+            })
+            .catch((err) => {
+                throw err;
+            });
+        getLoad(false);
+    }, [load]);
 
-  return(
-    <div className="adminRecursos content">
-      <p className="title">Gestionar recursos</p>
-      <div className="addRecurso">
-        <h3>Agregar recurso:</h3>
-        <form action="" className="formAddRecurso">
-          <label htmlFor="">
-            Titulo:
-            <input type="text" className="input_type1" id="tituloRecurso"/>
-          </label>
-          <label htmlFor="">
-            Enlace:
-            <input type="text" className="input_type1" id="enlace"/>
-          </label>
-          <label htmlFor="">
-            Color:
-            <input type="color" className="input_type1" id="color"/>
-          </label>
-          <button className="primary_button">
-            Agregar
-          </button>
-        </form>
-      </div>
-      <div className="recusosActuales">
-        <h2>Recusos actuales</h2>
-          {resources.map((recurso)=>(
-            <Recurso recurso={recurso} key= {recurso._id} editable={true}/>
-          ))}
-      </div>
-    </div>
-  )
+    if (load) {
+        return <Loader />;
+    } else {
+        return (
+            <div className="adminRecursos content">
+                <p className="title">Gestionar recursos</p>
+                <div className="addRecurso">
+                    <h3>Agregar recurso:</h3>
+                    <FormResource action={'create'} load={getLoad} />
+                </div>
+                <div className="recusosActuales">
+                    <h2>Recursos actuales</h2>
+                    {resources.map((recurso) => (
+                        <Recurso
+                            recurso={recurso}
+                            key={recurso._id}
+                            editable={true}
+                            load={getLoad}
+                            edit={setEditResourceModal}
+                        />
+                    ))}
+                </div>
+                {editResourceModal && (
+                    <div className="modalEditResource-conteiner">
+                        <div className="modalEditResource">
+                            <FormResource action={'update'} load={getLoad} resource={editResourceModal} closeModal={setEditResourceModal}/>
+                        </div>
+                    </div>
+                )}
+            </div>
+        );
+    }
 }
 
 export default AdminRecursos;

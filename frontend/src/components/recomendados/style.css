@@ -11,23 +11,20 @@
     justify-content: center;
     align-items: center;
 }
-.editable{
-  border-radius: 10px 0px 10px 10px;
-}
 .recomendacion__enlace {
     background-color: var(--background);
     border-radius: 10px;
     padding: 10px;
     cursor: pointer;
-    max-width: 80vw;
+    max-width: 60vw;
     overflow: hidden;
 }
 .recomendacion__temas {
     width: 90%;
     text-align: center;
 }
-.recomendacion ul {
-    width: 70%;
+.recomendacion{
+    width: 70vw;
 }
 .controles {
     border-radius: 10px 10px 0px 0px;
@@ -43,4 +40,18 @@
     display: flex;
     width: 100%;
     justify-content: flex-end;
+}
+.recomendacion__video{
+    background-color: var(--background);
+    width: 60%;
+    max-width: 60vw;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+.editable{
+  border-radius: 10px 0px 10px 10px;
+  width: unset;
 }
