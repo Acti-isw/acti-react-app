@@ -1,0 +1,15 @@
+.form{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form input[type="color"]{
+  width: 100%;
+}
+.buttonsBoxs{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
