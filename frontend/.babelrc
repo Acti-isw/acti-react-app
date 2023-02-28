@@ -1,0 +1,17 @@
+{
+  "plugins": [
+      [
+          "module-resolver",
+          {
+              "root": ["./src"],
+              "alias": {
+                  "services": "./src/services",
+                  "routes": "./src/routes",
+                  "components": "./src/components",
+                  "assets": "./src/assets",
+                  "fragments": "./src/fragments"
+              }
+          }
+      ]
+  ]
+}
