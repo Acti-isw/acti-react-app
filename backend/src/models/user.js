@@ -64,6 +64,7 @@ const userSchema = new Schema({
         type: Number,
         default: 2
     },
+    practicas: [{ type: String, ref: 'challenge' }],
     examenes: [
         {
             idTopic: {
