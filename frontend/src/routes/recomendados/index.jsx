@@ -2,9 +2,10 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import RecommendedService from "../../service/RecommendedService";
 import TemaService from "../../service/TemaService";
-import Desplegable from "../desplegable";
-import Recomendacion from "./recomendacion";
+import Desplegable from "../../components/desplegable";
+import Recomendacion from "../../components/recomendacion";
 import './style.css'
+
 
 function Recomendados(){
   const [recomendados, setRecomendados] = useState([])

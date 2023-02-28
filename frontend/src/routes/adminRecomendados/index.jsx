@@ -1,9 +1,9 @@
-import Recomendacion from '../recomendados/recomendacion';
+import Recomendacion from '../../components/recomendacion';
 import FormRecomendado from './formRecomendado';
 import React, { useEffect, useState } from 'react';
 import RecommendedService from '../../service/RecommendedService';
 import './style.css';
-import Loader from '../loader';
+import Loader from '../../components/loader';
 
 function AdminRecomendados() {
     const [recomendaciones, setRecomendaciones] = useState([]);

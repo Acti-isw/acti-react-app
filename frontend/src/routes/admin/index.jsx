@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import plus from '../../assets/icons/plus.svg';
 import './style.css';
 import { Link } from 'react-router-dom';
-import Loader from '../loader';
+import Loader from '../../components/loader';
 import UserService from '../../service/UserService';
 
 function Admin() {

@@ -1,19 +1,17 @@
 import './style.css';
-import Reto from '../reto';
+import Reto from '../../components/reto';
 import { useParams } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import TemaService from '../../service/TemaService';
 import RetoService from '../../service/RetoService';
-import {recordPractice} from '../reto/recordPractice';
 import { loggedUser } from '../../UserContext';
-import confetti from 'https://cdn.skypack.dev/canvas-confetti';
 
-function CursoPage() {
+function CursoPage(props) {
     const { id } = useParams();
     const [curso, setCurso] = useState([]);
     const [retos, setRetos] = useState([]);
     const {currentUser} = useContext(loggedUser);
-    const [done, setDone] = useState(props.reto.done)
+    // const [done, setDone] = useState(props.reto.done)
     useEffect(() => {
         TemaService.getTopic(id)
             .then((res) => {

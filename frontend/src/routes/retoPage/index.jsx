@@ -4,6 +4,10 @@ import DownloadIcon from '@mui/icons-material/Download';
 import './style.css';
 import RetoService from '../../service/RetoService';
 import { useParams } from 'react-router-dom';
+import {recordPractice} from '../../components/reto/recordPractice';
+import { loggedUser } from '../../UserContext';
+import confetti from 'https://cdn.skypack.dev/canvas-confetti';
+
 
 function RetoPage() {
     const [reto, setReto] = useState([]);

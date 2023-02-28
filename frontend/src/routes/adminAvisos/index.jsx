@@ -1,10 +1,10 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import Aviso from '../aviso';
+import Aviso from '../../components/aviso';
 import AvisoService from '../../service/AvisoService';
 import './style.css';
-import Loader from '../loader';
+import Loader from '../../components/loader';
 
 function AdminAvisos() {
     const [Avisos, setAvisos] = useState([]);

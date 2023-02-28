@@ -1,16 +1,15 @@
-import { useState } from 'react';
 import ResourceService from '../../service/ResourceService';
+import FormBuilder from '../../components/formBuilder';
 
-function FormResource({ action, resource, closeModal, load }) {
-    const [resourceData, getResourceData] = useState(resource);
-    // console.log(resource);
-
+function FormResource({ action, resource, closeModal, load, formTitle }) {
+    const resourceData = resource;
+    const controls = action==='create'?['Agregar']:['Agregar', 'Cancelar'];
     function throwAction(event) {
         event.preventDefault();
         const data = {
-            titulo: event.target.titulo.value,
-            enlace: event.target.enlace.value,
-            color: event.target.color.value
+            titulo: event.target.Titulo.value,
+            enlace: event.target.Enlace.value,
+            color: event.target.Color.value
         };
         if (action === 'create') {
             createResource(data);
@@ -25,12 +24,32 @@ function FormResource({ action, resource, closeModal, load }) {
         ResourceService.createResource(resource);
     }
     function updateResource(resource) {
-      ResourceService.updateResource(resourceData?._id, resource)
-      closeModal()
+        ResourceService.updateResource(resourceData?._id, resource);
+        closeModal();
     }
+    const formFields = [
+        {
+            name: 'Titulo',
+            inputType: 'text',
+            required: true, 
+            value: resourceData?.titulo
+        },
+        {
+            name: 'Enlace',
+            inputType: 'text',
+            required: true,
+            value: resourceData?.enlace
+        },
+        {
+            name: 'Color',
+            inputType: 'color',
+            required: true,
+            value: resourceData?.color
+        }
+    ];
     return (
         <>
-            <form action="" className="formAddRecurso" onSubmit={throwAction}>
+            {/* <form action="" className="formAddRecurso" onSubmit={throwAction}>
                 <label htmlFor="">
                     Titulo:
                     <input
@@ -72,9 +91,19 @@ function FormResource({ action, resource, closeModal, load }) {
                         </button>
                     )}
                 </div>
-            </form>
+            </form> */}
+            <FormBuilder
+                formTitle={formTitle}
+                controls={controls}
+                inputs={formFields}
+                cancelAction={() => {
+                    closeModal();
+                }}
+                submitAction={throwAction}
+            />
         </>
     );
 }
+
 
 export default FormResource;

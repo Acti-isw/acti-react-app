@@ -2,9 +2,9 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import ResourceService from '../../service/ResourceService';
-import Recurso from '../recursos/recurso';
+import Recurso from '../../routes/recursos/recurso';
 import FormResource from './formResource';
-import Loader from '../loader';
+import Loader from '../../components/loader';
 import './style.css';
 
 function AdminRecursos() {
@@ -30,8 +30,8 @@ function AdminRecursos() {
             <div className="adminRecursos content">
                 <p className="title">Gestionar recursos</p>
                 <div className="addRecurso">
-                    <h3>Agregar recurso:</h3>
-                    <FormResource action={'create'} load={getLoad} />
+                    {/* <h3>Agregar recurso:</h3> */}
+                    <FormResource action={'create'} load={getLoad} formTitle={'Agregar recurso'}/>
                 </div>
                 <div className="recusosActuales">
                     <h2>Recursos actuales</h2>
@@ -48,7 +48,7 @@ function AdminRecursos() {
                 {editResourceModal && (
                     <div className="modalEditResource-conteiner">
                         <div className="modalEditResource">
-                            <FormResource action={'update'} load={getLoad} resource={editResourceModal} closeModal={setEditResourceModal}/>
+                            <FormResource action={'update'} load={getLoad} resource={editResourceModal} closeModal={setEditResourceModal} formTitle={'Editar recurso'}/>
                         </div>
                     </div>
                 )}

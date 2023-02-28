@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './style.css';
-import Horario from '../horario';
-import Perfilfoto from '../components_icons/PerfilFoto';
-import ModalContraseña from '../modalContraseña';
+import Horario from '../../components/horario';
+import Perfilfoto from '../../components/components_icons/PerfilFoto';
+import ModalContraseña from '../../components/modalContraseña';
 import { loggedUser } from '../../UserContext';
 
 function Perfil() {

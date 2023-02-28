@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import {useNavigate} from 'react-router-dom'
 import './style.css';
-import Aviso from '../aviso';
-import Desplegable from '../desplegable';
+import Aviso from '../../components/aviso';
+import Desplegable from '../../components/desplegable';
 import RamImg from '../../assets/Ramses_Parker.png';
-import Curso from '../curso';
+import Curso from '../../components/curso';
 import AvisoService from '../../service/AvisoService';
 import TemaService from '../../service/TemaService';
 // import { loggedUser } from '../../UserContext';
