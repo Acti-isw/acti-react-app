@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 function RadioInput({ input }) {
     const [tipo, setTipo] = useState();
     useEffect(() => {
-        console.log(input.value);
+        // console.log(input.value);
         setTipo(input.value);
     }, []);
 
@@ -13,7 +13,7 @@ function RadioInput({ input }) {
     return (
         <fieldset className="addrecomendacion__form__tipo">
             <legend className="addrecomendacion__form__tipo__legend textMd">
-                Tipo:
+                {input.label}
             </legend>
             {input.options.map((radioUnit) => (
                 <RadioUnit

@@ -82,12 +82,10 @@ function FormBuilder({ inputs, controls, cancelAction, submitAction, formTitle }
     };
     
     // there isn't file input yet
-    // Also I need to get formData or the data from the form 
-    // when submit someway
 
     function handlerSubmit(event){
       event.preventDefault();
-      const data =[];
+      submitAction(event)
     }
     
     return (
@@ -95,7 +93,6 @@ function FormBuilder({ inputs, controls, cancelAction, submitAction, formTitle }
         <h3>{formTitle}</h3>
             <form
                 encType="multipart/form-data"
-                // onSubmit={submitAction}
                 onSubmit={handlerSubmit}
                 className="form"
             >

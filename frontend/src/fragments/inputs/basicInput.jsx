@@ -2,7 +2,7 @@ function BasicInput({ input }) {
     return (
         <>
             <label>
-                {input.name}
+                {input.label}
                 <input
                     className="input_type1"
                     required={input.required}

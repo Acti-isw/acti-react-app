@@ -43,12 +43,12 @@ function Recomendacion(props) {
                 }
                 onClick={onClickRecomendacion}
             >
-                {recomendacion.tipo && (
+                {recomendacion.tipo===1 && (
                     <div className="recomendacion__video">
                         <PlayArrowIcon fontSize='large' />
                     </div>
                 )}
-                {!recomendacion.tipo && (
+                {recomendacion.tipo===0 && (
                     <div className="recomendacion__enlace">
                         <h4>{props.recomendacion.enlace}</h4>
                     </div>

@@ -11,18 +11,17 @@ function SelectInput({ input }) {
                 if(opt.id===input.value){
                     setSelectTema({
                         value:opt.id,
-                        label: opt.name
+                        label: opt.nombre
                     })
                 }
                 options.push({
                     value:opt.id,
-                    label: opt.name
+                    label: opt.nombre
                 })
             })
             setTemas(options)
     }, []);
     function handleTemaChange(event) {
-        // e.preventDefault();
         setSelectTema(event);
     }
 
@@ -34,7 +33,6 @@ function SelectInput({ input }) {
                     required
                     id="tema"
                     name='tema'
-                    // className="input_type2"
                     value={selectTema}
                     onChange={handleTemaChange}
                     options={temas}

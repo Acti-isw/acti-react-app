@@ -1,7 +1,7 @@
 function TextAreaInput({ input }) {
     return (
         <label>
-            {input.name}
+            {input.label}
             <textarea
                 cols={input.cols}
                 rows={input.rows}

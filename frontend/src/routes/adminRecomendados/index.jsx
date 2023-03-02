@@ -23,8 +23,8 @@ function AdminRecomendados() {
             <div className="content adminRecomendados">
                 <p className="title">Gestionar recomendados</p>
                 <div className="addrecomendacion">
-                    <h3>Agregar recomendacion</h3>
-                    <FormRecomendado action="add" load={setLoading} />
+                    {/* <h3>Agregar recomendacion</h3> */}
+                    <FormRecomendado action="create" load={setLoading} />
                 </div>
                 <div className="recomendadosList">
                     <h2>Recomendados actuales</h2>
@@ -41,9 +41,9 @@ function AdminRecomendados() {
                 {openModal && (
                     <div className="modal__editRecommended_conteiner">
                         <div className="modal__editRecommended">
-                            <h3>Editar recomendacion</h3>
+                            {/* <h3>Editar recomendacion</h3> */}
                             <FormRecomendado
-                                action="edit"
+                                action="update"
                                 recomendacion={openModal}
                                 recomendacionModal={setOpenModal}
                                 load={setLoading}

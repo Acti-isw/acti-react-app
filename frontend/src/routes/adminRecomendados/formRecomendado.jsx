@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import TemaService from '../../service/TemaService';
 import RecommendedService from '../../service/RecommendedService';
-import Select from "react-select"
+// import Select from "react-select"
+import FormBuilder from '../../components/formBuilder';
 
 function FormRecomendado(props) {
     function action(e) {
@@ -13,37 +14,28 @@ function FormRecomendado(props) {
     }
     const [temas, setTemas] = useState([]);
     const [selectTema, setSelectTema] = useState();
-    const [tipo, setTipo]=useState()
+    // const [tipo, setTipo] = useState();
 
     useEffect(() => {
-        setTipo(props?.recomendacion?.tipo)
+        // setTipo(props?.recomendacion?.tipo);
         TemaService.getTopics().then((res) => {
             // setTemas(res);
-            const options = [];
-            res.map((opt)=>{
-                if(opt.id===props?.recomendacion?.tema){
-                    setSelectTema({
-                        value:opt.id,
-                        label: opt.nombre
-                    })
-                }
-                options.push({
-                    value:opt.id,
-                    label: opt.nombre
-                })
-            })
-            setTemas(options)
+            // const options = [];
+            // res.map((opt) => {
+            //     // if (opt.id === props?.recomendacion?.tema) {
+            //     //     setSelectTema({
+            //     //         id: opt.id,
+            //     //         name: opt.nombre
+            //     //     });
+            //     // }
+            //     options.push({
+            //         id: opt.id,
+            //         name: opt.nombre
+            //     });
+            // });
+            setTemas(res);
         })
     }, []);
-
-    function handleTemaChange(event) {
-        // e.preventDefault();
-        setSelectTema(event);
-    }
-    function handleTipoChange(event) {
-        // e.preventDefault();
-        setTipo(!tipo);
-    }
 
     function action(e) {
         e.preventDefault();
@@ -53,46 +45,92 @@ function FormRecomendado(props) {
             tema: e.target.tema.value,
             tipo: e.target.tipo.value
         };
-        if(props.action == 'add'){
+        if (props.action === 'create') {
             addRecommended(recomendacion);
-        }else{
-            editRecommeded(props.recomendacion._id, recomendacion)
+        } else {
+            editRecommeded(props.recomendacion._id, recomendacion);
             closeModal();
         }
         e.target.reset();
-        props.load(true)
+        props.load(true);
     }
 
-    function editRecommeded(id, recomendacion){
-        RecommendedService.updateRecommended(id, recomendacion)
+    function editRecommeded(id, recomendacion) {
+        RecommendedService.updateRecommended(id, recomendacion);
     }
 
     function addRecommended(recomendacion) {
         RecommendedService.createRecommended(recomendacion);
     }
 
+    const formRecommends = [
+        {
+            name: 'titulo',
+            inputType: 'text',
+            label: 'Titulo',
+            required: true,
+            value: props.recomendacion?.titulo ? props.recomendacion.titulo : ''
+        },
+        {
+            name: 'tipo',
+            label: 'Tipo:',
+            inputType: 'radio',
+            required: true,
+            value:
+                props.recomendacion?.tipo != undefined
+                    ? props.recomendacion.tipo
+                    : undefined,
+            options: [
+                { name: 'documentacion', id: 0 },
+                { name: 'video', id: 1 }
+            ]
+        },
+        {
+            inputType: 'select',
+            name: 'tema',
+            label: 'Tema',
+            required: true,
+            options: temas,
+            value: props?.recomendacion?.tema,
+            // options: [
+            //     { name: 'Fundamentos de JS', id: 0 },
+            //     { name: 'documentacion', id: 1 },
+            //     { name: 'servicio', id: 2 },
+            //     { name: 'tutorial', id: 3 },
+            //     { name: 'tutoriales', id: 4 },
+            //     { name: 'tutorial¿¿', id: 5 }
+            // ],
+
+            // name: 'tema',
+            // label: 'Tema',
+            // inputType: 'select',
+            // required: true,
+            // // value: props.recomendacion?.tema
+            // //     ? props.recomendacion.tema
+            // //     : undefined,
+            // options: temas.map((tema)=>{
+            //     return {name: tema.label, id: tema.value}
+            // })
+        }
+    ];
+    const controls =
+        props.action === 'create' ? ['Agregar'] : ['Agregar', 'Cancelar'];
+
     return (
         <>
-            <form
+            <FormBuilder
+                inputs={formRecommends}
+                controls={controls}
+                cancelAction={closeModal}
+                submitAction={action}
+                formTitle={'Agregar recomendado'}
+            />
+            {/* <form
                 action=""
                 className="addrecomendacion__form"
                 onSubmit={action}
-            >
-                <label htmlFor="titulo">
-                    titulo:
-                    <input
-                        type="text"
-                        className="input_type1"
-                        id="titulo"
-                        name="titulo"
-                        required
-                        defaultValue={
-                            props.recomendacion?.titulo
-                                ? props.recomendacion.titulo
-                                : ''
-                        }
-                    />
-                </label>
+            > */}
+            {/* 
                 <fieldset className="addrecomendacion__form__tipo">
                     <legend className="addrecomendacion__form__tipo__legend textMd">
                         Tipo:
@@ -131,30 +169,20 @@ function FormRecomendado(props) {
                             value={false}
                             required
                             className="addrecomendacion__form__tipo__radio"
-                            // defaultValue={props.recomendacion?.tipo!=undefined?props.recomendacion.tipo:undefined}
                         />
                     </div>
                 </fieldset>
                 <label htmlFor="">
-                    Tema
-                    {/* <div className="wrapper"> */}
+                    Tema|
                         <Select
                             maxMenuHeight={150}
                             required
                             id="tema"
                             name='tema'
-                            // className="input_type2"
                             value={selectTema}
                             onChange={handleTemaChange}
                             options={temas}
                         />
-                            {/* {temas.map((tema) => (
-                                <option value={tema.id} key={tema.id}>
-                                    {tema.nombre}
-                                </option>
-                            ))}
-                        </Select> */}
-                    {/* </div> */}
                 </label>
                 <label
                     htmlFor="color"
@@ -183,8 +211,8 @@ function FormRecomendado(props) {
                             Cancelar
                         </button>
                     )}
-                </div>
-            </form>
+                </div> */}
+            {/* </form> */}
         </>
     );
 }

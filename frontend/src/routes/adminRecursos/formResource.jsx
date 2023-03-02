@@ -3,13 +3,13 @@ import FormBuilder from '../../components/formBuilder';
 
 function FormResource({ action, resource, closeModal, load, formTitle }) {
     const resourceData = resource;
-    const controls = action==='create'?['Agregar']:['Agregar', 'Cancelar'];
+    const controls =
+        action === 'create' ? ['Agregar'] : ['Agregar', 'Cancelar'];
     function throwAction(event) {
-        event.preventDefault();
         const data = {
-            titulo: event.target.Titulo.value,
-            enlace: event.target.Enlace.value,
-            color: event.target.Color.value
+            titulo: event.target.titulo.value,
+            enlace: event.target.enlace.value,
+            color: event.target.color.value
         };
         if (action === 'create') {
             createResource(data);
@@ -29,19 +29,22 @@ function FormResource({ action, resource, closeModal, load, formTitle }) {
     }
     const formFields = [
         {
-            name: 'Titulo',
+            name: 'titulo',
+            label:'Titulo',
             inputType: 'text',
-            required: true, 
+            required: true,
             value: resourceData?.titulo
         },
         {
-            name: 'Enlace',
+            name: 'enlace',
+            label:'Enlace',
             inputType: 'text',
             required: true,
             value: resourceData?.enlace
         },
         {
-            name: 'Color',
+            name: 'color',
+            label:'Color',
             inputType: 'color',
             required: true,
             value: resourceData?.color
@@ -49,49 +52,6 @@ function FormResource({ action, resource, closeModal, load, formTitle }) {
     ];
     return (
         <>
-            {/* <form action="" className="formAddRecurso" onSubmit={throwAction}>
-                <label htmlFor="">
-                    Titulo:
-                    <input
-                        defaultValue={resourceData?.titulo}
-                        type="text"
-                        className="input_type1"
-                        name="titulo"
-                        id="tituloRecurso"
-                    />
-                </label>
-                <label htmlFor="">
-                    Enlace:
-                    <input
-                        defaultValue={resourceData?.enlace}
-                        type="text"
-                        className="input_type1"
-                        id="enlace"
-                        name="enlace"
-                    />
-                </label>
-                <label htmlFor="">
-                    Color:
-                    <input
-                        defaultValue={resourceData?.color}
-                        type="color"
-                        className="input_type1"
-                        id="color"
-                        name="color"
-                    />
-                </label>
-                <div className="controlsConteiner">
-                    <button className="primary_button">Agregar</button>
-                    {action === 'update' && (
-                        <button
-                            className="secondary_button"
-                            onClick={()=>{closeModal()}}
-                        >
-                            Cancelar
-                        </button>
-                    )}
-                </div>
-            </form> */}
             <FormBuilder
                 formTitle={formTitle}
                 controls={controls}
@@ -104,6 +64,4 @@ function FormResource({ action, resource, closeModal, load, formTitle }) {
         </>
     );
 }
-
-
 export default FormResource;
