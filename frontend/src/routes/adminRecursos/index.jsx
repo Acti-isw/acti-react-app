@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import ResourceService from '../../service/ResourceService';
 import Recurso from '../../routes/recursos/recurso';
-import FormResource from './formResource';
+import FormResource from '../../components/formResource';
 import Loader from '../../components/loader';
 import './style.css';
 

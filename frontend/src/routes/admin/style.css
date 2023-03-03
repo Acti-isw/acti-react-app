@@ -12,3 +12,8 @@
     background-color: var(--white);
     padding: 10px;
 }
+
+.btnWithIcon{
+    display: flex;
+    gap: 10px;
+}

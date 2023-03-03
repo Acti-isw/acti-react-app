@@ -3,7 +3,6 @@ import './style.css';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import Check from './check';
 import UserService from '../../service/UserService';
-// import HashLoader from 'react-spinners/HashLoader';
 import Loader from '../../components/loader';
 import Horario from '../../components/horario';
 import { loggedUser } from '../../UserContext';
@@ -131,21 +130,7 @@ function UserModificar() {
                         setDatahorario={setDatahorario}
                         mode={1}
                     />
-                    {/* <table className="horario">
-                        <thead>
-                            <tr>
-                                <th>Horas</th>
-                                <th>Lun</th>
-                                <th>Mar</th>
-                                <th>Mie</th>
-                                <th>Ju</th>
-                                <th>Vi</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table> */}
                 </label>
-
                 <Check id="rol" user={user} />
                 {currentUser.id != id &&
                 <input

@@ -17,6 +17,7 @@ function RadioInput({ input }) {
             </legend>
             {input.options.map((radioUnit) => (
                 <RadioUnit
+                    name={input.name}
                     key={radioUnit.id}
                     radioUnit={radioUnit}
                     action={handleTipoChange}
@@ -28,7 +29,7 @@ function RadioInput({ input }) {
     );
 }
 
-function RadioUnit({ radioUnit, action, state, inputConfig }) {
+function RadioUnit({ name, radioUnit, action, state, inputConfig }) {
     return (
         <div className="addrecomendacion__form__tipo__label__radioConteiner">
             <label
@@ -41,7 +42,7 @@ function RadioUnit({ radioUnit, action, state, inputConfig }) {
                 className="addrecomendacion__form__tipo__radio"
                 type="radio"
                 id={radioUnit.id}
-                name={radioUnit.name}
+                name={name}
                 value={radioUnit.id}
                 checked={state === radioUnit.id}
                 onChange={action}

@@ -1,5 +1,5 @@
 import Recomendacion from '../../components/recomendacion';
-import FormRecomendado from './formRecomendado';
+import FormRecomendado from '../../components/formRecommended';
 import React, { useEffect, useState } from 'react';
 import RecommendedService from '../../service/RecommendedService';
 import './style.css';

@@ -17,6 +17,8 @@ function InputBuider({input}){
       return <CheckBoxInput input={input}/>
     case 'file':
       return <FileInput input={input}/>
+    case 'subSeccion':
+        return <h3>{input.label}</h3>
     default:
       return <BasicInput input={input}/>
   }

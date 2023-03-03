@@ -62,7 +62,7 @@ function Admin() {
                 </tbody>
             </table>
             <Link to="/adduser">
-                <button className="primary_button">
+                <button className="primary_button btnWithIcon">
                     Agregar usuario <img src={plus} alt="" />
                 </button>
             </Link>

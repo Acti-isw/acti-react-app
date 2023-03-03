@@ -27,12 +27,12 @@ function SelectInput({ input }) {
 
         return (
             <label>
-            {input.name}
+            {input.label}
                 <Select
                     maxMenuHeight={150}
                     required
-                    id="tema"
-                    name='tema'
+                    id={input.name}
+                    name={input.name}
                     value={selectTema}
                     onChange={handleTemaChange}
                     options={temas}

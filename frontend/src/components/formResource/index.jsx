@@ -1,5 +1,5 @@
 import ResourceService from '../../service/ResourceService';
-import FormBuilder from '../../components/formBuilder';
+import FormBuilder from '../formBuilder';
 
 function FormResource({ action, resource, closeModal, load, formTitle }) {
     const resourceData = resource;
