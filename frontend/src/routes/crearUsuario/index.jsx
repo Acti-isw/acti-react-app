@@ -111,9 +111,9 @@ function CrearUsuario() {
         },
         {
             name: 'ip',
-            inputType: 'text',
+            inputType: 'ip',
             label: 'IP',
-            placeholder: '21.21.44.00'
+            placeholder: '10.21.44.00'
         },
         {
             name: 'rol',

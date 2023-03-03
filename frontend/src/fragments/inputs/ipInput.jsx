@@ -1,30 +1,24 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 function IpInput({ input }) {
+    // const [value, setValue] = useState(input.value ? input.value : '');
 
-  const [value, setValue]= useState(input.value);
-  
-  function handleOnchange(e){
-    let word = e.target.value;
-    console.log(word);
-  }
-
-  return (
-      <>
-          <label>
-              {input.label}
-              <input
-                  className="input_type1"
-                  required={input.required}
-                  name={input.name}
-                  type={input.inputType}
-                  defaultValue={input.value}
-                  placeholder={input.placeholder}
-                  disabled= {input.disable}
-                  checked={input.checked}
-              />
-          </label>
-      </>
-  );
+    return (
+        <>
+            <label>
+                {input.label}
+                <input
+                    className="input_type1"
+                    required={input.required}
+                    name={input.name}
+                    type={'text'}
+                    placeholder={input.placeholder}
+                    disabled={input.disable}
+                    defaultValue={input.value}
+                    pattern="^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$"
+                />
+            </label>
+        </>
+    );
 }
 export default IpInput;
