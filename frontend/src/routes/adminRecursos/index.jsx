@@ -5,6 +5,7 @@ import ResourceService from '../../service/ResourceService';
 import Recurso from '../../routes/recursos/recurso';
 import FormResource from '../../components/formResource';
 import Loader from '../../components/loader';
+import ValidateAccess from '../../components/validateAccess';
 import './style.css';
 
 function AdminRecursos() {
@@ -27,32 +28,44 @@ function AdminRecursos() {
         return <Loader />;
     } else {
         return (
-            <div className="adminRecursos content">
-                <p className="title">Gestionar recursos</p>
-                <div className="addRecurso">
-                    {/* <h3>Agregar recurso:</h3> */}
-                    <FormResource action={'create'} load={getLoad} formTitle={'Agregar recurso'}/>
-                </div>
-                <div className="recusosActuales">
-                    <h2>Recursos actuales</h2>
-                    {resources.map((recurso) => (
-                        <Recurso
-                            recurso={recurso}
-                            key={recurso._id}
-                            editable={true}
+            <ValidateAccess>
+                <div className="adminRecursos content">
+                    <p className="title">Gestionar recursos</p>
+                    <div className="addRecurso">
+                        {/* <h3>Agregar recurso:</h3> */}
+                        <FormResource
+                            action={'create'}
                             load={getLoad}
-                            edit={setEditResourceModal}
+                            formTitle={'Agregar recurso'}
                         />
-                    ))}
-                </div>
-                {editResourceModal && (
-                    <div className="modalEditResource-conteiner">
-                        <div className="modalEditResource">
-                            <FormResource action={'update'} load={getLoad} resource={editResourceModal} closeModal={setEditResourceModal} formTitle={'Editar recurso'}/>
-                        </div>
                     </div>
-                )}
-            </div>
+                    <div className="recusosActuales">
+                        <h2>Recursos actuales</h2>
+                        {resources.map((recurso) => (
+                            <Recurso
+                                recurso={recurso}
+                                key={recurso._id}
+                                editable={true}
+                                load={getLoad}
+                                edit={setEditResourceModal}
+                            />
+                        ))}
+                    </div>
+                    {editResourceModal && (
+                        <div className="modalEditResource-conteiner">
+                            <div className="modalEditResource">
+                                <FormResource
+                                    action={'update'}
+                                    load={getLoad}
+                                    resource={editResourceModal}
+                                    closeModal={setEditResourceModal}
+                                    formTitle={'Editar recurso'}
+                                />
+                            </div>
+                        </div>
+                    )}
+                </div>
+            </ValidateAccess>
         );
     }
 }

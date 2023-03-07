@@ -4,6 +4,7 @@ import Aviso from '../../components/aviso';
 import AvisoService from '../../service/AvisoService';
 import Loader from '../../components/loader';
 import FormBuilder from '../../components/formBuilder';
+import ValidateAccess from '../../components/validateAccess';
 import './style.css';
 
 function AdminAvisos() {
@@ -39,7 +40,7 @@ function AdminAvisos() {
     if (loading) {
         return <Loader />;
     }
-    const controls=['Agregar']
+    const controls = ['Agregar'];
     const annonucementForm = [
         {
             name: 'mensaje',
@@ -48,38 +49,45 @@ function AdminAvisos() {
             required: true,
             placeholder: 'Mensaje'
         },
-        { 
+        {
             name: 'color',
-            label:'Color',
+            label: 'Color',
             inputType: 'color',
-            required: true,
+            required: true
         },
         {
             name: 'fechaDeExpiracion',
             label: 'Fecha de Expiracion',
             inputType: 'date',
-            required: true,
+            required: true
         }
     ];
     const formTitle = 'Agregar aviso';
     return (
-        <div className="content">
-            <p className="title">Avisos</p>
-            <FormBuilder inputs={annonucementForm} controls={controls} formTitle={formTitle} submitAction={createAviso}/>
-            <div className="avisosList">
-                <p className="textMd">Avisos actuales:</p>
-                {Avisos.map((aviso) => (
-                    <Aviso
-                        key={aviso.id}
-                        id={aviso.id}
-                        text={aviso.mensaje}
-                        color={aviso.color}
-                        editable={true}
-                        actualizador={setLoading}
-                    />
-                ))}
+        <ValidateAccess>
+            <div className="content">
+                <p className="title">Avisos</p>
+                <FormBuilder
+                    inputs={annonucementForm}
+                    controls={controls}
+                    formTitle={formTitle}
+                    submitAction={createAviso}
+                />
+                <div className="avisosList">
+                    <p className="textMd">Avisos actuales:</p>
+                    {Avisos.map((aviso) => (
+                        <Aviso
+                            key={aviso.id}
+                            id={aviso.id}
+                            text={aviso.mensaje}
+                            color={aviso.color}
+                            editable={true}
+                            actualizador={setLoading}
+                        />
+                    ))}
+                </div>
             </div>
-        </div>
+        </ValidateAccess>
     );
 }
 export default AdminAvisos;

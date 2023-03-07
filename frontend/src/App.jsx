@@ -19,6 +19,7 @@ import AdminRecursos from './routes/adminRecursos';
 import RetoPage from './routes/retoPage';
 import GestionarExamenes from './components/examenes/GestionarExamenes';
 import HistorialExamanes from './components/examenes/HistorialExamenes';
+import NotAllowed from './routes/NotAllowed';
 ('./components/examenes/GestionarExamenes');
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { loggedUser } from './UserContext';
