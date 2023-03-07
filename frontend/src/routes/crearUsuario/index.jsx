@@ -5,6 +5,7 @@ import UserService from '../../service/UserService';
 import RoleService from '../../service/RoleService';
 import FormBuilder from '../../components/formBuilder';
 import Loader from '../../components/loader';
+import ValidateAccess from '../../components/validateAccess';
 
 function CrearUsuario() {
     const navigate = useNavigate();
@@ -15,7 +16,7 @@ function CrearUsuario() {
             const rols = [];
             res.forEach((role) => {
                 rols.push({
-                    nombre: role.name,
+                    nombre: role.nombre,
                     id: role.id
                 });
             });
@@ -27,7 +28,7 @@ function CrearUsuario() {
             setLoading(false);
         }
     }, [rols]);
-    
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(e.target);
@@ -126,15 +127,17 @@ function CrearUsuario() {
         return <Loader />;
     } else {
         return (
-            <div className="content crearUsuario">
-                <FormBuilder
-                    inputs={formCreateUser}
-                    controls={controls}
-                    cancelAction={onCancel}
-                    submitAction={handleSubmit}
-                    formTitle={formTitle}
-                />
-            </div>
+            <ValidateAccess>
+                <div className="content crearUsuario">
+                    <FormBuilder
+                        inputs={formCreateUser}
+                        controls={controls}
+                        cancelAction={onCancel}
+                        submitAction={handleSubmit}
+                        formTitle={formTitle}
+                    />
+                </div>
+            </ValidateAccess>
         );
     }
 }

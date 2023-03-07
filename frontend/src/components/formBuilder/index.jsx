@@ -8,7 +8,7 @@ import './style.css';
  * It receive array of json with the names of the controls
  * @returns Form
  */
-function FormBuilder({ inputs, controls, cancelAction, submitAction, formTitle }) {
+function FormBuilder({inputs, controls, cancelAction, submitAction, formTitle}) {
     const text = {
         inputType: 'text',
         name: 'text',
@@ -84,6 +84,7 @@ function FormBuilder({ inputs, controls, cancelAction, submitAction, formTitle }
     // there isn't file input yet
 
     function handlerSubmit(event){
+        // console.log(event);
       event.preventDefault();
       submitAction(event)
     }

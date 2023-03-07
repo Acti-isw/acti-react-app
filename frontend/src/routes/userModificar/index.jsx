@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useContext } from 'react';
 import './style.css';
-import { Link, useParams, useNavigate } from 'react-router-dom';
-import Check from './check';
+import { useParams, useNavigate, redirect } from 'react-router-dom';
 import UserService from '../../service/UserService';
 import Loader from '../../components/loader';
-import Horario from '../../components/horario';
+import FormBuilder from '../../components/formBuilder';
+import RoleService from '../../service/RoleService';
 import { loggedUser } from '../../UserContext';
 
 function UserModificar() {
@@ -12,19 +12,41 @@ function UserModificar() {
     const navigate = useNavigate();
     const { id } = useParams();
     const [user, setUser] = useState([]);
-    const [Datahorario, setDatahorario] = useState('');
+    const [Datahorario, setDatahorario] = useState(undefined);
     const { currentUser } = useContext(loggedUser);
+    const [rols, setRols] = useState();
+    const [rol, setRol] = useState(undefined);
 
     useEffect(() => {
-        getusers();
+        console.log(currentUser.id, id);
+        if (currentUser.id == id || currentUser.rol.id===1) {
+            getusers();
+            RoleService.getRoles().then((res) => {
+                const rols = [];
+                res.forEach((role) => {
+                    rols.push({
+                        nombre: role.nombre,
+                        id: role.id
+                    });
+                });
+                setRols(rols);
+            });
+        }else{
+            navigate('/notallowed')
+        }
     }, []);
+
+    useEffect(() => {
+        if (rols?.length > 0 && Datahorario != undefined && rol != undefined) {
+            setLoading(false);
+        }
+    }, [rols, Datahorario, rol]);
 
     async function getusers() {
         await UserService.getUser(id)
-        // console.log(id)
             .then((res) => {
                 setUser(res[0]);
-                setLoading(false);
+                setRol(res[0].rol.id);
                 setDatahorario(JSON.parse(res[0].infoActi.Horario));
             })
             .catch((err) => {
@@ -38,15 +60,15 @@ function UserModificar() {
     };
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-
+        // e.preventDefault();
+        console.log(e.target);
         const data = {
             nombre: e.target.nombre.value,
             alias: e.target.alias.value,
             semestre: e.target.semestre.value,
             telefono: e.target.telefono.value,
             correo: e.target.correo.value,
-            rol: e.target.rol.value,
+            rol: currentUser.id != id && rol === 1 ? e.target.rol?.value : rol,
             infoActi: {
                 IP: e.target.ip.value,
                 Horario: JSON.stringify(Datahorario)
@@ -56,103 +78,97 @@ function UserModificar() {
         await UserService.updateUser(id, data);
         navigate(-1);
     };
+    const formTitle = 'Modificar usuario';
+    const controls = ['Aceptar', 'Cancelar'];
+    const formFields = [
+        {
+            name: 'nombre',
+            inputType: 'text',
+            value: user.nombre || '',
+            label: 'Nombre',
+            required: true
+        },
+        {
+            name: 'alias',
+            label: 'Alias',
+            inputType: 'text',
+            value: user.alias || ''
+        },
+        {
+            name: 'semestre',
+            label: 'Semestre',
+            inputType: 'number',
+            value: user.semestre,
+            required: true
+        },
+        {
+            name: 'telefono',
+            label: 'Telefono',
+            inputType: 'number',
+            value: user.telefono
+        },
+        {
+            name: 'correo',
+            label: 'Correo',
+            inputType: 'email',
+            value: user.correo
+        },
+        {
+            name: 'subseccion',
+            inputType: 'subSeccion',
+            label: 'Informacion Acti'
+        },
+        {
+            name: 'ip',
+            label: 'IP',
+            inputType: 'ip',
+            placeholder: '10.21.44.00',
+            value: user.infoActi?.IP || ''
+        },
+        {
+            name: 'horario',
+            label: 'Horario',
+            inputType: 'schedule',
+            Datahorario: Datahorario,
+            setDatahorario: setDatahorario,
+            mode: 1
+        }
+    ];
+
+    if (currentUser.id != id && rol === 1) {
+        formFields.push({
+            name: 'rol',
+            label: 'Rol',
+            inputType: 'select',
+            options: rols,
+            value: rol,
+            required: true
+        });
+    }
 
     if (Loading) return <Loader />;
 
     return (
         <div className="UserModificar content">
-            <p className="title">Modificar usuario</p>
-            <form
-                className="formModify"
-                autoComplete="off"
-                onSubmit={handleSubmit}
-            >
-                <label htmlFor="nombre">
-                    Nombre:
-                    <input
-                        id="nombre"
-                        type="text"
-                        className="input_type2"
-                        defaultValue={user.nombre || ''}
-                    />
-                </label>
-                <label htmlFor="alias">
-                    Alias:
-                    <input
-                        id="alias"
-                        type="text"
-                        className="input_type2"
-                        defaultValue={user.alias || ''}
-                    />
-                </label>
-                <label htmlFor="semestre">
-                    Semestre:
-                    <input
-                        id="semestre"
-                        type="number"
-                        className="input_type2"
-                        defaultValue={user.semestre}
-                    />
-                </label>
-                <label htmlFor="telefono">
-                    Telefono:
-                    <input
-                        id="telefono"
-                        type="number"
-                        className="input_type2"
-                        defaultValue={user.telefono}
-                    />
-                </label>
-                <label htmlFor="correo">
-                    Correo:
-                    <input
-                        id="correo"
-                        type="email"
-                        className="input_type2"
-                        defaultValue={user.correo}
-                    />
-                </label>
-                <h3>Informacion ACTI</h3>
-                <label htmlFor="ip">
-                    IP:
-                    <input
-                        id="ip"
-                        type="text"
-                        className="input_type2"
-                        defaultValue={user.infoActi?.IP || ''}
-                    />
-                </label>
-
-                <label htmlFor="">
-                    Horario
-                    <Horario
-                        Datahorario={Datahorario}
-                        setDatahorario={setDatahorario}
-                        mode={1}
-                    />
-                </label>
-                <Check id="rol" user={user} />
-                {currentUser.id != id &&
-                <input
-                type="button"
-                className="danger_button delete"
-                value="Desactivar usuario"
-                onClick={handleDelete}
+            <div className="UserUpdate__Form">
+                <FormBuilder
+                    formTitle={formTitle}
+                    controls={controls}
+                    inputs={formFields}
+                    cancelAction={() => {
+                        navigate('/admin');
+                    }}
+                    submitAction={handleSubmit}
                 />
-            }
-                <div className="buttonsBox">
-                    <input
-                        id="submit"
-                        type="submit"
-                        className="primary_button"
-                        // onClick={submit}
-                        value={'Guardar'}
-                    />
-                    <Link to="/admin">
-                        <button className="secondary_button">Cancelar</button>
-                    </Link>
-                </div>
-            </form>
+            </div>
+            {currentUser.id != id && (
+                <input
+                    type="button"
+                    className="danger_button delete"
+                    value="Desactivar usuario"
+                    onClick={handleDelete}
+                />
+            )}
         </div>
     );
 }

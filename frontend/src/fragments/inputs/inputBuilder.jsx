@@ -5,6 +5,7 @@ import SelectInput from "./selectInput";
 import CheckBoxInput from "./checkBoxInput";
 import FileInput from "./fileInput";
 import IpInput from "./ipInput";
+import Horario from "../../components/horario"
 
 function InputBuider({input}){
   switch(input.inputType){
@@ -20,6 +21,8 @@ function InputBuider({input}){
       return <FileInput input={input}/>
     case 'ip':
       return <IpInput input={input}/>
+    case 'schedule':
+      return <Horario Datahorario={input.Datahorario} setDatahorario={input.setDatahorario} mode={input.mode} />
     case 'subSeccion':
         return <h3>{input.label}</h3>
     default:

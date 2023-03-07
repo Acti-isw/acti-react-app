@@ -76,7 +76,6 @@ function ModalContraseña({ setOpenModal, id, password }) {
                         id="submit"
                         type="submit"
                         className="primary_button"
-                        // onClick={submit}
                         value={'Guardar'}
                     />
                     <button className="secondary_button" onClick={cancel}>

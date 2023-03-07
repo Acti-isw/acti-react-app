@@ -23,8 +23,9 @@
 /* .cargando {
     margin: 200px;
 } */
-.delete {
-    margin-top: 70px;
+.UserUpdate__Form {
+    margin-bottom: 40px;
+    /* margin-top: 20px; */
 }
 
 .horario td {

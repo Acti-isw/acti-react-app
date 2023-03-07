@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {useNavigate} from 'react-router-dom'
+// import {useNavigate} from 'react-router-dom'
 import './style.css';
 import Aviso from '../../components/aviso';
 import Desplegable from '../../components/desplegable';
@@ -10,7 +10,7 @@ import TemaService from '../../service/TemaService';
 // import { loggedUser } from '../../UserContext';
 
 function Home() {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     // const context = useContext(loggedUser);
     const [Avisos, setAvisos] = useState([]);
     const [Cursos, setCursos] = useState([]);
@@ -70,16 +70,7 @@ function Home() {
                         key={curso.id}/>
                         //  </div>
                     ))}
-                    {/* <Curso nameCurso="JS Básico" /> */}
-                    {/* </Link> */}
-                    {/* <Link to="/curso"> */}
-                    {/* <Curso nameCurso="JS Básico" /> */}
-                    {/* </Link> */}
-                    {/* <Link to="/curso"> */}
-                    {/* <Curso nameCurso="JS Básico" /> */}
-                    {/* </Link> */}
                 </Desplegable>
-                {/* <DesplegableCurso /> */}
             </main>
             <footer>
                 <img

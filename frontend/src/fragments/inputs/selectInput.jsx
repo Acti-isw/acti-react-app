@@ -8,6 +8,7 @@ function SelectInput({ input }) {
     useEffect(() => {
             const options = [];
             input.options.map((opt)=>{
+                // console.log(opt.id, input.value);
                 if(opt.id===input.value){
                     setSelectTema({
                         value:opt.id,
@@ -29,7 +30,7 @@ function SelectInput({ input }) {
             <label>
             {input.label}
                 <Select
-                    maxMenuHeight={150}
+                    maxMenuHeight={80}
                     required
                     id={input.name}
                     name={input.name}
