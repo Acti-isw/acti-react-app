@@ -11,17 +11,38 @@ function UserContext(props) {
     }
     useEffect(() => {
         if (localSesion) {
-            setCurrentUser(JSON.parse(localSesion));
+            // console.log(JSON.parse(localSesion));
+            const id = JSON.parse(localSesion).id;
+            const contraseña = JSON.parse(localSesion).contraseña;
+            autoLogin(id, contraseña);
         }
     }, []);
     const [currentUser, setCurrentUser] = useState();
+    const autoLogin = (id, contraseña) => {
+        UserService.getUser(id).then((res) => {
+            if (!res[0] || res[0].contraseña != contraseña) {
+                setCurrentUser(undefined);
+            } else {
+                const localUser = {
+                    id: res[0].id,
+                    contraseña: res[0].contraseña
+                };
+                localStorage.setItem('localSesion', JSON.stringify(localUser));
+                setCurrentUser(res[0]);
+            }
+        });
+    };
     const login = (id, contraseña, setError) => {
         UserService.getUser(id).then((res) => {
             if (!res[0] || res[0].contraseña != contraseña) {
                 setError(true);
             } else {
                 setError(false);
-                localStorage.setItem('localSesion', JSON.stringify(res[0]));
+                const localUser = {
+                    id: res[0].id,
+                    contraseña: res[0].contraseña
+                };
+                localStorage.setItem('localSesion', JSON.stringify(localUser));
                 setCurrentUser(res[0]);
             }
         });
@@ -31,12 +52,12 @@ function UserContext(props) {
         setCurrentUser(null);
     };
 
-    const setCurrentUserNewData = async ()=>{
+    const setCurrentUserNewData = async () => {
         await UserService.getUser(currentUser.id).then((res) => {
-                localStorage.setItem('localSesion', JSON.stringify(res[0]));
-                setCurrentUser(res[0]);
+            // localStorage.setItem('localSesion', JSON.stringify(res[0]));
+            setCurrentUser(res[0]);
         });
-    }
+    };
 
     const value = useMemo(() => {
         return {

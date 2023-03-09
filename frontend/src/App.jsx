@@ -19,7 +19,7 @@ import AdminRecursos from './routes/adminRecursos';
 import RetoPage from './routes/retoPage';
 import GestionarExamenes from './components/examenes/GestionarExamenes';
 import HistorialExamanes from './components/examenes/HistorialExamenes';
-import NotAllowed from './routes/NotAllowed';
+import NotAllowed from './routes/allowAdvice';
 ('./components/examenes/GestionarExamenes');
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { loggedUser } from './UserContext';
@@ -74,6 +74,10 @@ function App() {
                         <Route
                             path="/recomendados"
                             element={<Recomendados />}
+                        />
+                        <Route
+                            path="/notallowed"
+                            element={<NotAllowed />}
                         />
                         <Route path="/" element={<Home />} />
                     </Routes>

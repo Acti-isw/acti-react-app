@@ -22,3 +22,31 @@
   align-items: center;
   /* gap: 15px; */
 }
+.celebrate-conteiner{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.btnParty{
+  width: 60px;
+  height: 60px;
+  font-size: 40px;
+  border-radius: 10px;
+  border: none;
+  background-color: var(--white);
+}
+.btnParty img{
+  width: 50px;
+  height: 50px;
+}
+.btnParty:hover img{
+  display: none;
+}
+
+.btnParty:hover::after{
+  content: '🎉';
+}
+.partyText{
+  color: rgb(235, 96, 216);
+  -webkit-text-stroke: .23px black;
+}

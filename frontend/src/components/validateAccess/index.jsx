@@ -1,6 +1,6 @@
 import { loggedUser } from '../../UserContext';
 import { useContext } from 'react';
-import NotAllowed from '../../routes/NotAllowed';
+import NotAllowed from '../../routes/allowAdvice';
 
 function ValidateAccess({children}){
   const { currentUser } = useContext(loggedUser);

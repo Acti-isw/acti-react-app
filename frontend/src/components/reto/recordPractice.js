@@ -1,10 +1,12 @@
-import UserService from '../../service/UserService';
+import UserService from '../../service/UserService'; 
 
-export function recordPractice(user, idPractice){
+export function recordPractice(user, idPractice, updateUser){
   const practices = user.practicas;
   practices.push(idPractice);
   const data = {
     "practicas": practices
   }
-  UserService.updateUser(user.id, data)
+  UserService.updateUser(user.id, data).then(updateUser)
+;
+  
 }

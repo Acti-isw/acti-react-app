@@ -5,6 +5,7 @@ import Horario from '../../components/horario';
 import Perfilfoto from '../../components/components_icons/PerfilFoto';
 import ModalContraseña from '../../components/modalContraseña';
 import { loggedUser } from '../../UserContext';
+import password from '../../utils/passcode'
 
 function Perfil() {
     const [OpenModal, setOpenModal] = useState(false);
@@ -17,16 +18,8 @@ function Perfil() {
     
     useEffect(()=>{
         setCurrentUserNewData();
-        // setPasscode(currentUser.contraseña)
     },[OpenModal])
      
-    const password = (password)=>{
-        let passcode = '';
-        for(let i = 0; i < password.length; i++) {
-            passcode+='*';
-        }
-        return passcode;
-    }
     return (
         <div className="perfil-content content">
             <div className="perfil-main-info">
@@ -47,7 +40,6 @@ function Perfil() {
                     Telefono: <br /> {currentUser.telefono}
                 </p>
                 <div className="perfil-contraseña">
-                    {/* Make dynamic this field in function of password lenght */}
                     <p className="text general-info-contraseña">
                         Contraseña: <br />
                         {password(currentUser.contraseña)}

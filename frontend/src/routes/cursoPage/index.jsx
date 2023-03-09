@@ -5,14 +5,18 @@ import { useContext, useEffect, useState } from 'react';
 import TemaService from '../../service/TemaService';
 import RetoService from '../../service/RetoService';
 import { loggedUser } from '../../UserContext';
+import rataParty from '../../assets/RataParty.png';
+import confetti from 'https://cdn.skypack.dev/canvas-confetti';
 
 function CursoPage(props) {
     const { id } = useParams();
     const [curso, setCurso] = useState([]);
     const [retos, setRetos] = useState([]);
-    const {currentUser} = useContext(loggedUser);
-    // const [done, setDone] = useState(props.reto.done)
+    const { currentUser } = useContext(loggedUser);
+    const [celebrate, setCelebrate] = useState(true);
+
     useEffect(() => {
+        let celebrate = true;
         TemaService.getTopic(id)
             .then((res) => {
                 setCurso(res[0]);
@@ -21,13 +25,19 @@ function CursoPage(props) {
                 throw err;
             });
         RetoService.getRetosByTopic(id).then((res) => {
-            res.map((challenge)=>{
-                let done = currentUser.practicas.find(practice=> practice === challenge._id)
-                challenge.done = done?true:false
-            }) 
+            res.map((challenge) => {
+                let done = currentUser.practicas.find(
+                    (practice) => practice === challenge._id
+                );
+                if (!done) {
+                    celebrate=false;
+                }
+                challenge.done = done ? true : false;
+            });
+            setCelebrate(celebrate);
             setRetos(res);
         });
-    }, []);
+    }, [currentUser]);
 
     return (
         <div className="cursoPage content">
@@ -50,6 +60,14 @@ function CursoPage(props) {
                 consideración, tratando de hacer que se vea similar a la imagen.
             </p>
             <h3>Retos</h3>
+            {celebrate && (
+                <div className="celebrate-conteiner">
+                    <h3 className='partyText'>¡Haz terminado todos los retos de este curso!</h3>
+                    <button className="btnParty" onClick={() => confetti()}>
+                        <img src={rataParty} alt="" />
+                    </button>
+                </div>
+            )}
             <div className="retos__conteiner">
                 {retos.map((reto) => (
                     <Reto reto={reto} key={reto._id} />

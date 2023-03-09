@@ -15,6 +15,7 @@ export default {
         try {
             const response = await fetch(`${BASE_URL}/user/${id}`);
             const data = await response.json();
+            // console.log(data[0].practicas);
             return data;
         } catch (error) {
             throw error;
@@ -38,7 +39,6 @@ export default {
     },
 
     updateUser: async (id, user) => {
-        console.log(id, user);
         try {
             const response = await fetch(`${BASE_URL}/user/${id}`, {
                 method: 'PATCH',
