@@ -17,6 +17,7 @@ import Recomendados from './routes/recomendados';
 import AdminRecomendados from './routes/adminRecomendados';
 import AdminRecursos from './routes/adminRecursos';
 import RetoPage from './routes/retoPage';
+import Exam from './routes/exam';
 import GestionarExamenes from './components/examenes/GestionarExamenes';
 import HistorialExamanes from './components/examenes/HistorialExamenes';
 import NotAllowed from './routes/allowAdvice';
@@ -47,6 +48,7 @@ function App() {
                         />
                         <Route path="/retopage/:id" element={<RetoPage />} />
                         <Route path="/adduser" element={<CrearUsuario />} />
+                        <Route path="/exam/:tema" element={<Exam/>} />
                         <Route
                             path="/gestionarexamenes/:id"
                             element={<GestionarExamenes />}

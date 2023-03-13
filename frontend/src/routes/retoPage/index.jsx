@@ -6,7 +6,7 @@ import RetoService from '../../service/RetoService';
 import { useParams } from 'react-router-dom';
 import { recordPractice } from '../../components/reto/recordPractice';
 import { loggedUser } from '../../UserContext';
-import confetti from 'https://cdn.skypack.dev/canvas-confetti';
+// import confetti from 'https://cdn.skypack.dev/canvas-confetti';
 
 function RetoPage() {
     const [reto, setReto] = useState([]);
@@ -16,7 +16,7 @@ function RetoPage() {
 
     function doNewRecord() {
         if (!done) {
-            confetti();
+            // confetti();
             recordPractice(currentUser, id, setCurrentUserNewData);
             setDone(true);
         }

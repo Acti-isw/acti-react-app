@@ -3,8 +3,6 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { useNavigate } from 'react-router-dom';
 import {recordPractice} from './recordPractice';
 import { loggedUser } from '../../UserContext';
-import confetti from 'https://cdn.skypack.dev/canvas-confetti';
-import fireworks from '../../utils/fireworks'
 import './style.css';
 
 function Reto(props) {
@@ -19,10 +17,6 @@ function Reto(props) {
 
     function doNewRecord(){
       if(!done){
-        // confetti()
-        fireworks()
-        fireworks()
-        fireworks()
         recordPractice(currentUser, props.reto._id, setCurrentUserNewData);
         setDone(true)  
       }
