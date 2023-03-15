@@ -14,14 +14,13 @@ function Timer({ initHours, initMinutes }) {
         if(!over){
             const regresiveInterval = setInterval(() => {
                 setSeconds((seconds) => seconds - 1);
-            }, 1);
+            }, 1000);
             setIntervalId(regresiveInterval)
             return () => clearInterval(regresiveInterval);
         }
     }, []);
 
     useEffect(() => {
-        console.log(hours, minutes, seconds);
         if (hours <= 0 && minutes <= 0 && seconds < 0) {
             setOver(true);
             clearInterval(intervalId)
@@ -32,19 +31,21 @@ function Timer({ initHours, initMinutes }) {
         } else {
             overTimeFormat();
         }
+        rewriteTime()
     }, [seconds]);
 
     function rewriteTime(){
-        let hours = '';
-        let minutes = '';
-        let seconds = '';
+        let StringHours =  hours<10?'0'+hours:hours;
+        let StringMinutes = minutes<10?'0'+minutes:minutes;
+        let StringSeconds = seconds<10?'0'+seconds:seconds;
+        setTime(`${StringHours}:${StringMinutes}:${StringSeconds}`)
     }
     
     function OverTimeInterval(){
         setSeconds(0)
       const newIntervalId = setInterval(() => {
           setSeconds((seconds) => seconds + 1);
-        }, 1);
+        }, 1000);
         setIntervalId(newIntervalId);
     }
 
@@ -78,10 +79,6 @@ function Timer({ initHours, initMinutes }) {
     return (
         <div className={over?'overtime':''}>
             <p>{time}</p>
-            <p>
-                0{hours}:{minutes == 0 ? '00' : minutes}:
-                {seconds == 0 ? '00' : seconds}
-            </p>
             {over && <p>Se acabo el tiempo</p>}
         </div>
     );

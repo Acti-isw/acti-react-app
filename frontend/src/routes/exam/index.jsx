@@ -23,7 +23,7 @@ function Exam() {
         <div className="content">
             {topic && <p className="title">Examen {topic?.nombre}</p>}
             {!topic && <p className="title">Examen Loading...</p>}
-            <Timer initHours={1}/>
+            <Timer initHours={1} initMinutes={30}/>
             {reactivos &&
                 reactivos.map((reactivo) => (
                     <div key={reactivo._id}>
