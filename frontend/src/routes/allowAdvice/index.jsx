@@ -1,6 +1,6 @@
 import './style.css';
 import Block from '../../assets/block.svg';
-import Error401 from '../../assets/error401.webp';
+import Error401 from '../../assets/Error401.webp';
 
 function NotAllowed() {
     return (

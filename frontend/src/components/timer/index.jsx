@@ -41,7 +41,6 @@ function Timer({ initHours, initMinutes }) {
         let StringSeconds = seconds < 10 ? '0' + (seconds ? seconds : 0) : seconds;
         setTime(`${StringHours}:${StringMinutes}:${StringSeconds}`);
     }
-    
     function OverTimeInterval(){
         setSeconds(0)
       const newIntervalId = setInterval(() => {
@@ -49,7 +48,6 @@ function Timer({ initHours, initMinutes }) {
         }, 1000);
         setIntervalId(newIntervalId);
     }
-
     function regresiveFormat() {
         if (seconds < 0 && (hours>0 || minutes>0)) {
             setSeconds(59);
@@ -75,8 +73,6 @@ function Timer({ initHours, initMinutes }) {
             setHours((hours) => hours + 1);
         }
     }
-
-
     return (
         <div className={over?'overtime':''}>
             <p>{time}</p>
