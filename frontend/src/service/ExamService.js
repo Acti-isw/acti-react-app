@@ -27,7 +27,7 @@ export default {
         body:JSON.stringify(exam)
       })
       const data = await response.json()
-      return ImageData
+      return data;
     } catch (error) {
       throw error;
     }
@@ -55,5 +55,9 @@ export default {
     } catch (error) {
       throw error;
     }
+  },
+  generateExam: async(idTopic, idUser)=>{
+    const examReactives = [];
+    
   }
 }

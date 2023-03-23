@@ -1,0 +1,112 @@
+.exam {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.btn-conteiner {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.reative-conteiner {
+    padding: 10px;
+}
+
+.reative-conteiner h3 {
+    text-align: left;
+    margin-bottom:10px;
+}
+.reative-conteiner .head-reactive{
+    margin-bottom: 0;
+}
+.inputDone {
+    width: 24px;
+    height: 24px;
+}
+.done-conteiner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.pts {
+    color: var(--secondary);
+}
+.examHeader {
+    text-align: center;
+    margin: 10px;
+    font-weight: 700;
+    font-size: 24px;
+    text-align: center;
+}
+.examHeader .ptsExam {
+    font-weight: 700;
+    font-size: 20px;
+    margin: 10px;
+}
+.instructions {
+    text-align: left;
+    margin: 10px;
+    background-color: #ffffff00;
+}
+.instructions-span{
+    font-weight: 700;
+}
+
+.modalEndExam-Conteiner {
+    background: rgba(32,35,41,.8);
+    position: fixed;
+    top: -10px;
+    left: 0px;
+    right: 0px;
+    bottom: -10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .modalEndExam{
+    background-color:var(--background);
+    border-radius: 10px;
+    padding:10px;
+    margin: 0 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .span__error{
+    color: var(--danger);
+    font-size: 11px;
+    height: 12px;
+  }
+  .modalHead{
+    text-align: center;
+  }
+  
+code {
+    background-color: rgba(188, 200, 211, 0.623);
+    padding: 3px;
+    border-radius: 5px;
+    white-space: break-spaces;
+    /* margin-bottom: 10px; */
+}
+blockquote {
+    background: #f9f9f9;
+    border-left: 10px solid #ccc;
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+}
+pre {
+    white-space: pre-wrap;
+    background-color: black;
+    color: #f9f9f9;
+    background: #414449;
+    color: #b3bccc;
+    padding: 15px 10px;
+    border-radius: 10px;
+    margin: 10px 0;
+}
+
+pre code {
+    background-color: rgba(255, 255, 255, 0);
+    font-family: 'Courier New', Courier, monospace;
+}

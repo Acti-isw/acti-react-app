@@ -23,7 +23,12 @@ const topicSchema = new Schema({
     tecnologia: {
         type: String,
         default: ''
-    }
+    },
+    minScore:Number,
+    maxScore:Number,
+    timeExam: Number,
+    examRules: String,
+    examResources : String
 });
 
 module.exports = mongoose.model('topics', topicSchema);
