@@ -6,6 +6,7 @@ export default{
     try {
       const response = await fetch(`${BASE_URL}/topic`)
       const data = await response.json();
+      console.log(data);
       return data;
     } catch (error) {
       throw error;

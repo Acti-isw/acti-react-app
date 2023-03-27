@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
 import './style.css'
-function Timer({ initHours, initMinutes }) {
+function Timer({ initHours, initMinutes, over, setOver}) {
     const [hours, setHours] = useState(initHours);
     const [minutes, setMinutes] = useState(() => {
         return initMinutes ? initMinutes : 0;
     });
     const [seconds, setSeconds] = useState(0);
-    const [over, setOver] = useState(false);
     const [time, setTime] = useState('00:00:00');
     const [intervalId, setIntervalId] = useState();
 

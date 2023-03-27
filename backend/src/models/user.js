@@ -78,9 +78,11 @@ const userSchema = new Schema({
                     result: Boolean
                 }
             ],
+            timeOver:Boolean,
             Note: String,
             ScoreExtra: Number,
             FinalScore: Number,
+            FinalResult:Boolean,
             // IdAplicador
             Applicator: Number,
             Date: Date

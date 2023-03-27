@@ -1,8 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import UserService from '../../service/UserService';
 import './style.css'
 
 function HistorialExamanes(){
+  const {id} = useParams();
+  const [user, setUser] = useState();
   
+  useEffect(()=>{
+    console.log(id);
+    UserService.getUser(id)
+    .then((res)=>{
+      console.log(res[0]);
+      setUser(res[0]);
+    });
+  },[])
+
   return(
     <div className='content historialExamenes'>
       <p className='title'>Historial de examenes</p>
