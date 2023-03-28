@@ -15,4 +15,6 @@ router
     .put(examController.put)
     .delete(examController.del);
 
+router.route('/user/:user').get(examController.getByUser);
+
 module.exports = router;

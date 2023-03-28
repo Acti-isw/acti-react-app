@@ -4,7 +4,8 @@ const {
     updateExam,
     deleteExam,
     deleteAllExams,
-    insertExam
+    insertExam,
+    getExamByUser,
 } = require('../services/examService');
 
 const getAll = async (__, res, next) => {
@@ -19,6 +20,15 @@ const getAll = async (__, res, next) => {
 const get = async (req, res, next) => {
     try {
         const exams = await getExamById(req.params);
+        res.status(200).json(exams);
+    } catch (err) {
+        next(err);
+    }
+};
+
+const getByUser = async (req, res, next) => {
+    try {
+        const exams = await getExamByUser(req.params);
         res.status(200).json(exams);
     } catch (err) {
         next(err);
@@ -68,5 +78,6 @@ module.exports = {
     put,
     post,
     del,
-    delAll
+    delAll,
+    getByUser
 };

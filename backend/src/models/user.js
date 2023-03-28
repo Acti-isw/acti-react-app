@@ -67,25 +67,8 @@ const userSchema = new Schema({
     practicas: [{ type: String, ref: 'challenge' }],
     examenes: [
         {
-            topic: {
-                type: Number,
-                ref: 'topic'
-            },
-            reactives: [
-                {
-                    IdReactivo: Number,
-                    done: Boolean,
-                    result: Boolean
-                }
-            ],
-            timeOver:Boolean,
-            Note: String,
-            ScoreExtra: Number,
-            FinalScore: Number,
-            FinalResult:Boolean,
-            // IdAplicador
-            Applicator: Number,
-            Date: Date
+            type: Number,
+            ref: 'exam'
         }
     ],
     fechaNacimiento: {

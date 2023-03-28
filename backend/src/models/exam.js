@@ -3,6 +3,9 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const examSchema = new Schema(  {
+    user:{
+        type:Number
+    },
     topic: {
         type: Number,
         ref: 'topic'

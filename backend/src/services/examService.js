@@ -38,17 +38,40 @@ const getExamById = async ({ id }) => {
     ]);
     return { ...result[0] };
 };
-
-const updateExam = async ({ id }, { content }) => {
-    await examSchema.updateOne(
+const getExamByUser = async ({ user }) => {
+   return await examSchema.aggregate([
         {
-            id: id
+            $match: {
+                user: parseInt(user)
+            }
         },
         {
-            $set: {
-                content: content
+            $lookup: {
+                from: 'users',
+                localField: 'user',
+                foreignField: 'id',
+                as: 'user'
             }
+        },
+        {
+            $unwind: '$user'
         }
+    ]);
+    // return { ...result[0] };
+};
+
+const updateExam = async ({ id },  content ) => {
+    // console.log(content);
+    await examSchema.updateOne(
+        {
+            _id: id
+        },
+        content
+        // {
+        //     $set: {
+        //         content
+        //     }
+        // }
     );
 };
 
@@ -71,5 +94,6 @@ module.exports = {
     updateExam,
     deleteExam,
     deleteAllExams,
-    insertExam
+    insertExam,
+    getExamByUser
 };
