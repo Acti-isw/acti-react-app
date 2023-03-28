@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import reactiveService from '../../service/reactiveService';
 import ReactMarkdown from 'react-markdown';
 import TemaService from '../../service/TemaService';
@@ -7,37 +7,58 @@ import Timer from '../../components/timer';
 import './style.css';
 import Loader from '../../components/loader';
 import ModalEndExam from './modal';
-// import prueba from './pruebaMd.md'
+import ExamService from '../../service/ExamService';
+import { useContext } from 'react';
+import { loggedUser } from '../../UserContext';
 
 function Exam() {
-    const { tema } = useParams();
-    const [reactivos, setReactivos] = useState();
+    // const { tema } = useParams();
+    const navigate = useNavigate();
+    const [exam, setExam] = useState();
+    // const [reactivos, setReactivos] = useState();
     const [topic, setTopic] = useState();
     const [Loading, setLoading] = useState(true);
     const [finish, setFinish] = useState(false);
     const [over, setOver] = useState(false);
-
-    const exam = {
-        topic: tema,
-        Date: new Date(),
-        reactives: reactivos,
-        timeOver: over
-    };
+    const { currentUser } = useContext(loggedUser);
 
     useEffect(() => {
-        TemaService.getTopic(tema).then((res) => {
-            setTopic(res[0]);
-        });
-        reactiveService.getReactivesExam(tema).then((res) => {
-            setReactivos(res);
+        // setReactivos(reactives);
+        ExamService.getExamByUser(currentUser.id).then((res) => {
+            if (res[res.length - 1].reactives == 0) {
+                TemaService.getTopic(res[res.length - 1].topic).then((top) => {
+                    setTopic(top[0]);
+                    reactiveService
+                    .getReactivesExam(res[res.length - 1].topic)
+                    .then((reactives) => {
+                        console.log(res[res.length - 1]);
+                        const newExamData = {
+                            _id: res[res.length - 1]._id,
+                            topic: top[0].id,
+                            Date: new Date(),
+                            reactives: reactives,
+                            timeOver: over
+                        };
+                        setExam(newExamData);
+                        ExamService.updateExam(
+                            res[res.length - 1]._id,
+                            newExamData
+                            );
+                        });
+                    });
+            } else {
+                //algo pa cuando no haya examen programado
+                // console.log('none');
+                navigate('/notallowed');
+            }
         });
     }, []);
 
     useEffect(() => {
-        if (topic != undefined && reactivos != undefined) {
+        if (topic != undefined && exam?.reactives != undefined) {
             setLoading(false);
         }
-    }, [topic, reactivos]);
+    }, [topic, exam]);
 
     function onFinish() {
         setFinish(true);
@@ -70,11 +91,12 @@ function Exam() {
                         {topic?.examRules}
                     </pre>
                 </div>
-                {reactivos &&
-                    reactivos.map((reactivo) => (
+                {exam.reactives &&
+                    exam.reactives.map((reactivo) => (
                         <div className="reative-conteiner" key={reactivo._id}>
                             <h3 className="head-reactive">
-                                Reactivo #{reactivos.indexOf(reactivo) + 1}.{' '}
+                                Reactivo #{exam.reactives.indexOf(reactivo) + 1}
+                                .{' '}
                                 <span className="pts">
                                     Valor {reactivo.valor}pts
                                 </span>

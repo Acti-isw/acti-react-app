@@ -4,6 +4,7 @@ import Select from "react-select"
 function SelectInput({ input }) {
     const [selectTema, setSelectTema] = useState();
     const [temas, setTemas] = useState([]);
+    console.log(input);
 
     useEffect(() => {
             const options = [];

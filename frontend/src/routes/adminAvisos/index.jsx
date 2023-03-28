@@ -8,10 +8,11 @@ import ValidateAccess from '../../components/validateAccess';
 import './style.css';
 
 function AdminAvisos() {
-    const [Avisos, setAvisos] = useState([]);
+    const [Avisos, setAvisos] = useState();
     const [loading, setLoading] = useState(true);
+
     function getId() {
-        const newId = Avisos[Avisos.length - 1].id + 1;
+        const newId = Avisos.length > 0 ? Avisos[Avisos.length - 1].id + 1 : 0;
         return newId;
     }
     function createAviso(e) {

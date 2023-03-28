@@ -6,38 +6,48 @@ import TemaService from '../../service/TemaService';
 import UserService from '../../service/UserService';
 import Loader from '../loader';
 import DateConverter from '../../utils/dateConverter';
+import ModalNewDate from './modalNewDate';
 import './style.css';
+import ExamService from '../../service/ExamService';
 
 function GestionarExamenes() {
     const { id } = useParams();
     const [user, setUser] = useState();
+    const [exams, setExams] = useState();
     const [topics, setTopics] = useState();
-    
+    const [modal, setModal] = useState(false);
+
     useEffect(() => {
         UserService.getUser(id).then((res) => {
             setUser(res[0]);
         });
-        TemaService.getTopics().then((res)=>{
+        TemaService.getTopics().then((res) => {
             setTopics(res);
+        });
+        ExamService.getExamByUser(id).then((res) => {
+            setExams(res);
         })
-    }, []);
+    }, [modal]);
 
-    if(user===undefined || topics===undefined){
-        return <Loader/>
-    }else{
+    function closeModal() {
+        setModal(false);
+    }
+
+    if (user === undefined || topics === undefined || exams === undefined) {
+        return <Loader />;
+    } else {
         return (
             <div className="content gestionExamenes">
-                {console.log(topics)}
-                {!user.exam && <p className='title'>Programar Examen</p>}
+                <p className="title">Programar Examen</p>
                 <h3 className="">{user.alias}</h3>
-                {user.exam && (
+                {user.examenes && (
                     <p className="textMd">
                         Siguiente examen: <br />
-                        10/12/2023
+                        {DateConverter(exams[exams.length - 1].Date)}
                     </p>
                 )}
                 <p className="textMd">Tema: JS arreglos</p>
-                <button className="primary_button">Cambiar fecha</button>
+                <button className="primary_button" onClick={()=>{setModal(true)}} >Cambiar fecha</button>
                 <p className="IReprobacion">Indice de reprobacion</p>
                 <p className="textMd">Historial de examenes</p>
                 <table className="examenes__table ">
@@ -49,52 +59,47 @@ function GestionarExamenes() {
                         </tr>
                     </thead>
                     <tbody>
-                        {user.examenes.map((examRow)=>(
+                        {user.examenes.map((examRow) => (
                             <tr className="examenes__tr" key={examRow._id}>
-                            <td>
-                                <p>{topics.find(top => top.id ===examRow.topic).nombre}</p>
-                            </td>
-                            <td>
-                                <p>{DateConverter(examRow.Date)}</p>
-                            </td>
-                            <td>
-                                {!examRow.FinalScore && <p className="estado pendiente">Pendiente</p> }
-                                {examRow.FinalResult ===false &&  <p className="estado reprobado">Reprobado</p> }
-                                {examRow.FinalResult ===true && <p className="estado aprobado">Aprobado</p> }
-                                {/* <p className="estado pendiente">Pendiente</p> */}
-                            </td>
-                        </tr>
+                                <td>
+                                    <p>
+                                        {
+                                            topics.find(
+                                                (top) =>
+                                                    top.id === examRow.topic
+                                            ).nombre
+                                        }
+                                    </p>
+                                </td>
+                                <td>
+                                    <p>{DateConverter(examRow.Date)}</p>
+                                </td>
+                                <td>
+                                    {!examRow.FinalScore && (
+                                        <p className="estado pendiente">
+                                            Pendiente
+                                        </p>
+                                    )}
+                                    {examRow.FinalResult === false && (
+                                        <p className="estado reprobado">
+                                            Reprobado
+                                        </p>
+                                    )}
+                                    {examRow.FinalResult === true && (
+                                        <p className="estado aprobado">
+                                            Aprobado
+                                        </p>
+                                    )}
+                                    {/* <p className="estado pendiente">Pendiente</p> */}
+                                </td>
+                            </tr>
                         ))}
-{/*                         
-                        <tr className="examenes__tr">
-                            <td>
-                                <p>JS Básico</p>
-                            </td>
-                            <td>
-                                <p>10/12/2023</p>
-                            </td>
-                            <td>
-                                <p className="estado aprobado">Aprobado</p>
-                            </td>
-                        </tr>
-                        <tr className="examenes__tr">
-                            <td>
-                                <p>JS Básico</p>
-                            </td>
-                            <td>
-                                <p>10/12/2023</p>
-                            </td>
-                            <td>
-                                <p className="estado reprobado">Reprobado</p>
-                            </td>
-                        </tr> */}
                     </tbody>
                 </table>
+                {modal && <ModalNewDate examen={exams[exams.length - 1]} closeModal={closeModal}/>}
             </div>
         );
-
     }
-
 }
 
 export default GestionarExamenes;

@@ -19,6 +19,15 @@ export default {
       throw error;
     }
   },
+  getExamByUser:async (id)=>{
+    try {
+      const response = await fetch(BASE_URL+`/exam/user/${id}`)
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      
+    }
+  },
   createExam: async (exam)=>{
     try {
       const response = await fetch(BASE_URL+'/exam',{
@@ -35,14 +44,14 @@ export default {
   updateExam: async (id, exam)=>{
     try {
       const response = await fetch(BASE_URL+`/exam/${id}`,{
-        method:'PATCH',
+        method:'PUT',
         headers:{'Content-Type': 'application/json'},
         body: JSON.stringify(exam)
       })
       const data = await response.json()
       return data;
     } catch (error) {
-      throw error;
+      // throw error;
     }
   },
   deleteExam: async(id)=>{

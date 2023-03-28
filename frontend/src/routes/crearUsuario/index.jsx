@@ -6,6 +6,7 @@ import RoleService from '../../service/RoleService';
 import FormBuilder from '../../components/formBuilder';
 import Loader from '../../components/loader';
 import ValidateAccess from '../../components/validateAccess';
+import ExamService from '../../service/ExamService';
 
 function CrearUsuario() {
     const navigate = useNavigate();
@@ -42,7 +43,6 @@ function CrearUsuario() {
             activo: true,
             correo: e.target.correo.value,
             intentos: 0,
-            examenes: [],
             rol: e.target.rol.value,
             infoActi: {
                 IP: e.target.ip.value,
@@ -51,7 +51,16 @@ function CrearUsuario() {
                 // Horario: '[]'
             }
         };
-        UserService.createUser(data);
+        UserService.createUser(data).then(() => {
+            const date = new Date();
+            date.setDate(date.getDate() + 14);
+            const exam = {
+                topic: 0,
+                user:e.target.id.value,
+                Date: date
+            };
+            ExamService.createExam(exam);
+        });
         navigate('/admin');
     };
     function onCancel() {

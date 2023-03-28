@@ -48,7 +48,7 @@ function App() {
                         />
                         <Route path="/retopage/:id" element={<RetoPage />} />
                         <Route path="/adduser" element={<CrearUsuario />} />
-                        <Route path="/exam/:tema" element={<Exam/>} />
+                        <Route path="/exam" element={<Exam/>} />
                         <Route
                             path="/gestionarexamenes/:id"
                             element={<GestionarExamenes />}
