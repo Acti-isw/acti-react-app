@@ -15,11 +15,9 @@ function HistorialExamanes() {
 
     useEffect(() => {
         ExamService.getExamByUser(id).then((res) => {
-            // console.log(res);
             setExams(res);
-            TemaService.getTopics().then((top) => {
-                setTopic(top);
-            });
+            console.log(res[0].topic[0].nombre);
+            setTopic(res[0].topic)
         });
     }, []);
 
@@ -38,11 +36,8 @@ function HistorialExamanes() {
                         </h3>
                         <p className="textMd">
                             Tema:{' '}
-                            {
-                                topic.find(
-                                    (top) =>
-                                        top.id === exams[exams.length - 1].topic
-                                ).nombre
+                            { 
+                              exams[exams.length - 1].topic[0].nombre
                             }
                         </p>
                     </>
@@ -65,12 +60,7 @@ function HistorialExamanes() {
                             <tr className="examenes__tr" key={examRow._id}>
                                 <td>
                                     <p>
-                                        {
-                                            topic.find(
-                                                (top) =>
-                                                    top.id === examRow.topic
-                                            ).nombre
-                                        }
+                                        {examRow.topic[0].nombre}
                                     </p>
                                 </td>
                                 <td>
@@ -95,28 +85,6 @@ function HistorialExamanes() {
                                 </td>
                             </tr>
                         ))}
-                        <tr className="examenes__tr">
-                            <td>
-                                <p>JS Básico</p>
-                            </td>
-                            <td>
-                                <p>10/12/2023</p>
-                            </td>
-                            <td>
-                                <p className="estado aprobado">Aprobado</p>
-                            </td>
-                        </tr>
-                        <tr className="examenes__tr">
-                            <td>
-                                <p>JS Básico</p>
-                            </td>
-                            <td>
-                                <p>10/12/2023</p>
-                            </td>
-                            <td>
-                                <p className="estado reprobado">Reprobado</p>
-                            </td>
-                        </tr>
                     </tbody>
                 </table>
             </div>

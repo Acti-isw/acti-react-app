@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import reactiveService from '../../service/reactiveService';
 import ReactMarkdown from 'react-markdown';
 import TemaService from '../../service/TemaService';
@@ -10,12 +10,13 @@ import ModalEndExam from './modal';
 import ExamService from '../../service/ExamService';
 import { useContext } from 'react';
 import { loggedUser } from '../../UserContext';
+import Reactivo from './reactivo';
 
 function Exam() {
-    // const { tema } = useParams();
+    // const { mode } = useParams();
     const navigate = useNavigate();
     const [exam, setExam] = useState();
-    // const [reactivos, setReactivos] = useState();
+    // const [mode, setMode] = useState();
     const [topic, setTopic] = useState();
     const [Loading, setLoading] = useState(true);
     const [finish, setFinish] = useState(false);
@@ -26,15 +27,15 @@ function Exam() {
         // setReactivos(reactives);
         ExamService.getExamByUser(currentUser.id).then((res) => {
             if (res[res.length - 1].reactives == 0) {
-                TemaService.getTopic(res[res.length - 1].topic).then((top) => {
-                    setTopic(top[0]);
+                setTopic(res[res.length - 1].topic[0]);
+                    // setTopic(res[res.length - 1].topic[0])
                     reactiveService
-                    .getReactivesExam(res[res.length - 1].topic)
+                    .getReactivesExam(res[res.length - 1].topic[0].id)
                     .then((reactives) => {
-                        console.log(res[res.length - 1]);
+                        // console.log(reactives);
                         const newExamData = {
                             _id: res[res.length - 1]._id,
-                            topic: top[0].id,
+                            topic: res[res.length - 1].topic[0].id,
                             Date: new Date(),
                             reactives: reactives,
                             timeOver: over
@@ -45,7 +46,7 @@ function Exam() {
                             newExamData
                             );
                         });
-                    });
+                    // });
             } else {
                 //algo pa cuando no haya examen programado
                 // console.log('none');
@@ -93,37 +94,38 @@ function Exam() {
                 </div>
                 {exam.reactives &&
                     exam.reactives.map((reactivo) => (
-                        <div className="reative-conteiner" key={reactivo._id}>
-                            <h3 className="head-reactive">
-                                Reactivo #{exam.reactives.indexOf(reactivo) + 1}
-                                .{' '}
-                                <span className="pts">
-                                    Valor {reactivo.valor}pts
-                                </span>
-                            </h3>
-                            <ReactMarkdown>
-                                {reactivo.markdown}
-                                {/* {parse(reactivo.markdown)} */}
-                            </ReactMarkdown>
-                            <div className="done-conteiner">
-                                <label
-                                    htmlFor={reactivo._id}
-                                    className="lblDone"
-                                >
-                                    Hecho:
-                                </label>
-                                <input
-                                    type="checkbox"
-                                    value="done"
-                                    name="checkbox"
-                                    id={reactivo._id}
-                                    className="inputDone"
-                                    onChange={() => {
-                                        onDone(event, reactivo);
-                                    }}
-                                />
-                            </div>
-                        </div>
+                        <Reactivo key={reactivo._id} reactivo={reactivo} mode={0} mark={onDone} index={exam.reactives.indexOf(reactivo) + 1}/>
+                        // <div className="reative-conteiner" key={reactivo._id}>
+                        //     <h3 className="head-reactive">
+                        //         Reactivo #{exam.reactives.indexOf(reactivo) + 1}
+                        //         .{' '}
+                        //         <span className="pts">
+                        //             Valor {reactivo.valor}pts
+                        //         </span>
+                        //     </h3>
+                        //     <ReactMarkdown>
+                        //         {reactivo.markdown}
+                        //         {/* {parse(reactivo.markdown)} */}
+                        //     </ReactMarkdown>
+                        //     <div className="done-conteiner">
+                        //         <label
+                        //             htmlFor={reactivo._id}
+                        //             className="lblDone"
+                        //         >
+                        //             Hecho:
+                        //         </label>
+                        //         <input
+                        //             type="checkbox"
+                        //             value="done"
+                        //             name="checkbox"
+                        //             id={reactivo._id}
+                        //             className="inputDone"
+                        //             onChange={() => {
+                        //                 onDone(event, reactivo);
+                        //             }}
+                        //         />
+                        //     </div>
+                        // </div>
                     ))}
                 <div className="btn-conteiner">
                     <button className="primary_button" onClick={onFinish}>

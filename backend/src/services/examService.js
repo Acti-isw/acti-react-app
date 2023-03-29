@@ -27,19 +27,40 @@ const getExamById = async ({ id }) => {
         {
             $lookup: {
                 from: 'topics',
-                localField: 'topic',
+                localField:'topic',
                 foreignField: 'id',
                 as: 'topic'
             }
         },
         {
             $unwind: '$topic'
-        }
+        },
+        {
+            $lookup: {
+                from: 'reactives',
+                localField: 'reactives._id',
+                foreignField: '_id',
+                as: 'reactives'
+            }
+        },
+        {
+            $project: {
+                "user":1,
+                "topic":1,
+              "reactives": 1,
+            //   "done":1
+            //   "reactives.done": 1,
+            //   "_id": 1
+            }
+        },
+        // {
+        //     $unwind: '$reactive'
+        // }
     ]);
     return { ...result[0] };
 };
 const getExamByUser = async ({ user }) => {
-   return await examSchema.aggregate([
+    return await examSchema.aggregate([
         {
             $match: {
                 user: parseInt(user)
@@ -47,10 +68,10 @@ const getExamByUser = async ({ user }) => {
         },
         {
             $lookup: {
-                from: 'users',
-                localField: 'user',
+                from: 'topics',
+                localField: 'topic',
                 foreignField: 'id',
-                as: 'user'
+                as: 'topic'
             }
         },
         {
@@ -60,7 +81,7 @@ const getExamByUser = async ({ user }) => {
     // return { ...result[0] };
 };
 
-const updateExam = async ({ id },  content ) => {
+const updateExam = async ({ id }, content) => {
     // console.log(content);
     await examSchema.updateOne(
         {

@@ -11,6 +11,7 @@ const {
 const getAll = async (__, res, next) => {
     try {
         const exams = await getExams();
+        // console.log(exams);
         res.status(200).json(exams);
     } catch (err) {
         next(err);
@@ -20,6 +21,7 @@ const getAll = async (__, res, next) => {
 const get = async (req, res, next) => {
     try {
         const exams = await getExamById(req.params);
+        // console.log(exams);
         res.status(200).json(exams);
     } catch (err) {
         next(err);

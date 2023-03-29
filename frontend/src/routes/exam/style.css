@@ -81,6 +81,10 @@
   .modalHead{
     text-align: center;
   }
+
+  .data_exam .redText{
+    color: var(--danger);
+  }
   
 code {
     background-color: rgba(188, 200, 211, 0.623);

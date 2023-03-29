@@ -12,9 +12,12 @@ const examSchema = new Schema(  {
     },
     reactives: [
         {
-            IdReactivo: Number,
+            reactive:{
+                type: Schema.Types.ObjectId,
+                ref: 'reactives'
+            },
             done: Boolean,
-            result: Boolean
+            result: Boolean,
         }
     ],
     timeOver:Boolean,
