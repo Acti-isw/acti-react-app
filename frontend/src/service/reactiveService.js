@@ -1,8 +1,14 @@
 import { BASE_URL } from "./config";
 
 export default {
-  getReactiveById:async ()=>{
-
+  getReactiveById:async (id)=>{
+    try {
+      const result = await fetch(`${BASE_URL}/reactive/${id}`)
+      const data = await result.json();
+      return data;
+    } catch (error) {
+      
+    }
   },
   getReactivesExam: async(id)=>{
     try {

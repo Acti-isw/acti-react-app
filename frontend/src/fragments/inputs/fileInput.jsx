@@ -1,6 +1,6 @@
 function FileInput({ input }) {
     function onChange(e) {
-        console.log(e.target.files);
+        // console.log(e.target.files);
     }
     return (
         <>

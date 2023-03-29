@@ -5,7 +5,7 @@ import ExamService from '../../service/ExamService';
 
 function ModalEndExam({ minPts, setModal, exam }) {
     const { currentUser } = useContext(loggedUser);
-    console.log(exam);
+    // console.log(exam);
     const navigate = useNavigate();
     function onCancel(){
         setModal(false)

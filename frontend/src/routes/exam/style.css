@@ -85,7 +85,20 @@
   .data_exam .redText{
     color: var(--danger);
   }
+
+  .inputPtsExtra::-webkit-inner-spin-button,
+  .inputPtsExtra::-webkit-outer-spin-button {
+    -webkit-appearance: inner-spin-button !important;
+    margin: 0 2px !important;
+  }
   
+  .inputPtsExtra {
+    -moz-appearance: number-input !important;
+    font-size: 20px;
+  }
+  .note{
+    resize: none;
+  }
 code {
     background-color: rgba(188, 200, 211, 0.623);
     padding: 3px;

@@ -16,7 +16,7 @@ function HistorialExamanes() {
     useEffect(() => {
         ExamService.getExamByUser(id).then((res) => {
             setExams(res);
-            console.log(res[0].topic[0].nombre);
+            // console.log(res[0].topic[0].nombre);
             setTopic(res[0].topic)
         });
     }, []);

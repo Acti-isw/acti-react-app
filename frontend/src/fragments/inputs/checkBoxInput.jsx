@@ -7,7 +7,7 @@ function CheckBoxInput({ input }) {
     }, []);
 
     function handleTipoChange(event) {
-        console.log(event.target.checked);
+        // console.log(event.target.checked);
         setCheck(event.target.checked);
     }
 

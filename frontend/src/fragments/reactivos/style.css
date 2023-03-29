@@ -1,0 +1,35 @@
+.checker{
+  border-radius:10px;
+  flex-direction: row;
+  padding: 10px;
+  justify-content: center;
+} 
+.checker-conteiner input[type="radio"]{
+  display: none;
+}
+.checker-conteiner .checker-correct{
+  background-color: rgba(255, 255, 255, 0);
+  border: solid 1px var(--success);
+  color: var(--success);
+}
+.checker-conteiner .checker-incorrect{
+  background-color: rgba(255, 255, 255, 0);
+  border: solid 1px var(--danger);
+  color: var(--danger);
+}
+
+.checker-conteiner input[type="radio"]:checked + .checker-incorrect {
+  background-color: var(--danger);
+  color: var(--white);
+}
+.checker-conteiner input[type="radio"]:checked + .checker-correct {
+  background-color: var(--success);
+  color: var(--white);
+}
+
+.checker-conteiner{
+  display: flex;
+  gap: 15px;
+  margin: 20px;
+  border: none;
+}

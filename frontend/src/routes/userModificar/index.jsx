@@ -18,7 +18,7 @@ function UserModificar() {
     const [rol, setRol] = useState(undefined);
 
     useEffect(() => {
-        console.log(currentUser.id, id);
+        // console.log(currentUser.id, id);
         if (currentUser.id == id || currentUser.rol.id===1) {
             getusers();
             RoleService.getRoles().then((res) => {

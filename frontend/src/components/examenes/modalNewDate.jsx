@@ -18,7 +18,7 @@ function ModalNewDate({ examen, closeModal }) {
 
     function throwAction(event) {
         const newDate = { Date: new Date(event.target.fecha.value) };
-        console.log(newDate);
+        // console.log(newDate);
         ExamService.updateExam(examen._id, newDate)
         closeModal()
     }

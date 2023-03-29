@@ -35,24 +35,24 @@ const getExamById = async ({ id }) => {
         {
             $unwind: '$topic'
         },
-        {
-            $lookup: {
-                from: 'reactives',
-                localField: 'reactives._id',
-                foreignField: '_id',
-                as: 'reactives'
-            }
-        },
-        {
-            $project: {
-                "user":1,
-                "topic":1,
-              "reactives": 1,
-            //   "done":1
-            //   "reactives.done": 1,
-            //   "_id": 1
-            }
-        },
+        // {
+        //     $lookup: {
+        //         from: 'reactives',
+        //         localField: 'reactives._id',
+        //         foreignField: '_id',
+        //         as: 'reactivos'
+        //     }
+        // },
+        // {
+        //     $project: {
+        //         "user":1,
+        //         "topic":1,
+        //       "reactives": 1,
+        //     //   "done":1
+        //     //   "reactives.done": 1,
+        //     //   "_id": 1
+        //     }
+        // },
         // {
         //     $unwind: '$reactive'
         // }

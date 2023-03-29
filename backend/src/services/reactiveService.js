@@ -8,14 +8,14 @@ const getReactive = async ({ id }) => {
                 _id: mongoose.Types.ObjectId(id)
             }
         },
-        {
-            $lookup: {
-                from: 'topics',
-                localField: 'topic',
-                foreignField: 'id',
-                as: 'topic'
-            }
-        }
+        // {
+        //     $lookup: {
+        //         from: 'topics',
+        //         localField: 'topic',
+        //         foreignField: 'id',
+        //         as: 'topic'
+        //     }
+        // }
     ]);
     return { ...result[0] };
 };

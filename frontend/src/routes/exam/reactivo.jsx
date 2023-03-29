@@ -10,7 +10,6 @@ const Reactivo = ({ reactivo, mark, index, mode }) => {
             return <ReactivoDefault reactivo={reactivo} markDone={mark} index={index}/>
         // break;
         case 1:
-          console.log(reactivo);
             return <ReactivoChecking reactivo={reactivo} markCheck={mark} index={index}/>;
             // break;
         case 2:

@@ -18,8 +18,14 @@ const ExamChecking = () => {
             UserService.getUser(res.user).then((user) => {
               setUser(user[0]);
             })
+            // console.log(res);
         });
     }, []);
+
+    function handleOnCheck(reactivo, value) {
+        reactivo['result'] = value;
+        console.log(exam);
+    }
 
     if (!exam || !user) {
         return <Loader />;
@@ -34,8 +40,21 @@ const ExamChecking = () => {
                 </div>
                 <p className='textMd'>Puntos necesarios: {exam.topic.minScore}</p>
                 {exam.reactives.map((reactive)=>(
-                  <Reactivo key={reactive._id} reactivo={reactive} mode={1} index={exam.reactives.indexOf(reactive) + 1}/>
+                  <Reactivo key={reactive._id} reactivo={reactive} mode={1} index={exam.reactives.indexOf(reactive) + 1} mark={handleOnCheck}/>
                 ))}
+                <div className="extraPoints-container">
+                    <label htmlFor="ptsExtra">Añadir puntos extra</label>
+                    <input type="number" className='inputPtsExtra' id="ptsExtra" name="ptsExtra"/>
+                </div>
+                <div className="note-container">
+                    <label htmlFor="">Nota</label>
+                    <textarea name="note" id="note" cols="30" rows="10" className="note"></textarea>
+                </div>
+                <div className="puntaje-container">
+                    <p>Puntaje</p>
+                </div>
+                <h2 className="resultado"></h2>
+                <button className="primary_button">Guardar</button>
             </div>
         );
     }
