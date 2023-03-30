@@ -13,8 +13,8 @@ const ReactivoChecking = ({ reactivo, markCheck, index }) => {
         });
     }, []);
 
-    function handleOnChange(event) {
-        markCheck(reactivo, event.target.value==="true")
+    function handleOnChange(event, score) {
+        markCheck(reactivo, event.target.value==="true", score);
     }
 
     if (!reactive) {
@@ -38,7 +38,7 @@ const ReactivoChecking = ({ reactivo, markCheck, index }) => {
                             name={reactivo._id}
                             id={reactivo._id + '1'}
                             value={false}
-                            onChange={handleOnChange}
+                            onChange={()=>{handleOnChange(event, reactive.valor)}}
                             />
                         <label
                             className="checker checker-incorrect"
@@ -51,7 +51,7 @@ const ReactivoChecking = ({ reactivo, markCheck, index }) => {
                             name={reactivo._id}
                             id={reactivo._id + '0'}
                             value={true}
-                            onChange={handleOnChange}
+                            onChange={()=>{handleOnChange(event, reactive.valor)}}
                             />
                          <label
                             className="checker checker-correct"

@@ -19,6 +19,7 @@ import AdminRecursos from './routes/adminRecursos';
 import RetoPage from './routes/retoPage';
 import Exam from './routes/exam';
 import ExamChecking from './routes/exam/examChecking';
+import ExamChecked from './routes/exam/examChecked';
 import GestionarExamenes from './components/examenes/GestionarExamenes';
 import HistorialExamanes from './components/examenes/HistorialExamenes';
 import NotAllowed from './routes/allowAdvice';
@@ -51,12 +52,13 @@ function App() {
                         <Route path="/adduser" element={<CrearUsuario />} />
                         <Route path="/exam" element={<Exam/>} />
                         <Route path="/exam/:idExam" element={<ExamChecking/>} />
+                        <Route exact path="/exam-checked/:idExam" element={<ExamChecked/>} />
                         <Route
                             path="/gestionarexamenes/:id"
                             element={<GestionarExamenes />}
                         />
                         <Route
-                            path="/historialexamenes/:id"
+                            path="/historial-examenes"
                             element={<HistorialExamanes />}
                         />
                         <Route

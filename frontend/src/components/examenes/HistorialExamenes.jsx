@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState, useContext } from 'react';
 import ExamService from '../../service/ExamService';
 import TemaService from '../../service/TemaService';
 import UserService from '../../service/UserService';
 import DateConverter from '../../utils/dateConverter';
+import { loggedUser } from '../../UserContext';
 import Loader from '../loader';
 import './style.css';
 
 function HistorialExamanes() {
-    const { id } = useParams();
     const [exams, setExams] = useState();
     const [topic, setTopic] = useState();
+    const { currentUser } = useContext(loggedUser);
     // const [user, setUser] = useState();
 
     useEffect(() => {
-        ExamService.getExamByUser(id).then((res) => {
+        ExamService.getExamByUser(currentUser.id).then((res) => {
             setExams(res);
             // console.log(res[0].topic[0].nombre);
             setTopic(res[0].topic)

@@ -37,3 +37,7 @@ header {
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.363);
     cursor: pointer;
 }
+
+.btn_aviso{
+    text-decoration: none;
+}

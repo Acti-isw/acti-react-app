@@ -1,8 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import TemaService from '../../service/TemaService';
+import { useParams, Link } from 'react-router-dom';
 import UserService from '../../service/UserService';
 import Loader from '../loader';
 import DateConverter from '../../utils/dateConverter';
@@ -14,40 +13,50 @@ function GestionarExamenes() {
     const { id } = useParams();
     const [user, setUser] = useState();
     const [exams, setExams] = useState();
-    const [topics, setTopics] = useState();
     const [modal, setModal] = useState(false);
 
     useEffect(() => {
         UserService.getUser(id).then((res) => {
             setUser(res[0]);
         });
-        TemaService.getTopics().then((res) => {
-            setTopics(res);
-        });
         ExamService.getExamByUser(id).then((res) => {
             setExams(res);
-        })
+        });
     }, [modal]);
 
     function closeModal() {
         setModal(false);
     }
 
-    if (user === undefined || topics === undefined || exams === undefined) {
+    if (user === undefined || exams === undefined) {
         return <Loader />;
     } else {
         return (
             <div className="content gestionExamenes">
                 <p className="title">Programar Examen</p>
                 <h3 className="">{user.alias}</h3>
-                {user.examenes && (
-                    <p className="textMd">
-                        Siguiente examen: <br />
-                        {DateConverter(exams[exams.length - 1].Date)}
-                    </p>
+                {exams[exams.length - 1].reactives.length == 0 && (
+                    <div className="next-exam">
+                        <p className="textMd">
+                            Siguiente examen: <br />
+                            {DateConverter(exams[exams.length - 1].Date)}
+                        </p>
+                        <p className="textMd">
+                            Tema: {exams[exams.length - 1].topic[0].nombre}
+                        </p>
+                    </div>
                 )}
-                <p className="textMd">Tema: JS arreglos</p>
-                <button className="primary_button" onClick={()=>{setModal(true)}} >Cambiar fecha</button>
+                {!exams[exams.length - 1].reactives.length == 0 && (
+                    <p className="textMd">No hay examenes programados</p>
+                )}
+                <button
+                    className="primary_button"
+                    onClick={() => {
+                        setModal(true);
+                    }}
+                >
+                    Cambiar fecha
+                </button>
                 <p className="IReprobacion">Indice de reprobacion</p>
                 <p className="textMd">Historial de examenes</p>
                 <table className="examenes__table ">
@@ -59,27 +68,26 @@ function GestionarExamenes() {
                         </tr>
                     </thead>
                     <tbody>
-                        {user.examenes.map((examRow) => (
+                        {exams.map((examRow) => (
                             <tr className="examenes__tr" key={examRow._id}>
                                 <td>
-                                    <p>
-                                        {
-                                            topics.find(
-                                                (top) =>
-                                                    top.id === examRow.topic
-                                            ).nombre
-                                        }
-                                    </p>
+                                    <p>{examRow.topic[0].nombre}</p>
                                 </td>
                                 <td>
                                     <p>{DateConverter(examRow.Date)}</p>
                                 </td>
                                 <td>
-                                    {!examRow.FinalScore && (
-                                        <p className="estado pendiente">
-                                            Pendiente
-                                        </p>
+                                    {examRow.reactives.length === 0 && (
+                                        <p> Sin realizar</p>
                                     )}
+                                    {examRow.FinalResult === undefined &&
+                                        examRow.reactives.length > 0 && (
+                                            <Link to={`/exam/${examRow._id}`}>
+                                                <p className="estado pendiente">
+                                                    Pendiente
+                                                </p>
+                                            </Link>
+                                        )}
                                     {examRow.FinalResult === false && (
                                         <p className="estado reprobado">
                                             Reprobado
@@ -96,7 +104,12 @@ function GestionarExamenes() {
                         ))}
                     </tbody>
                 </table>
-                {modal && <ModalNewDate examen={exams[exams.length - 1]} closeModal={closeModal}/>}
+                {modal && (
+                    <ModalNewDate
+                        examen={exams[exams.length - 1]}
+                        closeModal={closeModal}
+                    />
+                )}
             </div>
         );
     }

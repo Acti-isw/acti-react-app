@@ -5,21 +5,21 @@ import Horario from '../../components/horario';
 import Perfilfoto from '../../components/components_icons/PerfilFoto';
 import ModalContraseña from '../../components/modalContraseña';
 import { loggedUser } from '../../UserContext';
-import password from '../../utils/passcode'
+import password from '../../utils/passcode';
 
 function Perfil() {
     const [OpenModal, setOpenModal] = useState(false);
     const { currentUser, setCurrentUserNewData } = useContext(loggedUser);
     // const [passcode, setPasscode] = useState(currentUser.contraseña);
-    
+
     function handleOpenModal() {
         setOpenModal(true);
     }
-    
-    useEffect(()=>{
+
+    useEffect(() => {
         setCurrentUserNewData();
-    },[OpenModal])
-     
+    }, [OpenModal]);
+
     return (
         <div className="perfil-content content">
             <div className="perfil-main-info">
@@ -75,11 +75,21 @@ function Perfil() {
                 <div className="data">Retos realizados: 260</div>
                 <div className="data">Examenes aprobados: 18/20</div>
             </div>
-            <button className="primary_button">Historial de examenes</button>
-            <Link to={`/usermodify/${currentUser.id}`}>
-            <button className="secondary_button" >Modificar datos</button>
+            <Link to={'/historial-examenes'}>
+                <button className="primary_button">
+                    Historial de examenes
+                </button>
             </Link>
-            {OpenModal && <ModalContraseña setOpenModal={setOpenModal} id={currentUser.id} password={currentUser.contraseña}/>}
+            <Link to={`/usermodify/${currentUser.id}`}>
+                <button className="secondary_button">Modificar datos</button>
+            </Link>
+            {OpenModal && (
+                <ModalContraseña
+                    setOpenModal={setOpenModal}
+                    id={currentUser.id}
+                    password={currentUser.contraseña}
+                />
+            )}
         </div>
     );
 }

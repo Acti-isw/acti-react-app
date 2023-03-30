@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-// import {useNavigate} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import './style.css';
 import Aviso from '../../components/aviso';
 import Desplegable from '../../components/desplegable';
@@ -45,12 +45,14 @@ function Home() {
                     informacion
                 </p>
                 <div className="avisosBox">
+                    <Link to='/exam' className="btn_aviso">
                     <Aviso
                         text="Siguiente examen: 10 días"
                         color="var(--danger)"
                         tema="JS Arreglos avanzados"
                         className='examenAdvice'
-                    />
+                        />
+                        </Link>
                     {Avisos.map((aviso) => (
                         <Aviso
                             key={aviso.id}

@@ -1,22 +1,14 @@
-import { useContext } from 'react';
-import { loggedUser } from '../../UserContext';
 import { useNavigate } from 'react-router-dom';
 import ExamService from '../../service/ExamService';
 
 function ModalEndExam({ minPts, setModal, exam }) {
-    const { currentUser } = useContext(loggedUser);
-    // console.log(exam);
     const navigate = useNavigate();
     function onCancel(){
         setModal(false)
     }
     function onFinish(){
         ExamService.updateExam(exam._id,exam)
-        // currentUser.examenes.push(exam)
-        // userService.updateUser(currentUser.id, {examenes: currentUser.examenes})
-        // setCurrentUserNewData()
-        navigate('/historialexamenes/'+currentUser.id)
-        // sendExam({examenes: currentUser.examenes})
+        navigate('/historial-examenes')
     }
     
 

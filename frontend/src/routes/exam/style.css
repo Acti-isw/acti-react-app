@@ -99,6 +99,12 @@
   .note{
     resize: none;
   }
+  .exam-success{
+    color: var(--success);
+  }
+  .exam-fail{
+    color: var(--danger)
+  }
 code {
     background-color: rgba(188, 200, 211, 0.623);
     padding: 3px;
