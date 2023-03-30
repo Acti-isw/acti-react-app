@@ -7,6 +7,7 @@ import Reactivo from './reactivo';
 import { loggedUser } from '../../UserContext';
 import ValidateAccess from '../../components/validateAccess';
 import './style.css';
+import TemaService from '../../service/TemaService';
 
 const ExamChecking = () => {
     const { idExam } = useParams();
@@ -20,7 +21,7 @@ const ExamChecking = () => {
     useEffect(() => {
         ExamService.getExamById(idExam).then((res) => {
             setExam(res);
-            if(res.FinalScore!=undefined) {
+            if (res.FinalScore != undefined) {
                 navigate(`/exam-checked/${idExam}`);
             }
             UserService.getUser(res.user).then((user) => {
@@ -51,6 +52,14 @@ const ExamChecking = () => {
         reactivo['result'] = value;
         countScore();
     }
+    function nextExam(topic, date) {
+        const nextExam = {
+            topic: topic,
+            user: user.id,
+            Date: date
+        };
+        ExamService.createExam(nextExam);
+    }
     function handleOnSave(event) {
         event.preventDefault();
         const resultExam = {
@@ -62,7 +71,43 @@ const ExamChecking = () => {
             FinalResult: score >= exam.topic.minScore,
             Applicator: currentUser.id
         };
-        ExamService.updateExam(idExam, resultExam).then(() => {
+        ExamService.updateExam(idExam, resultExam)
+            .then(() => {
+        if (resultExam.FinalResult) {
+            TemaService.getTopics().then((res) => {
+                if (res[exam.topic.id] === res[res.length - 1]) {
+                    // All exams finished
+                } else {
+                    const nextExamDate = new Date();
+                    nextExamDate.setDate(nextExamDate.getDate() + 14);
+                    nextExam(res[exam.topic.id + 1].id, nextExamDate);
+                }
+            });
+
+            // console.log(user.infoActi.Nivel+1);
+            const dataTry = {
+                infoActi:{
+                    ...user.infoActi,
+                    Nivel:user.infoActi.Nivel+1
+                },
+                intentos: 2
+            };
+            // console.log(dataTry);
+            UserService.updateUser(user.id, dataTry);
+        } else {
+            const dataTry = {
+                intentos: user.intentos - 1
+            };
+            // console.log(dataTry);
+            UserService.updateUser(user.id, dataTry);
+            if (dataTry.intentos > 0) {
+                const nextExamDate = new Date();
+                nextExamDate.setDate(nextExamDate.getDate() + 7);
+                nextExam(exam.topic.id, nextExamDate);
+            }
+        }
+        })
+        .finally(() => {
             navigate(`/gestionarexamenes/${exam.user}`);
         });
     }
@@ -77,7 +122,7 @@ const ExamChecking = () => {
                     <div className="data_exam">
                         <h3>{exam.topic.nombre}</h3>
                         <h2>{user.alias}</h2>
-                        {!exam.over && (
+                        {exam.timeOver && (
                             <p className="textMd redText">
                                 Enviado fuera de tiempo
                             </p>

@@ -97,7 +97,7 @@ const updateExam = async ({ id }, content) => {
 };
 
 const deleteExam = async ({ id }) => {
-    await examSchema.deleteOne({ id: id });
+    await examSchema.deleteOne({ _id: id });
 };
 
 const insertExam = async (exam) => {

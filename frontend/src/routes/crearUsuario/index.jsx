@@ -42,7 +42,7 @@ function CrearUsuario() {
             telefono: e.target.telefono.value,
             activo: true,
             correo: e.target.correo.value,
-            intentos: 0,
+            intentos: 2,
             rol: e.target.rol.value,
             infoActi: {
                 IP: e.target.ip.value,

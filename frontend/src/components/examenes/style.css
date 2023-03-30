@@ -1,12 +1,14 @@
-.historialExamenes, .gestionExamenes{
-  display: flex;
-  flex-direction: column;
-  align-items:inherit;
-  justify-content: center;
-  gap: 20px;
+.historialExamenes,
+.gestionExamenes {
+    display: flex;
+    flex-direction: column;
+    align-items: inherit;
+    justify-content: center;
+    gap: 20px;
 }
-.historialExamenes p, .gestionExamenes p{
-  text-align: center;
+.historialExamenes p,
+.gestionExamenes p {
+    text-align: center;
 }
 
 .IReprobacion {
@@ -27,6 +29,9 @@
     cursor: pointer;
     text-align: center;
 }
+.result-button {
+    text-decoration: none;
+}
 .pendiente {
     color: var(--alert);
     text-decoration: underline;
@@ -39,7 +44,7 @@
     background-color: var(--danger);
     color: var(--white);
 }
-.examenes__tr td{
-  border: none;
-  background-color: var(--background);
+.examenes__tr td {
+    border: none;
+    background-color: var(--background);
 }

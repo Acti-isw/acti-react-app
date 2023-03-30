@@ -20,7 +20,10 @@ function GestionarExamenes() {
             setUser(res[0]);
         });
         ExamService.getExamByUser(id).then((res) => {
-            setExams(res);
+            const arraySort = res.sort((a, b) => {
+                return new Date(b.Date) - new Date(a.Date);
+            });
+            setExams(arraySort);
         });
     }, [modal]);
 
@@ -35,28 +38,28 @@ function GestionarExamenes() {
             <div className="content gestionExamenes">
                 <p className="title">Programar Examen</p>
                 <h3 className="">{user.alias}</h3>
-                {exams[exams.length - 1].reactives.length == 0 && (
+                {exams[0].reactives.length == 0 && (
                     <div className="next-exam">
                         <p className="textMd">
                             Siguiente examen: <br />
-                            {DateConverter(exams[exams.length - 1].Date)}
+                            {DateConverter(exams[0].Date)}
                         </p>
                         <p className="textMd">
-                            Tema: {exams[exams.length - 1].topic[0].nombre}
+                            Tema: {exams[0].topic[0].nombre}
                         </p>
+                        <button
+                            className="primary_button"
+                            onClick={() => {
+                                setModal(true);
+                            }}
+                        >
+                            Cambiar fecha
+                        </button>
                     </div>
                 )}
-                {!exams[exams.length - 1].reactives.length == 0 && (
+                {!exams[0].reactives.length == 0 && (
                     <p className="textMd">No hay examenes programados</p>
                 )}
-                <button
-                    className="primary_button"
-                    onClick={() => {
-                        setModal(true);
-                    }}
-                >
-                    Cambiar fecha
-                </button>
                 <p className="IReprobacion">Indice de reprobacion</p>
                 <p className="textMd">Historial de examenes</p>
                 <table className="examenes__table ">
@@ -89,14 +92,18 @@ function GestionarExamenes() {
                                             </Link>
                                         )}
                                     {examRow.FinalResult === false && (
-                                        <p className="estado reprobado">
-                                            Reprobado
-                                        </p>
+                                        <Link className='result-button' to={`/exam-checked/${examRow._id}`}>
+                                            <p className="estado reprobado">
+                                                Reprobado
+                                            </p>
+                                        </Link>
                                     )}
                                     {examRow.FinalResult === true && (
-                                        <p className="estado aprobado">
-                                            Aprobado
-                                        </p>
+                                        <Link className='result-button' to={`/exam-checked/${examRow._id}`}>
+                                            <p className="estado aprobado">
+                                                Aprobado
+                                            </p>
+                                        </Link>
                                     )}
                                     {/* <p className="estado pendiente">Pendiente</p> */}
                                 </td>
@@ -105,10 +112,7 @@ function GestionarExamenes() {
                     </tbody>
                 </table>
                 {modal && (
-                    <ModalNewDate
-                        examen={exams[exams.length - 1]}
-                        closeModal={closeModal}
-                    />
+                    <ModalNewDate examen={exams[0]} closeModal={closeModal} />
                 )}
             </div>
         );

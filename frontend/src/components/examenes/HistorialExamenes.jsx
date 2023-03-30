@@ -9,40 +9,39 @@ import './style.css';
 
 function HistorialExamanes() {
     const [exams, setExams] = useState();
-    const [topic, setTopic] = useState();
     const { currentUser } = useContext(loggedUser);
-    // const [user, setUser] = useState();
 
     useEffect(() => {
         ExamService.getExamByUser(currentUser.id).then((res) => {
-            setExams(res);
-            // console.log(res[0].topic[0].nombre);
-            setTopic(res[0].topic)
+            const arraySort = res.sort((a, b)=>{
+                return new Date(b.Date)-new Date(a.Date);
+            })
+            setExams(arraySort);
         });
     }, []);
 
-    if (!exams || !topic) {
+    if (!exams ) {
         return <Loader />;
     } else {
         return (
             <div className="content historialExamenes">
                 <p className="title">Historial de examenes</p>
-                {exams[exams.length - 1].reactives.length === 0 && (
+                {exams[0].reactives.length === 0 && (
                     <>
                         <h3>
                             Siguiente examen:
                             <br />
-                            {DateConverter(exams[exams.length - 1].Date)}
+                            {DateConverter(exams[0].Date)}
                         </h3>
                         <p className="textMd">
                             Tema:{' '}
                             { 
-                              exams[exams.length - 1].topic[0].nombre
+                              exams[0].topic[0].nombre
                             }
                         </p>
                     </>
                 )}
-                {exams[exams.length - 1].reactives.length !== 0 && (
+                {exams[0].reactives.length !== 0 && (
                     <h3>No hay ningun examen programado</h3>
                 )}
                 <p className="IReprobacion">Indice de reprobacion</p>
@@ -67,11 +66,15 @@ function HistorialExamanes() {
                                     <p>{DateConverter(examRow.Date)}</p>
                                 </td>
                                 <td>
-                                    {!examRow.FinalScore && (
-                                        <p className="estado pendiente">
-                                            Pendiente
-                                        </p>
+                                {examRow.reactives.length === 0 && (
+                                        <p> Sin realizar</p>
                                     )}
+                                    {examRow.FinalResult === undefined &&
+                                        examRow.reactives.length > 0 && (
+                                                <p className="estado pendiente">
+                                                    Pendiente
+                                                </p>
+                                        )}
                                     {examRow.FinalResult === false && (
                                         <p className="estado reprobado">
                                             Reprobado

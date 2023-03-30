@@ -39,7 +39,6 @@ export default {
     },
 
     updateUser: async (id, user) => {
-        console.log(user);
         try {
             const response = await fetch(`${BASE_URL}/user/${id}`, {
                 method: 'PATCH',

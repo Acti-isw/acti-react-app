@@ -18,11 +18,11 @@
   color: var(--danger);
 }
 
-.checker-conteiner input[type="radio"]:checked + .checker-incorrect {
+.checker-conteiner input[type="radio"]:checked + .checker-incorrect, .checker-incorrect-result  {
   background-color: var(--danger);
   color: var(--white);
 }
-.checker-conteiner input[type="radio"]:checked + .checker-correct {
+.checker-conteiner input[type="radio"]:checked + .checker-correct, .checker-correct-result {
   background-color: var(--success);
   color: var(--white);
 }

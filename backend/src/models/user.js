@@ -65,18 +65,18 @@ const userSchema = new Schema({
         default: 2
     },
     practicas: [{ type: String, ref: 'challenge' }],
-    examenes: [
-        {
-            type: Number,
-            ref: 'exam'
-        }
-    ],
+    // examenes: [
+    //     {
+    //         type: Number,
+    //         ref: 'exam'
+    //     }
+    // ],
     fechaNacimiento: {
         type: Date
     },
-    fechaRetorno: {
-        type: Date
-    }
+    // fechaRetorno: {
+    //     type: Date
+    // }
 });
 
 module.exports = mongoose.model('users', userSchema);
