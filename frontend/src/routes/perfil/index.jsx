@@ -63,7 +63,9 @@ function Perfil() {
                 <p className="text info-acti-rol">
                     Rol: {currentUser.rol.nombre}
                 </p>
-                <p className="text info-acti-horario">Horario:</p>
+            </div>
+            <div className="perfil-horario">
+                <h3 className="info-title">Horario:</h3>
                 <Horario
                     className="horario"
                     Datahorario={JSON.parse(currentUser.infoActi.Horario)}
@@ -75,14 +77,18 @@ function Perfil() {
                 <div className="data">Retos realizados: 260</div>
                 <div className="data">Examenes aprobados: 18/20</div>
             </div>
-            <Link to={'/historial-examenes'}>
-                <button className="primary_button">
-                    Historial de examenes
-                </button>
-            </Link>
-            <Link to={`/usermodify/${currentUser.id}`}>
-                <button className="secondary_button">Modificar datos</button>
-            </Link>
+            <div className="perfil-modifyButtons">
+                <Link to={'/historial-examenes'}>
+                    <button className="primary_button">
+                        Historial de examenes
+                    </button>
+                </Link>
+                <Link to={`/usermodify/${currentUser.id}`}>
+                    <button className="secondary_button">
+                        Modificar datos
+                    </button>
+                </Link>
+            </div>
             {OpenModal && (
                 <ModalContraseña
                     setOpenModal={setOpenModal}

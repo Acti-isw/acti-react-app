@@ -37,7 +37,7 @@ function Curso(props) {
     return (
         <div className="curso" onClick={goToCursoPage}>
             <div className="head_curso" style={{ background: `url(${ImgTemas[tech]?.img})`, color:ImgTemas[tech]?.color}}>
-                <div className="">
+                <div className="head__curso__titles">
                     <p className="cursoTxt">Curso</p>
                     <p className="textMd">{props.curso.nombre}</p>
                 </div>

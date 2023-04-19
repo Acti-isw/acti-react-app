@@ -14,6 +14,9 @@ header {
 .mainText {
     text-align: center;
 }
+.actiIcon{
+    display: none;
+}
 /* footer{
   margin: 0 auto;
 } */
@@ -40,4 +43,26 @@ header {
 
 .btn_aviso{
     text-decoration: none;
+}
+
+@media (min-width: 768px) {
+    .header__title{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .header__title--texts h1, .header__title--texts  p{
+        text-align: left;
+        margin: 10px;
+        font-weight: 700;
+    }
+    .actiIcon{
+        display: flex;
+        width: 312px;
+        height: 259px;
+    }
+    .btn_aviso{
+        width: 100%;
+    }
+    
 }

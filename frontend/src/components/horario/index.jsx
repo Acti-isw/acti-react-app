@@ -88,11 +88,16 @@ function Horario( {Datahorario, setDatahorario, mode}) {
                 <thead>
                     <tr key="horasRow">
                         <th key="Horas">Horas</th>
-                        <th key="lunes">Lun</th>
-                        <th key="martes">Mar</th>
-                        <th key="miercoles">Mie</th>
-                        <th key="jueves">Ju</th>
-                        <th key="viernes">Vi</th>
+                        <th className='mov' key="lunes">Lun</th>
+                        <th className='mov' key="martes">Mar</th>
+                        <th className='mov' key="miercoles">Mie</th>
+                        <th className='mov' key="jueves">Ju</th>
+                        <th className='mov' key="viernes">Vi</th>
+                        <th className='dsk' key="lunes dsk">Lunes</th>
+                        <th className='dsk' key="martes dsk">Martes</th>
+                        <th className='dsk' key="miercoles dsk">Miercoles</th>
+                        <th className='dsk' key="jueves dsk">Jueves</th>
+                        <th className='dsk' key="viernes dsk">Viernes</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import './style.css';
 import Aviso from '../../components/aviso';
 import Desplegable from '../../components/desplegable';
@@ -7,6 +7,7 @@ import RamImg from '../../assets/Ramses_Parker.png';
 import Curso from '../../components/curso';
 import AvisoService from '../../service/AvisoService';
 import TemaService from '../../service/TemaService';
+import ActiLogo from '../../assets/actilogo.png';
 // import { loggedUser } from '../../UserContext';
 
 function Home() {
@@ -32,27 +33,32 @@ function Home() {
             });
     }, []);
 
-    function goToCursoPage(){
-        console.log("a")
+    function goToCursoPage() {
+        console.log('a');
     }
 
     return (
         <div className="Home content" id="home">
             <header>
-                <h1>ACTI</h1>
-                <p className="text mainText">
-                    Centro de asesoria y consultoria en tecnologias de
-                    informacion
-                </p>
+                <div className="header__title">
+                    <div className="header__title--texts">
+                        <h1>ACTI</h1>
+                        <p className="text mainText">
+                            Centro de asesoria y consultoria en tecnologias de
+                            informacion
+                        </p>
+                    </div>
+                    <img src={ActiLogo} alt="" className="actiIcon" />
+                </div>
                 <div className="avisosBox">
-                    <Link to='/exam' className="btn_aviso">
-                    <Aviso
-                        text="Siguiente examen: 10 días"
-                        color="var(--danger)"
-                        tema="JS Arreglos avanzados"
-                        className='examenAdvice'
+                    <Link to="/exam" className="btn_aviso">
+                        <Aviso
+                            text="Siguiente examen: 10 días"
+                            color="var(--danger)"
+                            tema="JS Arreglos avanzados"
+                            className="examenAdvice"
                         />
-                        </Link>
+                    </Link>
                     {Avisos.map((aviso) => (
                         <Aviso
                             key={aviso.id}
@@ -67,9 +73,10 @@ function Home() {
                     {Cursos.map((curso) => (
                         // <div className='curso-conteiner' key={curso.id} onClick={goToCursoPage}>
                         <Curso
-                        onClick={goToCursoPage}
-                        curso={curso} 
-                        key={curso.id}/>
+                            onClick={goToCursoPage}
+                            curso={curso}
+                            key={curso.id}
+                        />
                         //  </div>
                     ))}
                 </Desplegable>

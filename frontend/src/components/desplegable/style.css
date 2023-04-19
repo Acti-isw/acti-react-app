@@ -31,3 +31,19 @@
     display: none;
     transition: 0.5s ease-out;
 }
+
+@media (min-width: 768px) {
+    .courses_list{
+        max-width: 100%;
+        display: grid;
+        grid-template-columns: repeat(auto-fit,minmax(240px,15rem));
+        grid-auto-rows: minmax(100px,auto);
+        grid-gap: 20px;
+        gap: 20px;
+        /* margin: 0 auto; */
+        justify-content: center;
+        align-items: center;
+        justify-items: center;
+    }
+    
+}

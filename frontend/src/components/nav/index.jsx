@@ -27,8 +27,13 @@ function Nav() {
                         alt="Logotipo_acti"
                     />
                 </Link>
-                <div>
+                <div className='nav--right'>
                     {/* //Lo de desktop */}
+                    <div className='nav--navigationbuttons'>
+                    <Link to="/">Inicio</Link>
+                    <Link to="/recomendados">Recomendaciones</Link>
+                    <Link to="/recursos">Recursos</Link>
+                    </div>
                     <img
                         src={profilePhoto}
                         alt="Profile_photo"

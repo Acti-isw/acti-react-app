@@ -49,3 +49,23 @@ nav {
 .none {
     display: none;
 }
+
+.nav--navigationbuttons{
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .nav--right{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .nav--navigationbuttons{
+        display: flex;
+        gap: 20px;
+    }
+    .nav--navigationbuttons a{
+        color: var(--white);
+        text-decoration: none;
+    }
+}

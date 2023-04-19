@@ -37,14 +37,11 @@ function Login() {
                 </label>
                 
                 {onError &&  <LoginError/>}
-                {/* <Link to="/home"> */}
                     <input
                         className="primary_button"
                         type="submit"
                         value="Iniciar sesión"
                     />
-                {/* </Link> */}
-
                 </form>
             </div>
         </React.Fragment>

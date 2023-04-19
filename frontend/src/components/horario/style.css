@@ -13,3 +13,14 @@
 .modificable{
     cursor: pointer;
 }
+.dsk{
+    display: none;
+}
+@media (min-width: 768px) {
+    .mov{
+        display: none;
+    }
+    .dsk{
+        display: table-cell;
+    }
+}
