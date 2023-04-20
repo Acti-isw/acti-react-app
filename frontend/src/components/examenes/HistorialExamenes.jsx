@@ -20,6 +20,17 @@ function HistorialExamanes() {
         });
     }, []);
 
+    function getIndiceReprobacion(){
+        let aprobacion = 0;  
+        exams.forEach(element => {
+            if(element.FinalResult){
+                aprobacion++;
+            }
+        });
+        aprobacion = Math.floor((aprobacion/(exams.length-1))*100)
+        return aprobacion;
+    }
+
     if (!exams ) {
         return <Loader />;
     } else {
@@ -44,7 +55,7 @@ function HistorialExamanes() {
                 {exams[0].reactives.length !== 0 && (
                     <h3>No hay ningun examen programado</h3>
                 )}
-                <p className="IReprobacion">Indice de reprobacion</p>
+                <p className="IAprobacion">Indice de aprobacion {getIndiceReprobacion()}%</p>
                 <p className="textMd">Historial de examenes</p>
                 <table className="examenes__table ">
                     <thead>

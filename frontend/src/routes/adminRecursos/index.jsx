@@ -39,8 +39,8 @@ function AdminRecursos() {
                             formTitle={'Agregar recurso'}
                         />
                     </div>
-                    <div className="recusosActuales">
                         <h2>Recursos actuales</h2>
+                    <div className="recusosActuales">
                         {resources.map((recurso) => (
                             <Recurso
                                 recurso={recurso}

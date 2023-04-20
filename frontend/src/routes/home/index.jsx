@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import './style.css';
 import Aviso from '../../components/aviso';
@@ -7,15 +7,17 @@ import RamImg from '../../assets/Ramses_Parker.png';
 import Curso from '../../components/curso';
 import AvisoService from '../../service/AvisoService';
 import TemaService from '../../service/TemaService';
+import ExamService from '../../service/ExamService';
 import ActiLogo from '../../assets/actilogo.png';
-// import { loggedUser } from '../../UserContext';
+import { loggedUser } from '../../UserContext';
 
 function Home() {
+    const { currentUser } = useContext(loggedUser);
+    const [exam, setExam] = useState();
     // const navigate = useNavigate();
     // const context = useContext(loggedUser);
     const [Avisos, setAvisos] = useState([]);
     const [Cursos, setCursos] = useState([]);
-
     useEffect(() => {
         AvisoService.getAnnonucement()
             .then((res) => {
@@ -31,10 +33,18 @@ function Home() {
             .catch((err) => {
                 throw err;
             });
+        ExamService.getExamByUser(currentUser.id).then((res) => {
+            const arraySort = res.sort((a, b) => {
+                return new Date(b.Date) - new Date(a.Date);
+            });
+            setExam(arraySort[0]);
+        });
     }, []);
 
-    function goToCursoPage() {
-        console.log('a');
+    function getDateNextExam(nextExam) {
+        const difference = new Date(nextExam) - new Date();
+        const days = Math.ceil(difference / 1000 / 60 / 60 / 24);
+        return days;
     }
 
     return (
@@ -51,14 +61,21 @@ function Home() {
                     <img src={ActiLogo} alt="" className="actiIcon" />
                 </div>
                 <div className="avisosBox">
-                    <Link to="/exam" className="btn_aviso">
-                        <Aviso
-                            text="Siguiente examen: 10 días"
-                            color="var(--danger)"
-                            tema="JS Arreglos avanzados"
-                            className="examenAdvice"
-                        />
-                    </Link>
+                    {exam?.reactives.length === 0 && (
+                        <>
+                            <Aviso
+                                text={
+                                    'Tu siguiente examen sera en ' +
+                                    getDateNextExam(exam.Date) +
+                                    ' dias'
+                                }
+                                color="var(--danger)"
+                                tema={'Tema: ' + exam?.topic[0].nombre}
+                                examen={'/exam'}
+                                className="examenAdvice"
+                            />
+                        </>
+                    )}
                     {Avisos.map((aviso) => (
                         <Aviso
                             key={aviso.id}
@@ -73,7 +90,7 @@ function Home() {
                     {Cursos.map((curso) => (
                         // <div className='curso-conteiner' key={curso.id} onClick={goToCursoPage}>
                         <Curso
-                            onClick={goToCursoPage}
+                            // onClick={goToCursoPage}
                             curso={curso}
                             key={curso.id}
                         />

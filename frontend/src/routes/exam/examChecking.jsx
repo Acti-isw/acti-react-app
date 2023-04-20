@@ -73,43 +73,43 @@ const ExamChecking = () => {
         };
         ExamService.updateExam(idExam, resultExam)
             .then(() => {
-        if (resultExam.FinalResult) {
-            TemaService.getTopics().then((res) => {
-                if (res[exam.topic.id] === res[res.length - 1]) {
-                    // All exams finished
-                } else {
-                    const nextExamDate = new Date();
-                    nextExamDate.setDate(nextExamDate.getDate() + 14);
-                    nextExam(res[exam.topic.id + 1].id, nextExamDate);
-                }
-            });
+                if (resultExam.FinalResult) {
+                    TemaService.getTopics().then((res) => {
+                        if (res[exam.topic.id] === res[res.length - 1]) {
+                            // All exams finished
+                        } else {
+                            const nextExamDate = new Date();
+                            nextExamDate.setDate(nextExamDate.getDate() + 14);
+                            nextExam(res[exam.topic.id + 1].id, nextExamDate);
+                        }
+                    });
 
-            // console.log(user.infoActi.Nivel+1);
-            const dataTry = {
-                infoActi:{
-                    ...user.infoActi,
-                    Nivel:user.infoActi.Nivel+1
-                },
-                intentos: 2
-            };
-            // console.log(dataTry);
-            UserService.updateUser(user.id, dataTry);
-        } else {
-            const dataTry = {
-                intentos: user.intentos - 1
-            };
-            // console.log(dataTry);
-            UserService.updateUser(user.id, dataTry);
-            if (dataTry.intentos > 0) {
-                const nextExamDate = new Date();
-                nextExamDate.setDate(nextExamDate.getDate() + 7);
-                nextExam(exam.topic.id, nextExamDate);
-            }
-        }
-        })
-        .finally(() => {
-            navigate(`/gestionarexamenes/${exam.user}`);
-        });
+                    // console.log(user.infoActi.Nivel+1);
+                    const dataTry = {
+                        infoActi: {
+                            ...user.infoActi,
+                            Nivel: user.infoActi.Nivel + 1
+                        },
+                        intentos: 2
+                    };
+                    // console.log(dataTry);
+                    UserService.updateUser(user.id, dataTry);
+                } else {
+                    const dataTry = {
+                        intentos: user.intentos - 1
+                    };
+                    // console.log(dataTry);
+                    UserService.updateUser(user.id, dataTry);
+                    if (dataTry.intentos > 0) {
+                        const nextExamDate = new Date();
+                        nextExamDate.setDate(nextExamDate.getDate() + 7);
+                        nextExam(exam.topic.id, nextExamDate);
+                    }
+                }
+            })
+            .finally(() => {
+                navigate(`/gestionarexamenes/${exam.user}`);
+            });
     }
 
     if (!exam || !user) {
@@ -176,9 +176,11 @@ const ExamChecking = () => {
                                 <h3 className="exam-fail">Reprobado</h3>
                             )}
                         </div>
-                        <button type="submit" className="primary_button">
-                            Guardar
-                        </button>
+                        <div className="btnTerminar">
+                            <button type="submit" className="primary_button">
+                                Guardar
+                            </button>
+                        </div>
                     </form>
                 </div>
             </ValidateAccess>

@@ -9,10 +9,12 @@
 .historialExamenes p,
 .gestionExamenes p {
     text-align: center;
+    width: fit-content;
+    margin: 0 auto;
 }
 
-.IReprobacion {
-    background-color: var(--danger);
+.IAprobacion {
+    background-color: var(--success);
     color: var(--white);
     font-style: normal;
     font-weight: 600;
@@ -47,4 +49,21 @@
 .examenes__tr td {
     border: none;
     background-color: var(--background);
+}
+.next-exam{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+@media (min-width: 768px) {
+    .historialExamenes{
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    .examenes__table {
+        max-width: 1200px;
+        min-width: 80%;
+        margin: 0 auto;
+    }
 }

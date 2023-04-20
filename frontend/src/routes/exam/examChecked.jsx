@@ -68,9 +68,11 @@ const ExamChecked = () => {
                         <h2 className="exam-fail">Reprobado</h2>
                     )}
                 </div>
-                <Link to={`/gestionarexamenes/${user.id}`}>
-                    <button className="primary_button">Terminar</button>
-                </Link>
+                <div className='btnTerminar'>
+                    <Link to={`/gestionarexamenes/${user.id}`}>
+                        <button className="primary_button">Terminar</button>
+                    </Link>
+                </div>
             </div>
         );
     }

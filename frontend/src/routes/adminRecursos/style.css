@@ -49,3 +49,28 @@
 .modalEditResource input{
   width: 80vw;
 }
+@media (min-width: 768px) {
+  .recusosActuales{
+    /* flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center; */
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(230px,300px));
+    grid-auto-rows: minmax(100px,auto);
+    grid-gap: 20px;
+    gap: 20px;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+  }
+  .recusosActuales .editable{
+    max-width: 300px;
+    width: 30vw;
+  }
+  .addRecurso{
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}

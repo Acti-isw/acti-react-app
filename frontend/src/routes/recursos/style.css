@@ -62,4 +62,8 @@
     align-items: center;
     justify-items: center;
   }
+  .icon-edit-resource, .icon-delete-resource{
+    top: -165px;
+  }
+
 }
