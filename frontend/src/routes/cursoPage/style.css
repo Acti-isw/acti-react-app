@@ -1,7 +1,7 @@
 .cursoPage{
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
   max-width: 1200px;
   width: 90%;
   margin: 0 auto;
@@ -11,9 +11,12 @@
   border-radius: 10px;
   padding: 10px;
 }
+.listadoConocimientos{
+  padding-left: 20px;
+}
 .temas{
-  width: 100%;
   text-align: center;
+  margin: 10px;
 }
 .retos__conteiner{
   display: flex;
@@ -26,6 +29,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 20px;
 }
 .btnParty{
   width: 60px;
@@ -49,4 +53,31 @@
 .partyText{
   color: rgb(235, 96, 216);
   -webkit-text-stroke: .23px black;
+}
+.cursoPage__instructions{
+  text-align: justify;
+}
+@media (min-width: 768px) {
+  .cursoPage{
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto auto;
+  }
+  .cursoPage__title{
+    grid-row: 1/2;
+    grid-column: 1/3;
+  }
+  .cursoPage__instructions{
+    grid-row: 2/3;
+    grid-column: 1/2;
+  }
+  .curso_themes{
+    grid-row: 2/3;
+    grid-column: 2/3;
+    min-width: 20vw;
+  }
+  .cursoPage__retos{
+    grid-row: 3/4;
+    grid-column: 1/3;
+  }
 }

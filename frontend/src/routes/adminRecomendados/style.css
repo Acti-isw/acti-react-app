@@ -77,3 +77,9 @@ select:not(:-internal-list-box) {
 .recomendacion-conteiner{
   margin: 10px 0;
 }
+
+@media (min-width: 768px) {
+  /* .recomendacion-conteiner{
+    margin: 10px 10px;
+  } */
+}

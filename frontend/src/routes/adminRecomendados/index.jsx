@@ -28,8 +28,8 @@ function AdminRecomendados() {
                         {/* <h3>Agregar recomendacion</h3> */}
                         <FormRecomendado action="create" load={setLoading} />
                     </div>
-                    <div className="recomendadosList">
                         <h2>Recomendados actuales</h2>
+                    <div className="recomendadosList">
                         {recomendaciones.map((recomendacion) => (
                             <Recomendacion
                                 editable={true}

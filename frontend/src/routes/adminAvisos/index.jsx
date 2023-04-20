@@ -66,7 +66,7 @@ function AdminAvisos() {
     const formTitle = 'Agregar aviso';
     return (
         <ValidateAccess>
-            <div className="content">
+            <div className="content adminAvisoContent">
                 <p className="title">Avisos</p>
                 <FormBuilder
                     inputs={annonucementForm}

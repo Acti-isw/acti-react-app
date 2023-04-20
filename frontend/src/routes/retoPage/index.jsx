@@ -38,7 +38,7 @@ function RetoPage() {
 
     return (
         <div className="content retopage">
-            <p className="title">{reto.nombre}</p>
+            <p className="title retopage__title">{reto.nombre}</p>
             <div className="">{/* slide imagenes */}</div>
             <h3>Indicaciones: </h3>
             {/* indicaciones */}

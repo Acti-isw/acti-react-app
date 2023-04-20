@@ -68,3 +68,10 @@ input:checked + .slider:before {
   border-radius: 10px;
 
 }
+
+@media (min-width: 768px) {
+  .anexo__table{
+    min-width: 70vw;
+  }
+  
+}

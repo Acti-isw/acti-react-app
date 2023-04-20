@@ -1,24 +1,43 @@
-.addAviso{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  margin: 10px;
+.addAviso {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 10px;
 }
-.color{
-  width: 150px;
+.color {
+    width: 150px;
 }
 
-.mensaje{
-  resize: none;
-  height: 70px;
-  padding: 3px;
-} 
-.avisosList{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 20px;
+.mensaje {
+    resize: none;
+    height: 70px;
+    padding: 3px;
+}
+.avisosList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+}
+
+@media (min-width: 768px) {
+    .adminAvisoContent {
+        margin: 0 auto;
+        max-width: 1200px;
+    }
+    .recomendacion-conteiner {
+        width: fit-content;
+        position: relative;
+    }
+    .controles-conteiner {
+        position: absolute;
+        width: unset;
+        right: 0;
+    }
+    .recomendacion-conteiner .editable {
+        margin-top: 34px;
+    }
 }

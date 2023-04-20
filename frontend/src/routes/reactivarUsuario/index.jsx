@@ -38,7 +38,7 @@ function ReactivarUsuario() {
         <ValidateAccess>
             <div className="content anexo">
                 <p className="title">El anexo</p>
-                <table className="admin__table">
+                <table className="admin__table anexo__table">
                     <thead>
                         <tr>
                             <th>Nombre</th>
@@ -51,7 +51,7 @@ function ReactivarUsuario() {
                         {users.map((user) => (
                             <tr key={user.id}>
                                 <td>{user.nombre}</td>
-                                <td>{user.nivel}</td>
+                                <td>{user.infoActi.Nivel}</td>
                                 <td>
                                     <Link to={`/userdetails/${user.id}`}>
                                         Detalles

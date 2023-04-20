@@ -150,7 +150,14 @@ body,
 .input_type2:focus {
     border-bottom: 3px solid var(--secondary);
 }
-
+.input_select{
+    background-color: var(--white);
+    border: none;
+    padding: 10px 10px;
+    border-radius: 10px;
+    outline: none;
+}
+  
 /*Tablas*/
 .admin__table {
     font-size: 16px;

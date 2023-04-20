@@ -47,7 +47,7 @@ function UserDetails() {
     return (
         <ValidateAccess>
             <div className="UserDetails content">
-                <p className="title">Detalles usuario</p>
+                <p className="title UserDetails__title">Detalles usuario</p>
                 <div className="userdetails__header">
                     <div className="profile_photo">
                         <img src={profilePhoto} alt="" />
@@ -61,53 +61,69 @@ function UserDetails() {
                         <p className="subText">{user.correo}</p>
                     </div>
                 </div>
-                <button className="btn_examenes" onClick={GestionarExamenes}>
-                    Gestionar examenes
-                </button>
-                <Link to={`/usermodify/${user.id}`}>
-                    <button className="primary_button">
-                        Modificar información
+                <div className="UserDetails__options">
+                    <button
+                        className="btn_examenes"
+                        onClick={GestionarExamenes}
+                    >
+                        Gestionar examenes
                     </button>
-                </Link>
-                <h3>Informacion general</h3>
-                <div className="info_general">
-                    <p className="text">ID:{user.id}</p>
-                    <p className="text">Semestre: {user.semestre}</p>
-                    {/* <p className='text self'>Fecha de nacimiento:<br/>
+                    <Link to={`/usermodify/${user.id}`}>
+                        <button className="primary_button">
+                            Modificar información
+                        </button>
+                    </Link>
+                </div>
+                <div className="UserDetails__generalInfo">
+                    <h3>Informacion general</h3>
+                    <div className="info_general">
+                        <p className="text">ID:{user.id}</p>
+                        <p className="text">Semestre: {user.semestre}</p>
+                        {/* <p className='text self'>Fecha de nacimiento:<br/>
           29 de septiembre de 2000
         </p> */}
-                    <p className="text">
-                        Contraseña: <br />
-                        {password(user.contraseña)}
-                    </p>
-                    <p className="text">
-                        Telefono: <br /> {user.telefono}
-                    </p>
+                        <p className="text">
+                            Contraseña: <br />
+                            {password(user.contraseña)}
+                        </p>
+                        <p className="text">
+                            Telefono: <br /> {user.telefono}
+                        </p>
+                    </div>
                 </div>
-                <h3>Informacion ACTI</h3>
-                <div className="info_acti">
-                    <p className="text">Nivel:{user.infoActi.Nivel}</p>
-                    <p className="text">IP:{user.infoActi.IP}</p>
-                    <p className="text especialidad">
-                        Especialidad: {user.infoActi.Especialidad}
-                    </p>
-                    <p className="text rol">Rol: {user.rol.nombre}</p>
+                <div className="UserDetails__infoActi">
+                    <h3>Informacion ACTI</h3>
+                    <div className="info_acti">
+                        <p className="text">Nivel:{user.infoActi.Nivel}</p>
+                        <p className="text">IP:{user.infoActi.IP}</p>
+                        <p className="text especialidad">
+                            Especialidad: {user.infoActi.Especialidad}
+                        </p>
+                        <p className="text rol">Rol: {user.rol.nombre}</p>
+                    </div>
                 </div>
-                <p className="textMd">Horario:</p>
-                <Horario
-                    Datahorario={JSON.parse(user.infoActi.Horario)}
-                    setDatahorario={null}
-                    mode={0}
-                />
-                <div className="datas">
-                    <div className="data">Retos realizados: 260</div>
-                    <div className="data">Examenes aprobados: 18/20</div>
+                <div className="UserDetails__horario">
+                    <h3 className="UserDetails__horario__title">Horario:</h3>
+                    <Horario
+                        Datahorario={JSON.parse(user.infoActi.Horario)}
+                        setDatahorario={null}
+                        mode={0}
+                    />
+                    <div className="datas">
+                        <div className="data">Retos realizados: 260</div>
+                        <div className="data">Examenes aprobados: 18/20</div>
+                    </div>
                 </div>
-                {user.activo && (
-                    <button className="danger_button" onClick={handleTurnOff}>
-                        Mandar usuario al anexo
-                    </button>
-                )}
+                <div className="UserDetails__desactivar">
+                    {user.activo && (
+                        <button
+                            className="danger_button "
+                            onClick={handleTurnOff}
+                        >
+                            Mandar usuario al anexo
+                        </button>
+                    )}
+                </div>
             </div>
         </ValidateAccess>
     );
