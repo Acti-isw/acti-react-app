@@ -6,6 +6,8 @@ import Loader from '../../components/loader';
 import FormBuilder from '../../components/formBuilder';
 import RoleService from '../../service/RoleService';
 import { loggedUser } from '../../UserContext';
+// import ValidateAccess from '../../components/validateAccess';
+import ValidateUser from '../../components/validateAccess/ValidateUser';
 
 function UserModificar() {
     const [Loading, setLoading] = useState(true);
@@ -19,7 +21,7 @@ function UserModificar() {
 
     useEffect(() => {
         // console.log(currentUser.id, id);
-        if (currentUser.id == id || currentUser.rol.id===1) {
+        if (currentUser.id == id || currentUser.rol.id === 1) {
             getusers();
             RoleService.getRoles().then((res) => {
                 const rols = [];
@@ -31,8 +33,8 @@ function UserModificar() {
                 });
                 setRols(rols);
             });
-        }else{
-            navigate('/notallowed')
+        } else {
+            navigate('/notallowed');
         }
     }, []);
 
@@ -61,17 +63,17 @@ function UserModificar() {
 
     const handleSubmit = async (e) => {
         // e.preventDefault();
-        console.log(e.target);
         const data = {
             nombre: e.target.nombre.value,
             alias: e.target.alias.value,
             semestre: e.target.semestre.value,
             telefono: e.target.telefono.value,
             correo: e.target.correo.value,
-            rol: currentUser.id != id && rol === 1 ? e.target.rol?.value : rol,
+            rol: e.target.rol?.value,
             infoActi: {
                 IP: e.target.ip.value,
-                Horario: JSON.stringify(Datahorario)
+                Horario: JSON.stringify(Datahorario),
+                Nivel: user?.infoActi.Nivel
             }
         };
 
@@ -135,7 +137,7 @@ function UserModificar() {
         }
     ];
 
-    if (currentUser.id != id && rol === 1) {
+    if (currentUser.id != id && currentUser.rol.id == 1) {
         formFields.push({
             name: 'rol',
             label: 'Rol',
@@ -149,27 +151,29 @@ function UserModificar() {
     if (Loading) return <Loader />;
 
     return (
-        <div className="UserModificar content">
-            <div className="UserUpdate__Form">
-                <FormBuilder
-                    formTitle={formTitle}
-                    controls={controls}
-                    inputs={formFields}
-                    cancelAction={() => {
-                        navigate('/admin');
-                    }}
-                    submitAction={handleSubmit}
-                />
+        <ValidateUser user={currentUser} id={id}>
+            <div className="UserModificar content">
+                <div className="UserUpdate__Form">
+                    <FormBuilder
+                        formTitle={formTitle}
+                        controls={controls}
+                        inputs={formFields}
+                        cancelAction={() => {
+                            navigate('/admin');
+                        }}
+                        submitAction={handleSubmit}
+                    />
+                </div>
+                {currentUser.id != id && (
+                    <input
+                        type="button"
+                        className="danger_button delete"
+                        value="Desactivar usuario"
+                        onClick={handleDelete}
+                    />
+                )}
             </div>
-            {currentUser.id != id && (
-                <input
-                    type="button"
-                    className="danger_button delete"
-                    value="Desactivar usuario"
-                    onClick={handleDelete}
-                />
-            )}
-        </div>
+        </ValidateUser>
     );
 }
 

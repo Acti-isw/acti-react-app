@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import profilePhoto from '../../assets/icons/big_icon _profile.svg';
 import ValidateAccess from '../../components/validateAccess';
+import Perfilfoto from '../components_icons/PerfilFoto';
 import './style.css';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import UserService from '../../service/UserService';
 import Loader from '../loader';
 import Horario from '../horario';
 import password from '../../utils/passcode';
+import ExamenesAprobados from '../../fragments/ExamenesAprobados';
 
 function UserDetails() {
     const { id } = useParams();
@@ -50,7 +51,12 @@ function UserDetails() {
                 <p className="title UserDetails__title">Detalles usuario</p>
                 <div className="userdetails__header">
                     <div className="profile_photo">
-                        <img src={profilePhoto} alt="" />
+                        <Perfilfoto
+                            nivel={user.infoActi.Nivel}
+                            size={'big'}
+                            privilegio={user.rol.id == 1}
+                        />
+                        {/* <img src={profilePhoto} alt="" /> */}
                         <p className={user.activo ? 'active' : 'inactive'}>
                             {user.activo ? 'Activo' : 'Anexado'}
                         </p>
@@ -79,9 +85,6 @@ function UserDetails() {
                     <div className="info_general">
                         <p className="text">ID:{user.id}</p>
                         <p className="text">Semestre: {user.semestre}</p>
-                        {/* <p className='text self'>Fecha de nacimiento:<br/>
-          29 de septiembre de 2000
-        </p> */}
                         <p className="text">
                             Contraseña: <br />
                             {password(user.contraseña)}
@@ -110,8 +113,10 @@ function UserDetails() {
                         mode={0}
                     />
                     <div className="datas">
-                        <div className="data">Retos realizados: 260</div>
-                        <div className="data">Examenes aprobados: 18/20</div>
+                        <div className="data">
+                            Retos realizados: <br /> {user.practicas?.length}
+                        </div>
+                        <ExamenesAprobados idUser={id} />
                     </div>
                 </div>
                 <div className="UserDetails__desactivar">

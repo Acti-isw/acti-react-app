@@ -32,7 +32,6 @@ function CrearUsuario() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(e.target);
         const data = {
             nombre: e.target.nombre.value,
             id: e.target.id.value,

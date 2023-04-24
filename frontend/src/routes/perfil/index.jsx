@@ -6,12 +6,12 @@ import Perfilfoto from '../../components/components_icons/PerfilFoto';
 import ModalContraseña from '../../components/modalContraseña';
 import { loggedUser } from '../../UserContext';
 import password from '../../utils/passcode';
+import ExamenesAprobados from '../../fragments/ExamenesAprobados';
 
 function Perfil() {
     const [OpenModal, setOpenModal] = useState(false);
     const { currentUser, setCurrentUserNewData } = useContext(loggedUser);
     // const [passcode, setPasscode] = useState(currentUser.contraseña);
-
     function handleOpenModal() {
         setOpenModal(true);
     }
@@ -24,7 +24,7 @@ function Perfil() {
         <div className="perfil-content content">
             <div className="perfil-main-info">
                 {/* <img src={perfilfoto} alt="" className="perfil-foto" /> */}
-                <Perfilfoto color={'black'} size={100} />
+                <Perfilfoto nivel={currentUser.infoActi.Nivel} size={'big'} privilegio={currentUser.rol.id==1}/>
                 <div className="perfil-nombre-correo">
                     <p className="textMd perfil-nombre">{currentUser.nombre}</p>
                     <p className="perfil-correo">{currentUser.correo}</p>
@@ -74,8 +74,9 @@ function Perfil() {
                 />
             </div>
             <div className="datas">
-                <div className="data">Retos realizados: 260</div>
-                <div className="data">Examenes aprobados: 18/20</div>
+                <div className="data">Retos realizados: <br/>{currentUser.practicas.length}</div>
+                {/* <div className="data">Examenes aprobados: 18/20</div> */}
+                <ExamenesAprobados idUser={currentUser.id}/>
             </div>
             <div className="perfil-modifyButtons">
                 <Link to={'/historial-examenes'}>

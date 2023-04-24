@@ -5,6 +5,7 @@ import './style.css';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { loggedUser } from '../../UserContext';
+import Perfilfoto from '../components_icons/PerfilFoto';
 
 function Nav() {
     const [Options, setOptions] = useState(false);
@@ -27,22 +28,37 @@ function Nav() {
                         alt="Logotipo_acti"
                     />
                 </Link>
-                <div className='nav--right'>
+                <div className="nav--right">
                     {/* //Lo de desktop */}
-                    <div className='nav--navigationbuttons'>
-                    <Link to="/">Inicio</Link>
-                    <Link to="/recomendados">Recomendaciones</Link>
-                    <Link to="/recursos">Recursos</Link>
+                    <div className="nav--navigationbuttons">
+                        <Link to="/">Inicio</Link>
+                        <Link to="/recomendados">Recomendaciones</Link>
+                        <Link to="/recursos">Recursos</Link>
                     </div>
-                    <img
-                        src={profilePhoto}
-                        alt="Profile_photo"
+                    {/* <Perfilfoto  */}
+                    <div 
+                        className='Profile_photo'
                         onClick={toggleOptions}
-                    />
+                    >
+                    <Perfilfoto
+                        nivel={currentUser.infoActi.Nivel}
+                        size={'small'}
+                        privilegio={currentUser.rol.id == 1}
+                        />
+                        </div>
+                    {/* <img
+                        src={profilePhoto}
+                        
+                    /> */}
                 </div>
             </nav>
             {Options && (
-                <div className="options__conteiner" onClick={()=>{setOptions(false)}}>
+                <div
+                    className="options__conteiner"
+                    onClick={() => {
+                        setOptions(false);
+                    }}
+                >
                     <div className="options">
                         <ul className="options__ul">
                             <Link to="/perfil">

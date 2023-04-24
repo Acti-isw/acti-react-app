@@ -23,7 +23,7 @@ function Aviso(props) {
                     <p>{props.tema}</p>
                     {props.examen &&
                     <Link to={props.examen}>
-                        Click aqui para presentar el examen
+                        ¡Click aqui para presentar el examen!
                     </Link>
                     }
                 </div>

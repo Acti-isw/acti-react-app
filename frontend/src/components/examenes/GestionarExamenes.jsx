@@ -8,6 +8,8 @@ import DateConverter from '../../utils/dateConverter';
 import ModalNewDate from './modalNewDate';
 import './style.css';
 import ExamService from '../../service/ExamService';
+import IndiceReprobacion from '../../fragments/indiceReprobacion';
+import ValidateAccess from '../validateAccess';
 
 function GestionarExamenes() {
     const { id } = useParams();
@@ -35,86 +37,99 @@ function GestionarExamenes() {
         return <Loader />;
     } else {
         return (
-            <div className="content gestionExamenes">
-                <p className="title">Programar Examen</p>
-                <h3 className="">{user.alias}</h3>
-                {exams[0].reactives.length == 0 && (
-                    <div className="next-exam">
-                        <p className="textMd">
-                            Siguiente examen: <br />
-                            {DateConverter(exams[0].Date)}
-                        </p>
-                        <p className="textMd">
-                            Tema: {exams[0].topic[0].nombre}
-                        </p>
-                        <button
-                            className="primary_button"
-                            onClick={() => {
-                                setModal(true);
-                            }}
-                        >
-                            Cambiar fecha
-                        </button>
-                    </div>
-                )}
-                {!exams[0].reactives.length == 0 && (
-                    <p className="textMd">No hay examenes programados</p>
-                )}
-                <p className="IReprobacion">Indice de reprobacion</p>
-                <p className="textMd">Historial de examenes</p>
-                <table className="examenes__table ">
-                    <thead>
-                        <tr>
-                            <th>Tema</th>
-                            <th>Fecha</th>
-                            <th>Estado</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {exams.map((examRow) => (
-                            <tr className="examenes__tr" key={examRow._id}>
-                                <td>
-                                    <p>{examRow.topic[0].nombre}</p>
-                                </td>
-                                <td>
-                                    <p>{DateConverter(examRow.Date)}</p>
-                                </td>
-                                <td>
-                                    {examRow.reactives.length === 0 && (
-                                        <p> Sin realizar</p>
-                                    )}
-                                    {examRow.FinalResult === undefined &&
-                                        examRow.reactives.length > 0 && (
-                                            <Link to={`/exam/${examRow._id}`}>
-                                                <p className="estado pendiente">
-                                                    Pendiente
+            <ValidateAccess>
+                <div className="content gestionExamenes">
+                    <p className="title">Programar Examen</p>
+                    <h3 className="">{user.alias}</h3>
+                    {exams[0].reactives.length == 0 && (
+                        <div className="next-exam">
+                            <p className="textMd">
+                                Siguiente examen: <br />
+                                {DateConverter(exams[0].Date)}
+                            </p>
+                            <p className="textMd">
+                                Tema: {exams[0].topic[0].nombre}
+                            </p>
+                            <button
+                                className="primary_button"
+                                onClick={() => {
+                                    setModal(true);
+                                }}
+                            >
+                                Cambiar fecha
+                            </button>
+                        </div>
+                    )}
+                    {!exams[0].reactives.length == 0 && (
+                        <p className="textMd">No hay examenes programados</p>
+                    )}
+                    <IndiceReprobacion exams={exams} />
+                    <p className="textMd">Historial de examenes</p>
+                    <table className="examenes__table ">
+                        <thead>
+                            <tr>
+                                <th>Tema</th>
+                                <th>Fecha</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {exams.map((examRow) => (
+                                <tr className="examenes__tr" key={examRow._id}>
+                                    <td>
+                                        <p>{examRow.topic[0].nombre}</p>
+                                    </td>
+                                    <td>
+                                        <p>{DateConverter(examRow.Date)}</p>
+                                    </td>
+                                    <td>
+                                        {examRow.reactives.length === 0 && (
+                                            <p> Sin realizar</p>
+                                        )}
+                                        {examRow.FinalResult === undefined &&
+                                            examRow.reactives.length > 0 && (
+                                                <Link
+                                                    to={`/exam/${examRow._id}`}
+                                                >
+                                                    <p className="estado pendiente">
+                                                        Pendiente
+                                                    </p>
+                                                </Link>
+                                            )}
+                                        {examRow.FinalResult === false && (
+                                            <Link
+                                                className="result-button"
+                                                to={`/exam-checked/${examRow._id}`}
+                                            >
+                                                <p className="estado reprobado">
+                                                    Reprobado
                                                 </p>
                                             </Link>
                                         )}
-                                    {examRow.FinalResult === false && (
-                                        <Link className='result-button' to={`/exam-checked/${examRow._id}`}>
-                                            <p className="estado reprobado">
-                                                Reprobado
-                                            </p>
-                                        </Link>
-                                    )}
-                                    {examRow.FinalResult === true && (
-                                        <Link className='result-button' to={`/exam-checked/${examRow._id}`}>
-                                            <p className="estado aprobado">
-                                                Aprobado
-                                            </p>
-                                        </Link>
-                                    )}
-                                    {/* <p className="estado pendiente">Pendiente</p> */}
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-                {modal && (
-                    <ModalNewDate examen={exams[0]} closeModal={closeModal} />
-                )}
-            </div>
+                                        {examRow.FinalResult === true && (
+                                            <Link
+                                                className="result-button"
+                                                to={`/exam-checked/${examRow._id}`}
+                                            >
+                                                <p className="estado aprobado">
+                                                    Aprobado
+                                                </p>
+                                            </Link>
+                                        )}
+                                        {/* <p className="estado pendiente">Pendiente</p> */}
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                    {modal && (
+                        <ModalNewDate
+                            examen={exams[0]}
+                            closeModal={closeModal}
+                        />
+                    )}
+                </div>
+            </ValidateAccess>
         );
     }
 }
