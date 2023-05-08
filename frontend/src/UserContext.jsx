@@ -5,9 +5,9 @@ import UserService from './service/UserService';
 const loggedUser = React.createContext();
 
 function UserContext(props) {
-    const localSesion = localStorage.getItem('localSesion');
+    const localSesion = sessionStorage.getItem('localSesion');
     if (!localSesion) {
-        localStorage.setItem('localSesion', JSON.stringify(''));
+        sessionStorage.setItem('localSesion', JSON.stringify(''));
     }
     useEffect(() => {
         if (localSesion) {
@@ -27,7 +27,7 @@ function UserContext(props) {
                     id: res[0].id,
                     contraseña: res[0].contraseña
                 };
-                localStorage.setItem('localSesion', JSON.stringify(localUser));
+                sessionStorage.setItem('localSesion', JSON.stringify(localUser));
                 setCurrentUser(res[0]);
             }
         });
@@ -42,19 +42,19 @@ function UserContext(props) {
                     id: res[0].id,
                     contraseña: res[0].contraseña
                 };
-                localStorage.setItem('localSesion', JSON.stringify(localUser));
+                sessionStorage.setItem('localSesion', JSON.stringify(localUser));
                 setCurrentUser(res[0]);
             }
         });
     };
     const logout = () => {
-        localStorage.setItem('localSesion', JSON.stringify(''));
+        sessionStorage.setItem('localSesion', JSON.stringify(''));
         setCurrentUser(null);
     };
 
     const setCurrentUserNewData = async () => {
         await UserService.getUser(currentUser.id).then((res) => {
-            // localStorage.setItem('localSesion', JSON.stringify(res[0]));
+            // sessionStorage.setItem('localSesion', JSON.stringify(res[0]));
             setCurrentUser(res[0]);
         });
     };

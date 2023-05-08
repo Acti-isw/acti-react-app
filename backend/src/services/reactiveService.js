@@ -56,11 +56,12 @@ const insertReactive = async (reactive) => {
     await reactiveSchema.insertMany(newReactive);
 };
 
-const updateReactive = async ({ id }, { valor, markdown }) => {
+const updateReactive = async ({ id }, { topic, valor, markdown }) => {
     await reactiveSchema.updateOne(
         { _id: id },
         {
             $set: {
+                topic: topic,
                 valor: valor,
                 markdown: markdown
             }

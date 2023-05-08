@@ -56,12 +56,7 @@ function CursoPage(props) {
             <div className="cursoPage__instructions">
                 <h3>Instrucciones</h3>
                 <p className="text">
-                    La pagina tiene que tener la estructura básica de HTML. Se
-                    le debe agregar un título a la página. Agregar icono a la
-                    página. Usar HTML semántico para cada pagina creada. Hacer
-                    uso de clases y darles nombres adecuados al tema. Los
-                    tamaños son a consideración, tratando de hacer que se vea
-                    similar a la imagen.
+                    {curso.descripcion}
                 </p>
             </div>
             <div className="cursoPage__retos">

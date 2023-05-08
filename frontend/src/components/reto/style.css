@@ -1,65 +1,72 @@
-.reto-complejo{
-  width: 90%;
-  border-bottom: 3px solid var(--secondary);
-  background-color: var(--white);
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
-  position: relative;
-  margin: 10px 0px;
+.reto-complejo {
+    width: 90%;
+    border-bottom: 3px solid var(--secondary);
+    background-color: var(--white);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    position: relative;
+    margin: 10px 0px;
 }
-.reto__simple{
-  /* width: 90%; */
-  display: grid;
-  grid-template-columns: auto auto;
-  grid-template-rows: auto auto;
-  gap: 5px;
-  width: 100%;
-  justify-content: space-between;
-  padding: 10px;
-  border-width: 1px 0px 0px 0px;
-  border-style: solid;
-  border-color: #000000;
-  /* align-items: center; */
+.reto__simple {
+    /* width: 90%; */
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+    gap: 5px;
+    width: 100%;
+    justify-content: space-between;
+    padding: 10px;
+    border-width: 1px 0px 0px 0px;
+    border-style: solid;
+    border-color: #000000;
+    /* align-items: center; */
 }
-.reto__simple input{
-  width: 20px;
-  grid-row: 1/4;
-  grid-column: 3/4;
-  margin: 10px;
+.reto__simple input {
+    width: 20px;
+    grid-row: 1/4;
+    grid-column: 3/4;
+    margin: 10px;
 }
-.reto__simple .text{
-  grid-row: 2/3;
+.reto__simple .text {
+    grid-row: 2/3;
 }
-.tituloReto{
-  grid-column: 1/3;
+.tituloReto {
+    grid-column: 1/3;
 }
-.reto-complejo:hover{
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-.reto-complejo img{
-  width: 100%;
+.reto-complejo:hover {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.check{
-  position: absolute;
-  top: 3px;
-  right: 3px;
-  color: var(--success);
+.reto-complejo img {
+    width: 100%;
+}
+
+.check {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    color: var(--success);
+}
+
+.reto__indicaciones ol {
+    padding: 0 20px;
+}
+.reto__indicaciones li {
+    overflow-x: visible;
 }
 
 @media (min-width: 768px) {
-  .reto-complejo{
-    width: 20vw;
-    margin: 10px;
-    min-width: 270px;
-  }
-  .reto-complejo img{
-    /* position: relative; */
-    height: 20vh;
-  }
+    .reto-complejo {
+        width: 20vw;
+        margin: 10px;
+        min-width: 270px;
+    }
+    .reto-complejo img {
+        /* position: relative; */
+        height: 20vh;
+    }
 }

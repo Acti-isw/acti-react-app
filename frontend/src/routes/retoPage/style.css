@@ -1,32 +1,45 @@
-.retopage{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
+.retopage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+.recursos_button:hover {
+    text-decoration: none;
+}
+.recursos_button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+.complete__box input {
+    width: 24px;
+    height: 24px;
 }
 
-.recursos_button{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
+.complete__box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
-.complete__box input{
-  width: 24px;
-  height: 24px;
+.guiasBox {
+    background-color: var(--white);
+    width: 90%;
+    border-radius: 10px;
+    padding: 10px;
 }
-
-.complete__box{
-  display:flex;
-  align-items: center;
-  gap: 10px;
+.guia__title {
+    text-align: center;
 }
-.guiasBox{
-  background-color: var(--white);
-  width: 90%;
-  border-radius: 10px;
-  padding: 10px;
+.indicaciones ol {
+    padding: 0 20px;
 }
-.guia__title{
-  text-align: center;
+.indicaciones li {
+    overflow-x: visible;
+}
+.guiasBox {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }

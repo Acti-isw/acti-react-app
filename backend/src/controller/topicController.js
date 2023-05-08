@@ -3,6 +3,7 @@ const {
     deleteAllTopics,
     insertTopic,
     getTopic,
+    updateTopic,
     getTopics
 } = require('../services/topicService');
 

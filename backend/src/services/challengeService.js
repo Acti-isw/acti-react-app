@@ -15,15 +15,21 @@ const insertChallenge = async (challenge) => {
 
 const updateChallenge = async (
     { id },
-    { nombre, descripcion, listadoConocimiento }
+    { nombre, indicaciones, tema, complejidad, imagenes, hipervinculo, recursos, guias, dificultad }
 ) => {
     await challengeSchema.updateOne(
         { _id: id },
         {
             $set: {
                 nombre: nombre,
-                descripcion: descripcion,
-                listadoConocimiento: listadoConocimiento
+                indicaciones: indicaciones,
+                tema: tema,
+                complejidad:complejidad,
+                imagenes:imagenes,
+                hipervinculo: hipervinculo,
+                recursos:recursos,
+                guias:guias, 
+                dificultad:dificultad
             }
         }
     );
