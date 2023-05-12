@@ -14,7 +14,7 @@ const IndiceReprobacion = ({exams}) => {
 } 
 
   return (
-    <p className="IAprobacion">Indice de aprobacion {getIndiceReprobacion()}%</p>
+    <p className="IAprobacion">Indice de aprobacion {getIndiceReprobacion()?getIndiceReprobacion():0}%</p>
   )
 }
 

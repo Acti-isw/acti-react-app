@@ -18,6 +18,7 @@ function Home() {
     // const context = useContext(loggedUser);
     const [Avisos, setAvisos] = useState([]);
     const [Cursos, setCursos] = useState([]);
+
     useEffect(() => {
         AvisoService.getAnnonucement()
             .then((res) => {

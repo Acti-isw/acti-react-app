@@ -11,6 +11,13 @@
 .alias {
     margin: 15px;
 }
+.UserDetails__options{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
 .UserDetails {
     display: flex;
     flex-direction: column;

@@ -74,6 +74,9 @@ const userSchema = new Schema({
     fechaNacimiento: {
         type: Date
     },
+    nextExam:{
+        type: String
+    }
     // fechaRetorno: {
     //     type: Date
     // }

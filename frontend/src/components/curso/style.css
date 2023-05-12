@@ -1,6 +1,7 @@
 .curso {
     border-radius: 30px;
     /* box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2); */
+    cursor: pointer;
 }
 .head_curso {
     top: 0;

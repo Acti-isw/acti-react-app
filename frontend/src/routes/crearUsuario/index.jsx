@@ -32,6 +32,8 @@ function CrearUsuario() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const date = new Date();
+        date.setDate(date.getDate() + 14);
         const data = {
             nombre: e.target.nombre.value,
             id: e.target.id.value,
@@ -43,6 +45,7 @@ function CrearUsuario() {
             correo: e.target.correo.value,
             intentos: 2,
             rol: e.target.rol.value,
+            nextExam:date,
             infoActi: {
                 IP: e.target.ip.value,
                 Nivel: 0,
@@ -51,8 +54,8 @@ function CrearUsuario() {
             }
         };
         UserService.createUser(data).then(() => {
-            const date = new Date();
-            date.setDate(date.getDate() + 14);
+            // const date = new Date();
+            // date.setDate(date.getDate() + 14);
             const exam = {
                 topic: 0,
                 user:e.target.id.value,

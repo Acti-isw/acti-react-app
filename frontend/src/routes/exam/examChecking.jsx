@@ -76,10 +76,14 @@ const ExamChecking = () => {
                 if (resultExam.FinalResult) {
                     TemaService.getTopics().then((res) => {
                         if (res[exam.topic.id] === res[res.length - 1]) {
+                            UserService.updateUser(user.id ,{nextExam:""})
                             // All exams finished
                         } else {
                             const nextExamDate = new Date();
                             nextExamDate.setDate(nextExamDate.getDate() + 14);
+                            // nextExam
+                            UserService.updateUser(user.id ,{nextExam:nextExamDate})
+                            // nextExamDate.setDate(nextExamDate);
                             nextExam(res[exam.topic.id + 1].id, nextExamDate);
                         }
                     });
@@ -103,6 +107,8 @@ const ExamChecking = () => {
                     if (dataTry.intentos > 0) {
                         const nextExamDate = new Date();
                         nextExamDate.setDate(nextExamDate.getDate() + 7);
+                        UserService.updateUser(user.id ,{nextExam:nextExamDate})
+                        // nextExamDate.setDate(nextExamDate);
                         nextExam(exam.topic.id, nextExamDate);
                     }
                 }

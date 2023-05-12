@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import Loader from '../../components/loader';
 import ValidateAccess from '../../components/validateAccess';
 import UserService from '../../service/UserService';
+import ExamService from '../../service/ExamService';
+import dateFormat from '../../utils/dateFormat';
 
 function Admin() {
     const [users, setUsers] = useState([]);
@@ -37,7 +39,8 @@ function Admin() {
                     <thead>
                         <tr>
                             <th>Nombre</th>
-                            <th>Proximo examen</th>
+                            <th className="infoUser--ip">IP</th>
+                            <th>Siguiente examen</th>
                             <th>‎ </th>
                         </tr>
                     </thead>
@@ -45,7 +48,10 @@ function Admin() {
                         {users.map((user) => (
                             <tr key={user.id}>
                                 <td>{user.nombre}</td>
-                                <td>10/25/20</td>
+                                <td className="infoUser--ip">
+                                    {user.infoActi.IP}
+                                </td>
+                                <td>{user.nextExam?dateFormat(user.nextExam):""}</td>
                                 <td>
                                     <Link to={`/userdetails/${user.id}`}>
                                         Expediente

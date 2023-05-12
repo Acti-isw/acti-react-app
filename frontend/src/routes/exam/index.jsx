@@ -32,7 +32,7 @@ function Exam() {
                     reactiveService
                     .getReactivesExam(res[res.length - 1].topic[0].id)
                     .then((reactives) => {
-                        // console.log(reactives);
+                        console.log(reactives);
                         const newExamData = {
                             _id: res[res.length - 1]._id,
                             topic: res[res.length - 1].topic[0].id,
